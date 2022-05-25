@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1>login</h1>
+    <p>login</p>
     <q-btn :to="`/score`" color="white" text-color="black" label="Login" />
   </div>
 </template>

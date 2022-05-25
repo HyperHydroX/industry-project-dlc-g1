@@ -1,6 +1,6 @@
 <template>
   <div class="schermen">
-    <h1>schermen</h1>
+    <p>schermen</p>
   </div>
 </template>
 
