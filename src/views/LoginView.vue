@@ -1,8 +1,11 @@
 <template>
-  <div class="login">
+<q-body background-color="orange-8" >
+      <div  >
     <p>login</p>
-    <q-btn :to="`/score`" color="white" text-color="black" label="Login" />
+    <q-btn :to="`/start`" color="white" text-color="black" label="Login" />
   </div>
+</q-body>
+
 </template>
 
 <script>
