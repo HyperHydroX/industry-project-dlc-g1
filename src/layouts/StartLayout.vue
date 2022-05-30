@@ -12,13 +12,6 @@
         <q-btn :to="`/`" flat round dense icon="logout" />
       </q-toolbar>
     </q-header>
-    <div class="fixed-bottom q-pa-md">
-      <q-btn-group spread>
-        <q-btn :to="`/score`" color="primary" icon="score" />
-        <q-btn :to="`/schermen`" color="primary" icon="visibility" />
-        <q-btn :to="`/settings`" color="primary" icon="settings" />
-      </q-btn-group>
-    </div>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -34,6 +27,6 @@
 
 <script>
 export default {
-  name: "NavigationLayout",
+  name: "StartLayout",
 };
 </script>

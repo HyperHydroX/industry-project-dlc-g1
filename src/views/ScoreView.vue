@@ -1,6 +1,6 @@
 <template>
   <div class="score">
-    <h1>score</h1>
+    <p>score</p>
   </div>
 </template>
 
