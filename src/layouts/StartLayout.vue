@@ -1,4 +1,5 @@
 <template>
+<div class="bg-background">
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
@@ -15,7 +16,14 @@
       <router-view />
     </q-page-container>
   </q-layout>
+  </div>
 </template>
+
+<style lang="sass" scoped>
+.bg-background
+  background: rgb(0,0,0)
+  background: linear-gradient(170deg, rgba(0,0,0,1) 0%, rgba(32,32,32,1) 100%)
+</style>
 
 <script>
 export default {

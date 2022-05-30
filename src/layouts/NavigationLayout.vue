@@ -1,4 +1,5 @@
 <template>
+<div class="bg-background">
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
@@ -13,16 +14,23 @@
     </q-header>
     <div class="fixed-bottom q-pa-md">
       <q-btn-group spread>
-        <q-btn :to="`/score`" color="blue" icon="score" />
-        <q-btn :to="`/schermen`" color="blue" icon="visibility" />
-        <q-btn :to="`/settings`" color="blue" icon="settings" />
+        <q-btn :to="`/score`" color="primary" icon="score" />
+        <q-btn :to="`/schermen`" color="primary" icon="visibility" />
+        <q-btn :to="`/settings`" color="primary" icon="settings" />
       </q-btn-group>
     </div>
     <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
+  </div>
 </template>
+
+<style lang="sass" scoped>
+.bg-background
+  background: rgb(0,0,0)
+  background: linear-gradient(170deg, rgba(0,0,0,1) 0%, rgba(32,32,32,1) 100%)
+</style>
 
 <script>
 export default {
