@@ -1,5 +1,5 @@
 <template>
-  <div class="con-scorepagina">
+  <main class="con-scorepagina">
     <section class="con-teams">
       <div class="con-team">
         <h2 class="con-team__title">Thuis</h2>
@@ -16,12 +16,61 @@
         </div>
       </div>
     </section>
-    <section class="con-scores"></section>
+    <section class="con-scores">
+      <div class="con-score-updaters">
+        <svg
+          class="con-plus-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
+          />
+        </svg>
+        <svg
+          class="con-minus-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
+          />
+        </svg>
+      </div>
+      <div class="con-team-scores">
+        <div class="con-team-scores__timer">18:14</div>
+        <div class="con-current-scores">
+          <p class="con-current-score__team">2</p>
+          <p class="con-current-score__sperator">-</p>
+          <p class="con-current-score__team">0</p>
+        </div>
+      </div>
+      <div class="con-score-updaters">
+        <svg
+          class="con-plus-icon con-plus-icon--team2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
+          />
+        </svg>
+        <svg
+          class="con-minus-icon con-minus-icon--team2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
+          />
+        </svg>
+      </div>
+    </section>
     <section class="con-btns">
       <div class="con-btn">Rust</div>
       <div class="con-btn con-btn-lg">Reset tijd</div>
     </section>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -31,16 +80,18 @@ export default {
 </script>
 
 <style lang="scss">
-$vlag-kleur-uitdeel1: #128453;
-$vlag-kleur-uitdeel2: #a3ffd7;
+$vlag-kleur-uitdeel1: #ff1e00;
+$vlag-kleur-uitdeel2: #323232;
 $vlag-kleur-thuisdeel1: #ffe600;
-$vlag-kleur-thuisdeel2: #3c00ff;
+$vlag-kleur-thuisdeel2: #2500c7;
 $border-raduis-vlaggen: 3px;
 $margin-between-childeren: 40px;
 $primary-color: #8bd1b6;
 $primary-color-dark: #8bd1b6;
 $primary-color-darker: #8bd1b654;
 $primary-text-color: black;
+$updater-icon-size: 30%;
+$update-icon-min-size: 32px;
 
 .con-scorepagina {
   margin: 0 auto;
@@ -49,7 +100,7 @@ $primary-text-color: black;
 }
 
 .con-teams {
-  margin-top: 20px;
+  margin-top: 60px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -115,9 +166,11 @@ $primary-text-color: black;
 .con-scores {
   height: 160px;
   background-color: rgb(57, 57, 57);
-  justify-self: center;
   border-radius: 10px;
   margin-bottom: $margin-between-childeren;
+  display: flex;
+  padding: 30px;
+  justify-content: space-between;
 }
 
 .con-btns {
@@ -142,6 +195,68 @@ $primary-text-color: black;
   flex-basis: 370px;
   height: 60px;
 }
+
+.con-score-updaters {
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: auto;
+  width: 30%;
+}
+
+.con-plus-icon {
+  fill: white;
+  width: $updater-icon-size;
+  min-width: $update-icon-min-size;
+}
+
+.con-minus-icon {
+  fill: white;
+  width: $updater-icon-size;
+  min-width: $update-icon-min-size;
+}
+
+.con-plus-icon--team2 {
+  align-self: flex-end;
+}
+
+.con-minus-icon--team2 {
+  align-self: flex-end;
+}
+
+.con-team-scores {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.con-team-scores__timer {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.con-current-scores {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+}
+
+.con-current-score__team {
+  font-size: 70px;
+  margin: 0;
+}
+
+.con-current-score__sperator {
+  font-size: 70px;
+  margin: 0;
+}
+
 @media screen and (max-width: 400px) {
   .con-btns {
     flex-direction: column;
@@ -151,12 +266,71 @@ $primary-text-color: black;
   }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 330px) {
   .con-teams {
     justify-content: center;
   }
   .con-team__title {
     align-self: center;
+  }
+  .con-scores {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .con-score-updaters {
+    flex-direction: row;
+    width: 100%;
+  }
+  .con-plus-icon {
+    align-self: center;
+  }
+  .con-minus-icon {
+    align-self: center;
+  }
+  .con-scorepagina {
+    padding-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 230px) {
+  .con-current-score__team {
+    font-size: 50px;
+  }
+  .con-current-score__sperator {
+    font-size: 50px;
+  }
+    .con-scores {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 180px) {
+  .con-current-score__team {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .con-current-score__sperator {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .con-team-scores__timer {
+    font-weight: 400;
+    font-size:18px
+  }
+  .con-score-updaters {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .con-scores {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

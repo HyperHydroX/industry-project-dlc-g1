@@ -1,5 +1,5 @@
 <template>
-  <div class="con-weergave">
+  <main class="con-weergave">
     <header class="con-weergave__header">
       <h1 class="con-weergave__header__title">Boodschap naar scherm</h1>
     </header>
@@ -47,7 +47,7 @@
         </li>
       </ul>
     </form>
-  </div>
+  </main>
 </template>
 
 <script>
