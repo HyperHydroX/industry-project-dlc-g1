@@ -62,7 +62,10 @@
     color: #F9F9F9
     text-align: center
     max-width: 200px
+
 </style>
+
+
 
 <script setup>
 import CodeInput from "../components/CodeInput.vue";
