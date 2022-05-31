@@ -1,6 +1,11 @@
       
       <template>
-  <q-input v-bind:style="{ backgroundColor: color}"  filled v-model="color" class="my-input">
+  <q-input
+    v-bind:style="{ backgroundColor: color }"
+    filled
+    v-model="color"
+    class="my-input"
+  >
     <template v-slot:append>
       <q-icon color="white" name="colorize" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -11,7 +16,7 @@
             default-view="palette"
             v-model="color"
             :palette="[
-              '#019A9D',
+              '#008048',
               '#D9B801',
               '#E8045A',
               '#B2028A',
@@ -25,21 +30,39 @@
   </q-input>
 </template>
 
-<style lang="sass" scoped>
-.my-picker
-    width: 300px
+<style lang="scss" scoped>
+.my-picker {
+  width: 300px;
+}
+.my-input {
+  width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .my-picker {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .my-picker {
+    width: 300px;
+  }
+  .my-input {
+  width: 250px;
+}
+}
 </style>
 
 <script>
 import { ref } from 'vue'
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
-  name: "ColorPicker",
-    setup () {
+  name: 'ColorPicker',
+  setup() {
     return {
-      color: ref('#FF00FF'),
-      secondColor: ref('#027be3')
+      color: ref('#242424'),
     }
-  }
-});
+  },
+})
 </script>
