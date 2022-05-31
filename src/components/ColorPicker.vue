@@ -1,6 +1,6 @@
       
       <template>
-  <q-input bg-color= {{color}} filled v-model="color" class="my-input">
+  <q-input v-bind:style="{ backgroundColor: color}"  filled v-model="color" class="my-input">
     <template v-slot:append>
       <q-icon color="white" name="colorize" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
