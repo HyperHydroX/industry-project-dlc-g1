@@ -43,7 +43,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .bg-background {
   background: rgb(0, 0, 0);
   background: linear-gradient(
@@ -63,16 +63,18 @@
 }
 .Admin {
   margin-top: 1em;
+  width: 13%;
 }
 .User {
-  margin-top: 1em;
+  margin-top: 2em;
+  width: 13%;
 }
 .q-text_input {
-  margin-top: 2.5em;
+  margin-top: 1.5em;
   color: #f9f9f9;
   text-align: center;
-  max-width: 300px;
-  font-size: 1.3em;
+  max-width: 220px;
+  font-size: 1.2em;
 }
 
 @media screen and (max-width: 768px) {
@@ -83,9 +85,11 @@
   }
   .Admin {
     margin-top: 1em;
+    width: 32%;
   }
   .User {
     margin-top: 1.5em;
+    width: 32%;
   }
   .q-text_input {
     margin-top: 2em;
@@ -107,9 +111,11 @@
   }
   .Admin {
     margin-top: 5%;
+    width: 50%;
   }
   .User {
     margin-top: 5%;
+    width: 50%;
   }
   .q-text_input {
     margin-top: 5%;
