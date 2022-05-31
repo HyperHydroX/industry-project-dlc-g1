@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background">
+  <div class="bg-background q-pa-xl">
     <q-layout view="lHh Lpr lFf">
       <div class="column no-wrap items-center">
         <q-img
@@ -55,8 +55,10 @@
     color: white
 .Admin
     margin-top: 5%
+    width: 100%
 .User
     margin-top: 5%
+    width: 100%
 .q-text_input
     margin-top: 5%
     color: #F9F9F9
