@@ -4,15 +4,15 @@
       <div class="con-team">
         <h2 class="con-team__title">Thuis</h2>
         <div class="con-vlag-delen">
-          <div class="con-vlag-delen__thuisdeel1"></div>
-          <div class="con-vlag-delen__thuisdeel2"></div>
+      <ColorPickerSmall />
+      <ColorPickerSmall />
         </div>
       </div>
       <div class="con-team">
         <h2 class="con-team__title con-team__title--uit">Uit</h2>
         <div class="con-vlag-delen">
-          <div class="con-vlag-delen__uitdeel1"></div>
-          <div class="con-vlag-delen__uitdeel2"></div>
+      <ColorPickerSmall />
+      <ColorPickerSmall />
         </div>
       </div>
     </section>
@@ -66,20 +66,29 @@
         </svg>
       </div>
     </section>
-    <section class="con-btns">
-      <div class="con-btn">Rust</div>
-      <div class="con-btn con-btn-lg">Reset tijd</div>
-    </section>
+    <div class="column no-wrap items-center">
+      <q-btn class="q-btn" color="primary" text-color="white" label="Rust" />
+      <q-btn
+        class="q-btn"
+        color="primary"
+        text-color="white"
+        label="Reset tijd"
+      />
+    </div>
   </main>
 </template>
 
 <script>
+import ColorPickerSmall from '../components/ColorPickerSmall.vue'
 export default {
   name: 'ScoreView',
+    components: {
+    ColorPickerSmall,
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $vlag-kleur-uitdeel1: #ff1e00;
 $vlag-kleur-uitdeel2: #323232;
 $vlag-kleur-thuisdeel1: #ffe600;
@@ -167,6 +176,7 @@ $update-icon-min-size: 32px;
   height: 160px;
   background-color: rgb(57, 57, 57);
   border-radius: 10px;
+  margin-top: 106px;
   margin-bottom: $margin-between-childeren;
   display: flex;
   padding: 30px;
@@ -257,6 +267,11 @@ $update-icon-min-size: 32px;
   margin: 0;
 }
 
+.q-btn {
+  margin-top: 1em;
+  width: 100%;
+}
+
 @media screen and (max-width: 400px) {
   .con-btns {
     flex-direction: column;
@@ -302,7 +317,7 @@ $update-icon-min-size: 32px;
   .con-current-score__sperator {
     font-size: 50px;
   }
-    .con-scores {
+  .con-scores {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -320,7 +335,7 @@ $update-icon-min-size: 32px;
 
   .con-team-scores__timer {
     font-weight: 400;
-    font-size:18px
+    font-size: 18px;
   }
   .con-score-updaters {
     flex-direction: column;

@@ -32,24 +32,24 @@
 
 <style lang="scss" scoped>
 .my-picker {
-  width: 300px;
+  width: 100px;
 }
 .my-input {
-  width: 300px;
+  width: 120px;
 }
 
 @media screen and (max-width: 768px) {
   .my-picker {
-    width: 300px;
+    width: 120px;
   }
 }
 
 @media screen and (max-width: 425px) {
   .my-picker {
-    width: 300px;
+    width: 100px;
   }
   .my-input {
-  width: 250px;
+  width: 120px;
 }
 }
 </style>
@@ -58,7 +58,7 @@
 import { ref } from 'vue'
 import { defineComponent } from 'vue'
 export default defineComponent({
-  name: 'ColorPicker',
+  name: 'ColorPickerSmall',
   setup() {
     return {
       color: ref('#393939'),
