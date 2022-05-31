@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background q-pa-xl">
+  <div class="bg-background">
     <q-layout view="lHh Lpr lFf">
       <div class="column no-wrap items-center">
         <q-img
@@ -43,34 +43,91 @@
   </div>
 </template>
 
-<style lang="sass" scoped>
-.bg-background
-    background: rgb(0,0,0)
-    background: linear-gradient(170deg, rgba(0,0,0,1) 0%, rgba(32,32,32,1) 100%)
-.q-img
-    max-width: 150px
-    max-height: 150px
-    margin-top: 30%
-.q-titel
-    color: white
-.Admin
-    margin-top: 5%
-    width: 100%
-.User
-    margin-top: 5%
-    width: 100%
-.q-text_input
-    margin-top: 5%
-    color: #F9F9F9
-    text-align: center
-    max-width: 200px
+<style lang="scss">
+.bg-background {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    170deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(32, 32, 32, 1) 100%
+  );
+}
+.q-img {
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 11em;
+}
+.q-titel {
+  color: white;
+  font-size: 2.5em;
+}
+.Admin {
+  margin-top: 1em;
+}
+.User {
+  margin-top: 1em;
+}
+.q-text_input {
+  margin-top: 2.5em;
+  color: #f9f9f9;
+  text-align: center;
+  max-width: 300px;
+  font-size: 1.3em;
+}
 
+@media screen and (max-width: 768px) {
+  .q-img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 7.5em;
+  }
+  .Admin {
+    margin-top: 1em;
+  }
+  .User {
+    margin-top: 1.5em;
+  }
+  .q-text_input {
+    margin-top: 2em;
+    color: #f9f9f9;
+    text-align: center;
+    max-width: 300px;
+    font-size: 1.3em;
+  }
+  .q-titel {
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .q-img {
+    max-width: 150px;
+    max-height: 150px;
+    margin-top: 40%;
+  }
+  .Admin {
+    margin-top: 5%;
+  }
+  .User {
+    margin-top: 5%;
+  }
+  .q-text_input {
+    margin-top: 5%;
+    color: #f9f9f9;
+    text-align: center;
+    max-width: 200px;
+    font-size: 1em;
+  }
+  .q-titel {
+    font-size: 2.2em;
+  }
+}
 </style>
 
 
 
 <script setup>
-import CodeInput from "../components/CodeInput.vue";
-import { ref } from "vue";
-const completed = ref(false);
+import CodeInput from '../components/CodeInput.vue'
+import { ref } from 'vue'
+const completed = ref(false)
 </script>
