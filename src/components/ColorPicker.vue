@@ -2,7 +2,7 @@
       <template>
   <q-input bg-color= {{color}} filled v-model="color" class="my-input">
     <template v-slot:append>
-      <q-icon name="colorize" class="cursor-pointer">
+      <q-icon color="white" name="colorize" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
           <q-color
             class="my-picker"
