@@ -93,7 +93,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
 }
 
 .con-weergave__header {
