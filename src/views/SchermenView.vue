@@ -1,6 +1,7 @@
 <template>
-  <div class="start column no-wrap items-center q-pa-xl">
-    <div class="q-pa-md">
+  <div class="q-start">
+    <div class="q-body">
+    <div>
       <q-input
         class="q-input"
         v-model="text"
@@ -17,6 +18,7 @@
       :options="options"
       label="Scherm weergave"
     />
+  </div>
   </div>
 </template>
 
@@ -36,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .q-btn {
-  width: 300px;
+  width: 100%;
   font-size: 1em;
   margin-top: 1em;
 }
@@ -44,39 +46,83 @@ export default {
   font-size: 1em;
   background-color: white;
   color: white;
-  width: 300px;
-  margin-top: 5em;
-
+  width: 410px;
 }
 .q-select {
-  width: 300px;
+  width: 410px;
   font-size: 1em;
   background-color: white;
   margin-top: 4em;
+}
+
+.q-start {
+  margin: 0 auto;
+  max-width: 450px;
+  padding: 0 20px;
+}
+
+.q-body {
+  margin-top: 50px;
 }
 
 @media screen and (max-width: 768px) {
   .q-btn {
-  width: 300px;
+    width: 100%;
   }
-  .q-select {
-  width: 300px;
-  font-size: 1em;
-  background-color: white;
-  margin-top: 4em;
-}
+
 }
 
 @media screen and (max-width: 425px) {
   .q-btn {
     width: 100%;
   }
-  .q-select {
-  width: 300px;
+.q-input {
+  font-size: 1em;
+  background-color: white;
+  color: white;
+  width: 383px;
+}
+.q-select {
+  width: 383px;
   font-size: 1em;
   background-color: white;
   margin-top: 4em;
 }
+}
 
+@media screen and (max-width: 375px) {
+  .q-btn {
+    width: 100%;
+  }
+.q-input {
+  font-size: 1em;
+  background-color: white;
+  color: white;
+  width: 333px;
+}
+.q-select {
+  width: 333px;
+  font-size: 1em;
+  background-color: white;
+  margin-top: 4em;
+}
+}
+
+@media screen and (max-width: 320px) {
+  .q-btn {
+    width: 100%;
+  }
+.q-input {
+  font-size: 1em;
+  background-color: white;
+  color: white;
+  width: 279px;
+}
+.q-select {
+  width: 279px;
+  font-size: 1em;
+  background-color: white;
+  margin-top: 4em;
+}
 }
 </style>

@@ -16,12 +16,16 @@
             default-view="palette"
             v-model="color"
             :palette="[
-              '#008048',
-              '#D9B801',
-              '#E8045A',
-              '#B2028A',
-              '#2A0449',
-              '#019A9D',
+              '#145703',
+              '#C0D1EF',
+              '#2C73EC',
+              '#072964',
+              '#3D18BB',
+              '#FFFFFF',
+              '#000000',
+              '#F5E834',
+              '#F5AE34',
+              '#8B3030',
             ]"
           />
         </q-popup-proxy>
@@ -32,10 +36,10 @@
 
 <style lang="scss" scoped>
 .my-picker {
-  width: 300px;
+  width: 370px;
 }
 .my-input {
-  width: 300px;
+  width: 370px;
 }
 
 @media screen and (max-width: 768px) {
@@ -49,7 +53,25 @@
     width: 300px;
   }
   .my-input {
-  width: 250px;
+  width: 345px;
+}
+}
+
+@media screen and (max-width: 375px) {
+  .my-picker {
+    width: 300px;
+  }
+  .my-input {
+  width: 295px;
+}
+}
+
+@media screen and (max-width: 320px) {
+  .my-picker {
+    width: 300px;
+  }
+  .my-input {
+  width: 240px;
 }
 }
 </style>
@@ -61,7 +83,7 @@ export default defineComponent({
   name: 'ColorPicker',
   setup() {
     return {
-      color: ref('#393939'),
+      color: ref('#F5AE34'),
     }
   },
 })

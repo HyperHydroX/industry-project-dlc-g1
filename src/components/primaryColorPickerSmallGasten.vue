@@ -16,12 +16,16 @@
             default-view="palette"
             v-model="color"
             :palette="[
-              '#008048',
-              '#D9B801',
-              '#E8045A',
-              '#B2028A',
-              '#2A0449',
-              '#019A9D',
+              '#145703',
+              '#C0D1EF',
+              '#2C73EC',
+              '#072964',
+              '#3D18BB',
+              '#FFFFFF',
+              '#000000',
+              '#F5E834',
+              '#F5AE34',
+              '#8B3030',
             ]"
           />
         </q-popup-proxy>
@@ -61,7 +65,7 @@ export default defineComponent({
   name: 'ColorPickerSmall',
   setup() {
     return {
-      color: ref('#393939'),
+      color: ref('#F5E834'),
     }
   },
 })
