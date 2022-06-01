@@ -1,22 +1,24 @@
 <template>
-  <div class="start column no-wrap items-center  q-pa-xl">
-    <div class="Groep q-pb-xl">
-      <p class="q-titel">THUIS</p>
-      <ColorPicker />
-      <ColorPicker />
+  <div class="q-start column no-wrap items-center">
+    <div class="q-body">
+      <div class="Groep q-pb-xl">
+        <p class="q-titel">THUIS</p>
+        <primaryColorPickerThuis />
+        <secundaryColorPickerThuis  />
+      </div>
+      <div class="Groep q-pb-xl">
+        <p class="q-titel">GASTEN</p>
+        <primaryColorPickerGasten  />
+        <secundaryColorPickerGasten  />
+      </div>
+      <q-btn
+        class="q-btn"
+        :to="`/score`"
+        color="primary"
+        text-color="white"
+        label="start"
+      />
     </div>
-    <div class="Groep q-pb-xl">
-      <p class="q-titel">GASTEN</p>
-      <ColorPicker />
-      <ColorPicker />
-    </div>
-    <q-btn
-      class="q-btn"
-      :to="`/score`"
-      color="primary"
-      text-color="white"
-      label="start"
-    />
   </div>
 </template>
 
@@ -26,19 +28,26 @@
   text-align: center;
   font-size: 1.5em;
   font-weight: 600;
+  margin-bottom: 7.5px;
 }
 .q-btn {
-  width: 13%;
+  width: 100%;
   font-size: 1em;
+}
+.q-start {
+  margin: 0 auto;
+  max-width: 450px;
+  padding: 0 40px;
+}
+
+.q-body {
+  margin-top: 50px;
 }
 
 @media screen and (max-width: 768px) {
   .q-titel {
     color: white;
     text-align: center;
-  }
-  .q-btn {
-    width: 32%;
   }
 }
 
@@ -47,18 +56,31 @@
     color: white;
     text-align: center;
   }
-  .q-btn {
-    width: 50%;
-  }
 }
 </style>
 
 <script>
-import ColorPicker from '../components/ColorPicker.vue'
+import { ref } from 'vue'
+import primaryColorPickerGasten from '../components/primaryColorPickerGasten.vue'
+import secundaryColorPickerGasten from '../components/secundaryColorPickerGasten.vue'
+import primaryColorPickerThuis from '../components/primaryColorPickerThuis.vue'
+import secundaryColorPickerThuis from '../components/secundaryColorPickerThuis.vue'
 export default {
   name: 'StartView',
   components: {
-    ColorPicker,
+    primaryColorPickerGasten,
+    secundaryColorPickerGasten,
+    primaryColorPickerThuis,
+    secundaryColorPickerThuis,
+  },
+  setup() {
+    return {
+      primaryColorThuis: ref('#C0D1EF'),
+      secundaryColorThuis: ref('#2C73EC'),
+      primaryColorGasten: ref('#F5E834'),
+      secundaryColorGasten: ref('#F5AE34'),
+    }
   },
 }
 </script>
+

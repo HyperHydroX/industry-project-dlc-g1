@@ -4,15 +4,15 @@
       <div class="con-team">
         <h2 class="con-team__title">Thuis</h2>
         <div class="con-vlag-delen">
-      <ColorPickerSmall />
-      <ColorPickerSmall />
+          <primaryColorPickerSmallThuis />
+          <secundaryColorPickerSmallThuis />
         </div>
       </div>
       <div class="con-team">
         <h2 class="con-team__title con-team__title--uit">Uit</h2>
         <div class="con-vlag-delen">
-      <ColorPickerSmall />
-      <ColorPickerSmall />
+          <primaryColorPickerSmallGasten />
+          <secundaryColorPickerSmallGasten />
         </div>
       </div>
     </section>
@@ -79,11 +79,26 @@
 </template>
 
 <script>
-import ColorPickerSmall from '../components/ColorPickerSmall.vue'
+import primaryColorPickerSmallGasten from '../components/primaryColorPickerSmallGasten.vue'
+import secundaryColorPickerSmallGasten from '../components/secundaryColorPickerSmallGasten.vue'
+import primaryColorPickerSmallThuis from '../components/primaryColorPickerSmallThuis.vue'
+import secundaryColorPickerSmallThuis from '../components/secundaryColorPickerSmallThuis.vue'
+import { ref } from 'vue'
 export default {
   name: 'ScoreView',
-    components: {
-    ColorPickerSmall,
+  components: {
+    primaryColorPickerSmallGasten,
+    secundaryColorPickerSmallGasten,
+    primaryColorPickerSmallThuis,
+    secundaryColorPickerSmallThuis,
+  },
+  setup() {
+    return {
+      primaryColorThuis: ref('#C0D1EF'),
+      secundaryColorThuis: ref('#2C73EC'),
+      primaryColorGasten: ref('#F5E834'),
+      secundaryColorGasten: ref('#F5AE34'),
+    }
   },
 }
 </script>
@@ -107,6 +122,8 @@ $update-icon-min-size: 32px;
   max-width: 450px;
   padding: 0 20px;
 }
+
+
 
 .con-teams {
   margin-top: 60px;
