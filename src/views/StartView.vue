@@ -64,7 +64,7 @@
   font-size: 1.5em;
   font-weight: 600;
   margin-bottom: -0.5em;
-  margin-top: -1.5em;
+  margin-top: -2.5em;
 }
 
 .q-tekst {
@@ -100,6 +100,7 @@ import primaryColorPickerGasten from '../components/primaryColorPickerGasten.vue
 import secundaryColorPickerGasten from '../components/secundaryColorPickerGasten.vue'
 import primaryColorPickerThuis from '../components/primaryColorPickerThuis.vue'
 import secundaryColorPickerThuis from '../components/secundaryColorPickerThuis.vue'
+
 export default {
   name: 'StartView',
   components: {

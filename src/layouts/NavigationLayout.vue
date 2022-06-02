@@ -1,20 +1,9 @@
 <template>
   <div class="bg-background">
     <q-layout view="lHh Lpr lFf">
-      <q-header elevated>
-        <q-toolbar>
-          <q-toolbar-title class="q-toolbar-title"> DLC </q-toolbar-title>
-
-          <q-btn
-            @click="showNotif"
-            class="q-btn"
-            flat
-            round
-            dense
-            icon="logout"
-          />
-        </q-toolbar>
-      </q-header>
+      <q-toolbar class="q-toolbar">
+        <q-btn @click="showNotif" color="white" class="q-btn" :to="`/`" flat round dense icon="logout" />
+      </q-toolbar>
       <div class="q-navi fixed-bottom">
         <q-btn-group spread>
           <q-btn :to="`/score`" color="primary" icon="score" />
@@ -38,16 +27,17 @@
     rgba(32, 32, 32, 1) 100%
   );
 }
-.q-navi {
-  margin-left: 50px;
-}
 
-.q-toolbar-title {
-  text-align: center;
-}
+
 
 .q-btn {
-  margin-left: -50px;
+  margin-top: 1em;
+}
+
+.q-toolbar{
+  display: flex;
+  justify-content: flex-end;
+  margin-left: -1em;
 }
 
 @media screen and (max-width: 768px) {
@@ -69,34 +59,21 @@
 import { useQuasar } from 'quasar'
 export default {
   name: 'NavigationLayout',
-  setup() {
+    setup () {
     const $q = useQuasar()
 
     return {
-      showNotif() {
+      showNotif () {
         $q.notify({
-          message:
-            'U staat op het punt om uit te loggen, wilt u hiermee doorgaan?',
+          message: 'U staat op het punt om uit te loggen, wilt u hiermee doorgaan?',
           color: 'primary',
           actions: [
-            {
-              label: 'Ja',
-              color: 'white',
-              handler: () => {
-                /* ... */
-              },
-            },
-            {
-              label: 'Neen',
-              color: 'white',
-              handler: () => {
-                /* ... */
-              },
-            },
-          ],
+            { label: 'Ja', color: 'white', handler: () => { /* ... */ } },
+            { label: 'Neen', color: 'white', handler: () => { /* ... */ } }
+          ]
         })
-      },
+      }
     }
-  },
+  }
 }
 </script>

@@ -17,6 +17,8 @@
     "vue": "^3.2.13",
     "vue-pincode-input": "^0.4.0",
     "vue-router": "^4.0.3",
+    "vue-timer-hook": "^1.0.0",
+    "vue3-flip-countdown": "^0.1.6",
     "vue3-otp-input": "^0.3.6",
     "vue3-verification-code-input": "^0.1.0"
   },

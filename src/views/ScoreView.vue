@@ -1,81 +1,84 @@
 <template>
-  <main class="con-scorepagina">
-    <section class="con-teams">
-      <div class="con-team">
-        <h2 class="con-team__title">Thuis</h2>
-        <div class="con-vlag-delen">
+  <div class="q-start column no-wrap">
+    <div class="q-body">
+      <div class=" q-kleuren">
+        <div>
+          <p class="q-subtitel">THUIS</p>
           <primaryColorPickerSmallThuis />
           <secundaryColorPickerSmallThuis />
         </div>
-      </div>
-      <div class="con-team">
-        <h2 class="con-team__title con-team__title--uit">Uit</h2>
-        <div class="con-vlag-delen">
+        <div>
+        <p class="q-timer">20 : 01</p></div>
+        <div>
+          <p class="q-subtitel">GASTEN</p>
           <primaryColorPickerSmallGasten />
           <secundaryColorPickerSmallGasten />
         </div>
       </div>
-    </section>
-    <section class="con-scores">
-      <div class="con-score-updaters">
-        <svg
-          class="con-plus-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
-          />
-        </svg>
-        <svg
-          class="con-minus-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
-          />
-        </svg>
-      </div>
-      <div class="con-team-scores">
-        <div class="con-team-scores__timer">18:14</div>
-        <div class="con-current-scores">
-          <p class="con-current-score__team">2</p>
-          <p class="con-current-score__sperator">-</p>
-          <p class="con-current-score__team">0</p>
+      <h1 class="q-titel">SCORE</h1>
+      <div class="con-scores">
+        <div class="con-score-updaters">
+          <svg
+            class="con-plus-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
+            />
+          </svg>
+          <svg
+            class="con-minus-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
+            />
+          </svg>
+        </div>
+        <div class="con-team-scores">
+          <div class="con-current-scores">
+            <p class="con-current-score__team">2</p>
+            <p class="con-current-score__sperator">-</p>
+            <p class="con-current-score__team">0</p>
+          </div>
+        </div>
+        <div class="con-score-updaters">
+          <svg
+            class="con-plus-icon con-plus-icon--team2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
+            />
+          </svg>
+          <svg
+            class="con-minus-icon con-minus-icon--team2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
+            />
+          </svg>
         </div>
       </div>
-      <div class="con-score-updaters">
-        <svg
-          class="con-plus-icon con-plus-icon--team2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
-          />
-        </svg>
-        <svg
-          class="con-minus-icon con-minus-icon--team2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
-          />
-        </svg>
-      </div>
-    </section>
-    <div class="column no-wrap items-center">
-      <q-btn class="q-btn" color="primary" text-color="white" label="Rust" />
       <q-btn
         class="q-btn"
         color="primary"
         text-color="white"
-        label="Reset tijd"
+        label="rust"
+      />
+      <q-btn
+        class="q-btn"
+        color="primary"
+        text-color="white"
+        label="tijd resetten"
       />
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -104,6 +107,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.q-kleuren{
+  display: flex;
+    margin-bottom: 3em;
+}
+.q-btn {
+  width: 100%;
+  font-size: 1em;
+  height: 3.5em;
+    margin-bottom: 1em;
+}
+.q-subtitel {
+  color: white;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 7.5px;
+}
+
+.q-timer {
+  color: white;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 7.5px;
+}
+.q-titel {
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: -0.5em;
+  margin-top: -2.5em;
+}
+.q-start {
+  margin: 0 auto;
+  max-width: 450px;
+  padding: 0 40px;
+}
+
+.q-body {
+  margin-top: 50px;
+}
 $vlag-kleur-uitdeel1: #ff1e00;
 $vlag-kleur-uitdeel2: #323232;
 $vlag-kleur-thuisdeel1: #ffe600;
@@ -122,8 +166,6 @@ $update-icon-min-size: 32px;
   max-width: 450px;
   padding: 0 20px;
 }
-
-
 
 .con-teams {
   margin-top: 60px;
@@ -193,11 +235,10 @@ $update-icon-min-size: 32px;
   height: 160px;
   background-color: rgb(57, 57, 57);
   border-radius: 10px;
-  margin-top: 106px;
-  margin-bottom: $margin-between-childeren;
   display: flex;
   padding: 30px;
   justify-content: space-between;
+    margin-bottom: 3em;
 }
 
 .con-btns {

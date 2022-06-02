@@ -5998,6 +5998,11 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
+"vue-timer-hook@^1.0.0":
+  "integrity" "sha512-m7YMkrU2788NHDkAC38Kr+QyMkZiWE4F7yWaQKNugf9ZeMucnIHTtwPkAzUtq5q0dw+M5xGdvnQapzSdquhoAQ=="
+  "resolved" "https://registry.npmjs.org/vue-timer-hook/-/vue-timer-hook-1.0.0.tgz"
+  "version" "1.0.0"
+
 "vue@^2 || ^3.2.13", "vue@^3.0.*", "vue@^3.0.0", "vue@^3.2.0", "vue@^3.2.13", "vue@>= 3.0.0 < 4", "vue@3.2.36":
   "integrity" "sha512-5yTXmrE6gW8IQgttzHW5bfBiFA6mx35ZXHjGLDmKYzW6MMmYvCwuKybANRepwkMYeXw2v1buGg3/lPICY5YlZw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.36.tgz"
@@ -6008,6 +6013,13 @@
     "@vue/runtime-dom" "3.2.36"
     "@vue/server-renderer" "3.2.36"
     "@vue/shared" "3.2.36"
+
+"vue3-flip-countdown@^0.1.6":
+  "integrity" "sha512-RRz+iZ7Zvr1U9mrZRya7I5815jboDyRJz9vzgILq8ZCc2fQ6SxZPYwOr3pD5oWCDBprAEsPF9x4fsTtEitSmXw=="
+  "resolved" "https://registry.npmjs.org/vue3-flip-countdown/-/vue3-flip-countdown-0.1.6.tgz"
+  "version" "0.1.6"
+  dependencies:
+    "vue" "^3.0.0"
 
 "vue3-otp-input@^0.3.6":
   "integrity" "sha512-08A/33P3dvk8DBQ6ACJ6ajNCNdkJL2Di5CVVLxcYK7+izM4KFMeWsFnZsx2fD0VfLE7t6jpi+cNgNU83nP7/TQ=="

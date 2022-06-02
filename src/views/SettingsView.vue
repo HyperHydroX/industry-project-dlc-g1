@@ -77,46 +77,7 @@ export default {
   font-size: 1.5em;
   font-weight: 600;
   margin-bottom: -0.5em;
-  margin-top: -1.25em;
-}
-
-.q-titelScherm {
-  color: white;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -3.5em;
-}
-
-.q-titelSponser {
-  color: white;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -4em;
-}
-
-.q-input {
-  font-size: 1em;
-  background-color: white;
-  color: white;
-  width: 100%;
-  border-radius: 5px;
-}
-
-.q-file {
-  font-size: 1em;
-  color: white;
-  width: 100%;
-  margin-top: 5em;
-  border-bottom-left-radius: 5px;
-}
-.q-select {
-  width: 100%;
-  font-size: 1em;
-  background-color: white;
-  margin-top: 4em;
-  border-radius: 5px;
+  margin-top: -2.5em;
 }
 
 .q-start {

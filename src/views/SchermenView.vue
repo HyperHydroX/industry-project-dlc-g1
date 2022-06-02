@@ -1,7 +1,7 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-            <h1 class="q-titelTekst">KLEUREN PLOEGEN</h1>
+            <h1 class="q-titelTekst">SCHERM TEKSTWEERGAVE</h1>
       <div>
 
         <q-input
@@ -75,7 +75,7 @@ export default {
   font-size: 1.5em;
   font-weight: 600;
   margin-bottom: -0.5em;
-  margin-top: -1.25em;
+  margin-top: -2.5em;
 }
 
 .q-titelScherm {

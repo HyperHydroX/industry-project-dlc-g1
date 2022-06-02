@@ -38,7 +38,8 @@
   width: 100px;
 }
 .my-input {
-  width: 120px;
+  width: 80%;
+  margin-left: 1.9em
 }
 
 @media screen and (max-width: 768px) {
@@ -52,7 +53,7 @@
     width: 100px;
   }
   .my-input {
-  width: 120px;
+  width: 80%;
 }
 }
 </style>
