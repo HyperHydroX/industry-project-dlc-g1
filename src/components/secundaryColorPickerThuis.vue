@@ -3,8 +3,8 @@
   <q-input
     v-bind:style="{ backgroundColor: color }"
     filled
-    v-model="color"
     class="my-input"
+    
   >
     <template v-slot:append>
       <q-icon color="white" name="colorize" class="cursor-pointer">
@@ -39,7 +39,9 @@
   width: 370px;
 }
 .my-input {
-  width: 370px;
+  width: 100%;
+  border-bottom-left-radius: 7.5px;
+  border-bottom-right-radius: 7.5px;
 }
 
 @media screen and (max-width: 768px) {
@@ -53,8 +55,8 @@
     width: 300px;
   }
   .my-input {
-  width: 345px;
-}
+  width: 100%;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -62,8 +64,8 @@
     width: 300px;
   }
   .my-input {
-  width: 295px;
-}
+  width: 100%;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -71,8 +73,8 @@
     width: 300px;
   }
   .my-input {
-  width: 240px;
-}
+  width: 100%;
+  }
 }
 </style>
 

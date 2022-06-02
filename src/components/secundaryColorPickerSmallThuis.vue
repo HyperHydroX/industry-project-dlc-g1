@@ -3,7 +3,6 @@
   <q-input
     v-bind:style="{ backgroundColor: color }"
     filled
-    v-model="color"
     class="my-input"
   >
     <template v-slot:append>

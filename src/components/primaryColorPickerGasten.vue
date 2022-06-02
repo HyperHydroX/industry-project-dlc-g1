@@ -3,7 +3,6 @@
   <q-input
     v-bind:style="{ backgroundColor: color }"
     filled
-    v-model="color"
     class="my-input"
   >
     <template v-slot:append>
@@ -39,7 +38,9 @@
   width: 370px;
 }
 .my-input {
-  width: 370px;
+  width: 100%;
+  border-top-left-radius: 7.5px;
+  border-top-right-radius: 7.5px;
 }
 
 @media screen and (max-width: 768px) {
@@ -53,7 +54,7 @@
     width: 300px;
   }
   .my-input {
-  width: 345px;
+  width: 100%;
 }
 }
 
@@ -62,7 +63,7 @@
     width: 300px;
   }
   .my-input {
-  width: 295px;
+  width: 100%;
 }
 }
 

@@ -1,24 +1,49 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-    <div>
-      <q-input
-        class="q-input"
-        v-model="text"
+            <h1 class="q-titelTekst">KLEUREN PLOEGEN</h1>
+      <div>
+
+        <q-input
+          class="q-input"
+          v-model="text"
+          filled
+          type="textarea"
+          label="Deze tekst is komt terecht op het scorebord"
+        />
+      </div>
+      <q-btn
+        class="q-btn"
+        color="primary"
+        text-color="white"
+        label="Verzenden"
+      />
+            <h1 class="q-titelScherm">SCHERM WEERGAVE</h1>
+      <q-select
+        class="q-select"
         filled
-        type="textarea"
-        label="Deze tekst is komt terecht op het scorebord"
+        v-model="model"
+        :options="options"
+        label="Scherm weergave"
       />
     </div>
-    <q-btn class="q-btn" color="primary" text-color="white" label="Verzenden" />
-    <q-select
-      class="q-select"
-      filled
-      v-model="model"
-      :options="options"
-      label="Scherm weergave"
-    />
-  </div>
+    <div>
+      <h1 class="q-titelSponser">UPLOAD SPONSERS</h1>
+
+      <q-file
+        class="q-file"
+        color="white"
+        label-color="white"
+        bg-color="primary"
+        standout
+        v-model="model"
+        label="Upload sponsers"
+      >
+        <template v-slot:append>
+          <q-icon name="cloud_upload" color="white" />
+        </template>
+      </q-file>
+    </div>
   </div>
 </template>
 
@@ -40,25 +65,62 @@ export default {
 .q-btn {
   width: 100%;
   font-size: 1em;
-  margin-top: 1em;
+  margin-top: 2em;
+  height: 3.5em;
 }
+
+.q-titelTekst {
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: -0.5em;
+  margin-top: -1.25em;
+}
+
+.q-titelScherm {
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: -3.5em;
+}
+
+.q-titelSponser {
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: -4em;
+}
+
 .q-input {
   font-size: 1em;
   background-color: white;
   color: white;
-  width: 410px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.q-file {
+  font-size: 1em;
+  color: white;
+  width: 100%;
+  margin-top: 5em;
+  border-bottom-left-radius: 5px;
 }
 .q-select {
-  width: 410px;
+  width: 100%;
   font-size: 1em;
   background-color: white;
   margin-top: 4em;
+  border-radius: 5px;
 }
 
 .q-start {
   margin: 0 auto;
   max-width: 450px;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .q-body {
@@ -69,60 +131,59 @@ export default {
   .q-btn {
     width: 100%;
   }
-
 }
 
 @media screen and (max-width: 425px) {
   .q-btn {
     width: 100%;
   }
-.q-input {
-  font-size: 1em;
-  background-color: white;
-  color: white;
-  width: 383px;
-}
-.q-select {
-  width: 383px;
-  font-size: 1em;
-  background-color: white;
-  margin-top: 4em;
-}
+  .q-input {
+    font-size: 1em;
+    background-color: white;
+    color: white;
+    width: 100%;
+  }
+  .q-select {
+    width: 100%;
+    font-size: 1em;
+    background-color: white;
+    margin-top: 4em;
+  }
 }
 
 @media screen and (max-width: 375px) {
   .q-btn {
     width: 100%;
   }
-.q-input {
-  font-size: 1em;
-  background-color: white;
-  color: white;
-  width: 333px;
-}
-.q-select {
-  width: 333px;
-  font-size: 1em;
-  background-color: white;
-  margin-top: 4em;
-}
+  .q-input {
+    font-size: 1em;
+    background-color: white;
+    color: white;
+    width: 100%;
+  }
+  .q-select {
+    width: 100%;
+    font-size: 1em;
+    background-color: white;
+    margin-top: 4em;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .q-btn {
     width: 100%;
   }
-.q-input {
-  font-size: 1em;
-  background-color: white;
-  color: white;
-  width: 279px;
-}
-.q-select {
-  width: 279px;
-  font-size: 1em;
-  background-color: white;
-  margin-top: 4em;
-}
+  .q-input {
+    font-size: 1em;
+    background-color: white;
+    color: white;
+    width: 100%;
+  }
+  .q-select {
+    width: 100%;
+    font-size: 1em;
+    background-color: white;
+    margin-top: 4em;
+  }
 }
 </style>
