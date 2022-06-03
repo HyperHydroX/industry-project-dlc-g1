@@ -25,7 +25,7 @@
         />
         <q-btn
           class="q-btn"
-          :to="`/score`"
+          @click="start"
           color="primary"
           text-color="white"
           label="start match"
@@ -86,6 +86,8 @@ import primaryColorPickerGasten from '../components/primaryColorPickerGasten.vue
 import secundaryColorPickerGasten from '../components/secundaryColorPickerGasten.vue'
 import primaryColorPickerThuis from '../components/primaryColorPickerThuis.vue'
 import secundaryColorPickerThuis from '../components/secundaryColorPickerThuis.vue'
+import { useQuasar } from 'quasar'
+import router from '../router/index.js'
 
 export default {
   name: 'StartView',
@@ -96,6 +98,7 @@ export default {
     secundaryColorPickerThuis,
   },
   setup() {
+    const $q = useQuasar()
     return {
       primaryColorThuis: ref('#C0D1EF'),
       secundaryColorThuis: ref('#2C73EC'),
@@ -104,6 +107,29 @@ export default {
       text: ref(''),
       model: ref(null),
       options: ['Volwassen ( 2 x 45min.)', 'Jeugd ( 4 x 20min.)'],
+      start() {
+        $q.notify({
+          message:
+            'U staat op het punt om de match te starten, wilt u hiermee doorgaan?',
+          color: 'primary',
+          actions: [
+            {
+              label: 'Ja',
+              color: 'white',
+              handler: () => {
+                router.push({ name: 'score' })
+              },
+            },
+            {
+              label: 'Neen',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+          ],
+        })
+      },
     }
   },
 }

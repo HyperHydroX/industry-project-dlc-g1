@@ -6,26 +6,86 @@
         <p class="q-subtitel">USER</p>
         <q-input class="q-input" v-model="text" filled label="User" />
       </div>
-      <q-btn class="q-btn" color="primary" text-color="white" label="wijzig" />
+      <q-btn
+        @click="pincodeUser"
+        class="q-btn"
+        color="primary"
+        text-color="white"
+        label="wijzig"
+      />
 
       <div class="q-admin">
         <p class="q-subtitel">ADMIN</p>
         <q-input class="q-input" v-model="text" filled label="Admin" />
       </div>
-      <q-btn class="q-btn" color="primary" text-color="white" label="wijzig" />
+      <q-btn
+        @click="pincodeAdmin"
+        class="q-btn"
+        color="primary"
+        text-color="white"
+        label="wijzig"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
+import { useQuasar } from 'quasar'
 export default {
   name: 'SettingsView',
   setup() {
+    const $q = useQuasar()
     return {
       text: ref(''),
       model: ref(null),
       options: ['Scherm 1', 'Scherm 2'],
+      pincodeAdmin() {
+        $q.notify({
+          message:
+            'U staat op het punt om de pincode van de admin aan te passen, wilt u hiermee doorgaan?',
+          color: 'primary',
+          actions: [
+            {
+              label: 'Ja',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+            {
+              label: 'Neen',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+          ],
+        })
+      },
+      pincodeUser() {
+        $q.notify({
+          message:
+            'U staat op het punt om de pincode van de user aan te passen, wilt u hiermee doorgaan?',
+          color: 'primary',
+          actions: [
+            {
+              label: 'Ja',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+            {
+              label: 'Neen',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+          ],
+        })
+      },
     }
   },
 }

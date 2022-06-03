@@ -3,10 +3,9 @@
     <q-layout view="lHh Lpr lFf">
       <q-toolbar class="q-toolbar">
         <q-btn
-          @click="showNotif"
+          @click="logout"
           color="white"
           class="q-btn"
-          :to="`/`"
           flat
           round
           dense
@@ -19,7 +18,6 @@
           <q-btn :to="`/schermen`" color="primary" icon="visibility" />
           <q-btn :to="`/settings`" color="primary" icon="settings" />
         </q-btn-group>
-        
       </div>
       <q-page-container>
         <router-view />
@@ -51,13 +49,14 @@
 
 <script>
 import { useQuasar } from 'quasar'
+import router from '../router/index.js'
 export default {
   name: 'NavigationLayout',
   setup() {
     const $q = useQuasar()
 
     return {
-      showNotif() {
+      logout() {
         $q.notify({
           message:
             'U staat op het punt om uit te loggen, wilt u hiermee doorgaan?',
@@ -67,7 +66,7 @@ export default {
               label: 'Ja',
               color: 'white',
               handler: () => {
-                /* ... */
+                router.push({ name: 'loginLayout' })
               },
             },
             {

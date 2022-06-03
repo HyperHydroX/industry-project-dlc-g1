@@ -1,14 +1,15 @@
 <template>
   <div class="q-start column no-wrap">
     <div class="q-body">
-      <div class=" q-kleuren">
+      <div class="q-kleuren">
         <div>
           <p class="q-subtitel">THUIS</p>
           <primaryColorPickerSmallThuis />
           <secundaryColorPickerSmallThuis />
         </div>
         <div>
-        <p class="q-timer">20 : 01</p></div>
+          <p class="q-timer">20 : 01</p>
+        </div>
         <div>
           <p class="q-subtitel">GASTEN</p>
           <primaryColorPickerSmallGasten />
@@ -65,13 +66,9 @@
           </svg>
         </div>
       </div>
+      <q-btn class="q-btn" color="primary" text-color="white" label="rust" />
       <q-btn
-        class="q-btn"
-        color="primary"
-        text-color="white"
-        label="rust"
-      />
-      <q-btn
+        @click="reset"
         class="q-btn"
         color="primary"
         text-color="white"
@@ -87,6 +84,7 @@ import secundaryColorPickerSmallGasten from '../components/secundaryColorPickerS
 import primaryColorPickerSmallThuis from '../components/primaryColorPickerSmallThuis.vue'
 import secundaryColorPickerSmallThuis from '../components/secundaryColorPickerSmallThuis.vue'
 import { ref } from 'vue'
+import { useQuasar } from 'quasar'
 export default {
   name: 'ScoreView',
   components: {
@@ -96,26 +94,50 @@ export default {
     secundaryColorPickerSmallThuis,
   },
   setup() {
+    const $q = useQuasar()
     return {
       primaryColorThuis: ref('#C0D1EF'),
       secundaryColorThuis: ref('#2C73EC'),
       primaryColorGasten: ref('#F5E834'),
       secundaryColorGasten: ref('#F5AE34'),
+      reset() {
+        $q.notify({
+          message:
+            'U staat op het punt om de tijd te resetten, wilt u hiermee doorgaan?',
+          color: 'primary',
+          actions: [
+            {
+              label: 'Ja',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+            {
+              label: 'Neen',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+          ],
+        })
+      },
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.q-kleuren{
+.q-kleuren {
   display: flex;
-    margin-bottom: 3em;
+  margin-bottom: 3em;
 }
 .q-btn {
   width: 100%;
   font-size: 1em;
   height: 3.5em;
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 .q-subtitel {
   color: white;
@@ -238,7 +260,7 @@ $update-icon-min-size: 32px;
   display: flex;
   padding: 30px;
   justify-content: space-between;
-    margin-bottom: 3em;
+  margin-bottom: 3em;
 }
 
 .con-btns {
