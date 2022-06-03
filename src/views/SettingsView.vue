@@ -4,34 +4,65 @@
       <h1 class="q-titelTekst">WIJZIG PINCODE</h1>
       <div>
         <p class="q-subtitel">USER</p>
-        <q-input class="q-input" v-model="text" filled label="User" />
+        <CodeInputSettings
+          class=""
+          @complete="completedUser = true"
+          :fields="4"
+          :fieldWidth="56"
+          :fieldHeight="56"
+          :required="true"
+        />
       </div>
       <q-btn
         @click="pincodeUser"
         class="q-btn"
         color="primary"
         text-color="white"
-        label="wijzig"
+        label="bevestig"
+        :disable="!completedUser"
       />
 
       <div class="q-admin">
         <p class="q-subtitel">ADMIN</p>
-        <q-input class="q-input" v-model="text" filled label="Admin" />
+        <CodeInputSettings
+          @complete="completedAdmin = true"
+          :fields="4"
+          :fieldWidth="56"
+          :fieldHeight="56"
+          :required="true"
+        />
       </div>
       <q-btn
         @click="pincodeAdmin"
         class="q-btn"
         color="primary"
         text-color="white"
-        label="wijzig"
+        label="bevestig"
+        :disable="!completedAdmin"
+      />
+      <h1 class="q-titelLogout">LOG OUT</h1>
+      <q-btn
+        @click="logout"
+        class="q-btn"
+        color="primary"
+        text-color="white"
+        label="Log out"
       />
     </div>
   </div>
 </template>
 
+
+<script setup>
+import CodeInputSettings from '../components/CodeInputSettings.vue'
+const completedUser = ref(false)
+const completedAdmin = ref(false)
+</script>
+
 <script>
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
+import router from '../router/index.js'
 export default {
   name: 'SettingsView',
   setup() {
@@ -86,6 +117,29 @@ export default {
           ],
         })
       },
+      logout() {
+        $q.notify({
+          message:
+            'U staat op het punt om uit te loggen, wilt u hiermee doorgaan?',
+          color: 'primary',
+          actions: [
+            {
+              label: 'Ja',
+              color: 'white',
+              handler: () => {
+                router.push({ name: 'loginLayout' })
+              },
+            },
+            {
+              label: 'Neen',
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+          ],
+        })
+      },
     }
   },
 }
@@ -120,6 +174,14 @@ export default {
   margin-top: -2.5em;
 }
 
+.q-titelLogout {
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: -2em;
+}
+
 .q-start {
   margin: 0 auto;
   max-width: 28.125em;
@@ -135,6 +197,6 @@ export default {
   background-color: white;
   color: white;
   width: 100%;
-    border-radius: 5px;
+  border-radius: 5px;
 }
 </style>

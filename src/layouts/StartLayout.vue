@@ -11,15 +11,6 @@
           dense
           icon="arrow_back"
         />
-        <q-btn
-          @click="logout"
-          color="white"
-          class="q-btn"
-          flat
-          round
-          dense
-          icon="logout"
-        />
       </q-toolbar>
       <q-page-container>
         <router-view />
@@ -55,38 +46,7 @@
 </style>
 
 <script>
-import { useQuasar } from 'quasar'
-import router from '../router/index.js'
 export default {
   name: 'StartLayout',
-  setup() {
-    const $q = useQuasar()
-
-    return {
-      logout() {
-        $q.notify({
-          message:
-            'U staat op het punt om uit te loggen, wilt u hiermee doorgaan?',
-          color: 'primary',
-          actions: [
-            {
-              label: 'Ja',
-              color: 'white',
-              handler: () => {
-                router.push({ name: 'loginLayout' })
-              },
-            },
-            {
-              label: 'Neen',
-              color: 'white',
-              handler: () => {
-                /* ... */
-              },
-            },
-          ],
-        })
-      },
-    }
-  },
 }
 </script>
