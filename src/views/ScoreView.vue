@@ -1,15 +1,16 @@
 <template>
   <div class="q-start column no-wrap">
     <div class="q-body">
-      <div class=" q-kleuren">
+      <div class="q-kleuren">
         <div>
           <p class="q-subtitel">THUIS</p>
           <primaryColorPickerSmallThuis />
           <secundaryColorPickerSmallThuis />
         </div>
         <div>
-        <p class="q-timer">20 : 01</p></div>
-        <div>
+          <p class="q-timer">20 : 01</p>
+        </div>
+        <div class="q-test-flex">
           <p class="q-subtitel">GASTEN</p>
           <primaryColorPickerSmallGasten />
           <secundaryColorPickerSmallGasten />
@@ -65,12 +66,7 @@
           </svg>
         </div>
       </div>
-      <q-btn
-        class="q-btn"
-        color="primary"
-        text-color="white"
-        label="rust"
-      />
+      <q-btn class="q-btn" color="primary" text-color="white" label="rust" />
       <q-btn
         class="q-btn"
         color="primary"
@@ -107,15 +103,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.q-kleuren{
+.q-test-flex {
   display: flex;
-    margin-bottom: 3em;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.q-kleuren {
+  display: flex;
+  margin-bottom: 3em;
+  align-items: center;
 }
 .q-btn {
   width: 100%;
   font-size: 1em;
   height: 3.5em;
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 .q-subtitel {
   color: white;
@@ -129,7 +132,7 @@ export default {
   text-align: center;
   font-size: 2.5em;
   font-weight: 700;
-  margin-bottom: 7.5px;
+  min-width: max-content;
 }
 .q-titel {
   color: white;
@@ -238,7 +241,7 @@ $update-icon-min-size: 32px;
   display: flex;
   padding: 30px;
   justify-content: space-between;
-    margin-bottom: 3em;
+  margin-bottom: 3em;
 }
 
 .con-btns {
