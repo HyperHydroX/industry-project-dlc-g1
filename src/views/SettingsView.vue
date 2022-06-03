@@ -135,5 +135,6 @@ export default {
   background-color: white;
   color: white;
   width: 100%;
+    border-radius: 5px;
 }
 </style>
