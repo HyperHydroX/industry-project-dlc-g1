@@ -1,9 +1,8 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-            <h1 class="q-titelTekst">SCHERM TEKSTWEERGAVE</h1>
+      <h1 class="q-titelTekst">SCHERM TEKSTWEERGAVE</h1>
       <div>
-
         <q-input
           class="q-input"
           v-model="text"
@@ -18,7 +17,7 @@
         text-color="white"
         label="Verzenden"
       />
-            <h1 class="q-titelScherm">SCHERM WEERGAVE</h1>
+      <h1 class="q-titelScherm">SCHERM WEERGAVE</h1>
       <q-select
         class="q-select"
         filled
@@ -119,71 +118,11 @@ export default {
 
 .q-start {
   margin: 0 auto;
-  max-width: 450px;
-  padding: 0 40px;
+  max-width: 28.125em;
+  padding: 0 2.5em;
 }
 
 .q-body {
-  margin-top: 50px;
-}
-
-@media screen and (max-width: 768px) {
-  .q-btn {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .q-btn {
-    width: 100%;
-  }
-  .q-input {
-    font-size: 1em;
-    background-color: white;
-    color: white;
-    width: 100%;
-  }
-  .q-select {
-    width: 100%;
-    font-size: 1em;
-    background-color: white;
-    margin-top: 4em;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .q-btn {
-    width: 100%;
-  }
-  .q-input {
-    font-size: 1em;
-    background-color: white;
-    color: white;
-    width: 100%;
-  }
-  .q-select {
-    width: 100%;
-    font-size: 1em;
-    background-color: white;
-    margin-top: 4em;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .q-btn {
-    width: 100%;
-  }
-  .q-input {
-    font-size: 1em;
-    background-color: white;
-    color: white;
-    width: 100%;
-  }
-  .q-select {
-    width: 100%;
-    font-size: 1em;
-    background-color: white;
-    margin-top: 4em;
-  }
+  margin-top: 3.125em;
 }
 </style>

@@ -53,8 +53,8 @@
   );
 }
 .q-img {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 12.5em;
+  max-height: 12.5em;
   margin-top: 11em;
 }
 .q-titel {
@@ -73,14 +73,14 @@
   margin-top: 1.5em;
   color: #f9f9f9;
   text-align: center;
-  max-width: 220px;
+  max-width: 13.75em;
   font-size: 1.2em;
 }
 
 @media screen and (max-width: 768px) {
   .q-img {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 12.5em;
+    max-height: 12.5em;
     margin-top: 7.5em;
   }
   .Admin {
@@ -95,7 +95,7 @@
     margin-top: 2em;
     color: #f9f9f9;
     text-align: center;
-    max-width: 300px;
+    max-width: 18.75em;
     font-size: 1.3em;
   }
   .q-titel {
@@ -105,8 +105,8 @@
 
 @media screen and (max-width: 425px) {
   .q-img {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 9.375em;
+    max-height: 9.375em;
     margin-top: 40%;
   }
   .Admin {
@@ -121,7 +121,7 @@
     margin-top: 5%;
     color: #f9f9f9;
     text-align: center;
-    max-width: 200px;
+    max-width: 12.5em;
     font-size: 1em;
   }
   .q-titel {

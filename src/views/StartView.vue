@@ -4,12 +4,12 @@
       <div>
         <h1 class="q-titel">KLEUREN PLOEGEN</h1>
       </div>
-      <div class="Groep q-pb-xl">
+      <div class="q-pb-xl">
         <p class="q-subtitel">THUIS</p>
         <primaryColorPickerThuis />
         <secundaryColorPickerThuis />
       </div>
-      <div class="Groep q-pb-xl">
+      <div class="q-pb-xl">
         <p class="q-subtitel">GASTEN</p>
         <primaryColorPickerGasten />
         <secundaryColorPickerGasten />
@@ -41,7 +41,7 @@
   text-align: center;
   font-size: 1.2em;
   font-weight: 500;
-  margin-bottom: 7.5px;
+  margin-bottom: 0.46875em;
 }
 .q-btn {
   width: 100%;
@@ -50,12 +50,12 @@
 }
 .q-start {
   margin: 0 auto;
-  max-width: 450px;
-  padding: 0 40px;
+  max-width: 28.125em;
+  padding: 0 2.5em;
 }
 
 .q-body {
-  margin-top: 50px;
+  margin-top: 3.125em;
 }
 
 .q-titel {
@@ -77,20 +77,6 @@
   background-color: white;
   margin-bottom: 3em;
   border-radius: 5px;
-}
-
-@media screen and (max-width: 768px) {
-  .q-subtitel {
-    color: white;
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .q-subtitel {
-    color: white;
-    text-align: center;
-  }
 }
 </style>
 

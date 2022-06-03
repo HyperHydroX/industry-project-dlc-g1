@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background">
+  <div class="q-background">
     <q-layout view="lHh Lpr lFf">
       <q-toolbar class="q-toolbar">
         <q-btn
@@ -12,7 +12,7 @@
           dense
           icon="arrow_back"
         />
-                <q-btn
+        <q-btn
           @click="showNotif"
           color="white"
           class="q-btn"
@@ -31,7 +31,7 @@
 </template>
 
 <style lang="scss" scoped>
-.bg-background {
+.q-background {
   background: rgb(0, 0, 0);
   background: linear-gradient(
     170deg,
@@ -42,13 +42,12 @@
 
 .q-btn {
   margin-top: 1em;
-    margin-right: 1em;
+  margin-right: 1em;
 }
 
 .q-btn-back {
   margin-top: 1em;
   margin-left: 1em;
-  
 }
 
 .q-toolbar {

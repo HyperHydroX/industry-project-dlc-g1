@@ -72,7 +72,7 @@
     width: 300px;
   }
   .my-input {
-    width: 240px;
+  width: 100%;
   }
 }
 </style>

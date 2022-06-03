@@ -1,39 +1,20 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-            <h1 class="q-titelTekst">WIJZIG PINCODE</h1>
+      <h1 class="q-titelTekst">WIJZIG PINCODE</h1>
       <div>
-        <p class="q-subtitel">User</p>
-        <q-input
-          class="q-input"
-          v-model="text"
-          filled
-          label="User"
-        />
+        <p class="q-subtitel">USER</p>
+        <q-input class="q-input" v-model="text" filled label="User" />
       </div>
-      <q-btn
-        class="q-btn"
-        color="primary"
-        text-color="white"
-        label="wijzig"
-      />
+      <q-btn class="q-btn" color="primary" text-color="white" label="wijzig" />
 
       <div class="q-admin">
-        <p class="q-subtitel">Admin</p>
-        <q-input
-          class="q-input"
-          v-model="text"
-          filled
-          label="Admin"
-        />
+        <p class="q-subtitel">ADMIN</p>
+        <q-input class="q-input" v-model="text" filled label="Admin" />
       </div>
-      <q-btn
-        class="q-btn"
-        color="primary"
-        text-color="white"
-        label="wijzig"
-      />
-  </div></div>
+      <q-btn class="q-btn" color="primary" text-color="white" label="wijzig" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -51,16 +32,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .q-subtitel {
   color: white;
   text-align: center;
   font-size: 1.2em;
   font-weight: 500;
-  margin-bottom: 7.5px;
+  margin-bottom: 0.46875em;
 }
 
-.q-admin{
+.q-admin {
   margin-top: 3em;
 }
 
@@ -82,71 +62,18 @@ export default {
 
 .q-start {
   margin: 0 auto;
-  max-width: 450px;
-  padding: 0 40px;
+  max-width: 28.125em;
+  padding: 0 2.5em;
 }
 
 .q-body {
-  margin-top: 50px;
+  margin-top: 3.125em;
 }
 
-@media screen and (max-width: 768px) {
-  .q-btn {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .q-btn {
-    width: 100%;
-  }
-  .q-input {
-    font-size: 1em;
-    background-color: white;
-    color: white;
-    width: 100%;
-  }
-  .q-select {
-    width: 100%;
-    font-size: 1em;
-    background-color: white;
-    margin-top: 4em;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .q-btn {
-    width: 100%;
-  }
-  .q-input {
-    font-size: 1em;
-    background-color: white;
-    color: white;
-    width: 100%;
-  }
-  .q-select {
-    width: 100%;
-    font-size: 1em;
-    background-color: white;
-    margin-top: 4em;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .q-btn {
-    width: 100%;
-  }
-  .q-input {
-    font-size: 1em;
-    background-color: white;
-    color: white;
-    width: 100%;
-  }
-  .q-select {
-    width: 100%;
-    font-size: 1em;
-    background-color: white;
-    margin-top: 4em;
-  }
+.q-input {
+  font-size: 1em;
+  background-color: white;
+  color: white;
+  width: 100%;
 }
 </style>
