@@ -3,17 +3,13 @@
     <div class="q-body">
       <div class="q-kleuren">
         <div>
-          <p class="q-subtitel">THUIS</p>
-          <primaryColorPickerSmallThuis />
-          <secundaryColorPickerSmallThuis />
+          <HomeFlag />
         </div>
         <div>
-          <p class="q-timer">20 : 01</p>
+          <h2 class="q-timer">20 : 01</h2>
         </div>
-        <div class="q-test-flex">
-          <p class="q-subtitel">GASTEN</p>
-          <primaryColorPickerSmallGasten />
-          <secundaryColorPickerSmallGasten />
+        <div>
+          <OutFlag />
         </div>
       </div>
       <h1 class="q-titel">SCORE</h1>
@@ -78,18 +74,14 @@
 </template>
 
 <script>
-import primaryColorPickerSmallGasten from '../components/primaryColorPickerSmallGasten.vue'
-import secundaryColorPickerSmallGasten from '../components/secundaryColorPickerSmallGasten.vue'
-import primaryColorPickerSmallThuis from '../components/primaryColorPickerSmallThuis.vue'
-import secundaryColorPickerSmallThuis from '../components/secundaryColorPickerSmallThuis.vue'
 import { ref } from 'vue'
+import HomeFlag from '@/components/HomeFlag.vue'
+import OutFlag from '@/components/OutFlag.vue'
 export default {
   name: 'ScoreView',
   components: {
-    primaryColorPickerSmallGasten,
-    secundaryColorPickerSmallGasten,
-    primaryColorPickerSmallThuis,
-    secundaryColorPickerSmallThuis,
+    HomeFlag,
+    OutFlag,
   },
   setup() {
     return {
@@ -103,16 +95,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.q-test-flex {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
 .q-kleuren {
   display: flex;
   margin-bottom: 3em;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 .q-btn {
   width: 100%;
@@ -133,14 +121,13 @@ export default {
   font-size: 2.5em;
   font-weight: 700;
   min-width: max-content;
+  padding: 0 1.5rem;
 }
 .q-titel {
   color: white;
   text-align: center;
   font-size: 1.5em;
   font-weight: 600;
-  margin-bottom: -0.5em;
-  margin-top: -2.5em;
 }
 .q-start {
   margin: 0 auto;
