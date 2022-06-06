@@ -3,7 +3,6 @@
     <q-layout view="lHh Lpr lFf">
       <q-toolbar class="q-toolbar">
         <q-btn
-          @click="showNotif"
           color="white"
           class="q-btn-back"
           :to="`/`"
@@ -11,16 +10,6 @@
           round
           dense
           icon="arrow_back"
-        />
-        <q-btn
-          @click="showNotif"
-          color="white"
-          class="q-btn"
-          :to="`/`"
-          flat
-          round
-          dense
-          icon="logout"
         />
       </q-toolbar>
       <q-page-container>
