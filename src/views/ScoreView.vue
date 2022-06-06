@@ -12,7 +12,7 @@
           <OutFlag />
         </div>
       </div>
-      <h1 class="q-titel">SCORE</h1>
+      <h1 class="q-titel">score</h1>
       <div class="con-scores">
         <div class="con-score-updaters">
           <svg
@@ -136,12 +136,14 @@ p {
   font-weight: bold;
 }
 
-.q-subtitel {
-  color: #f9f9f9;
+.q-titel {
+  color: white;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.2em;
-  font-weight: 500;
-  margin-bottom: 7.5px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+  margin: 1.5rem 0;
 }
 
 .q-timer {
@@ -151,13 +153,7 @@ p {
   min-width: max-content;
   padding: 0 1.5rem;
 }
-.q-titel {
-  color: white;
-  font-family: 'Open Sans', sans-serif;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+
 .q-start {
   margin: 0 auto;
   max-width: 450px;
@@ -172,33 +168,6 @@ p {
   margin: 0 auto;
   max-width: 450px;
   padding: 0 20px;
-}
-
-.con-teams {
-  margin-top: 60px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: $margin-between-childeren;
-}
-
-.con-team {
-  display: flex;
-  flex-direction: column;
-}
-
-.con-team__title {
-  line-height: 1;
-  margin: 0;
-  font-size: 25px;
-  font-weight: 500;
-  color: white;
-  margin-bottom: 5px;
-}
-
-.con-team__title--uit {
-  align-self: flex-end;
 }
 
 .con-scores {
@@ -257,12 +226,6 @@ p {
 }
 
 @media screen and (max-width: 330px) {
-  .con-teams {
-    justify-content: center;
-  }
-  .con-team__title {
-    align-self: center;
-  }
   .con-scores {
     height: auto;
     flex-direction: column;
