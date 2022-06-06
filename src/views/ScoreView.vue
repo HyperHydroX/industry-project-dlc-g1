@@ -16,67 +16,70 @@
       <div class="con-scores">
         <div class="con-score-updaters">
           <svg
-            class="con-plus-icon"
+            class="con-score-icon"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#000000"
           >
-            <path
-              d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
-            />
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
           </svg>
           <svg
-            class="con-minus-icon"
+            class="con-score-icon"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#000000"
           >
-            <path
-              d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
-            />
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19 13H5v-2h14v2z" />
           </svg>
         </div>
         <div class="con-team-scores">
           <div class="con-current-scores">
-            <p class="con-current-score__team">2</p>
-            <p class="con-current-score__sperator">-</p>
-            <p class="con-current-score__team">0</p>
+            <p>2</p>
+            <p>-</p>
+            <p>0</p>
           </div>
         </div>
         <div class="con-score-updaters">
           <svg
-            class="con-plus-icon con-plus-icon--team2"
+            class="con-score-icon"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#000000"
           >
-            <path
-              d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
-            />
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
           </svg>
           <svg
-            class="con-minus-icon con-minus-icon--team2"
+            class="con-score-icon"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#000000"
           >
-            <path
-              d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"
-            />
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19 13H5v-2h14v2z" />
           </svg>
         </div>
       </div>
-      <q-btn class="q-btn" color="primary" text-color="white" label="rust" />
-      <q-btn
-        class="q-btn"
-        color="primary"
-        text-color="white"
-        label="tijd resetten"
-      />
+      <q-btn class="q-btn" label="rust" />
+      <q-btn class="q-btn" label="tijd resetten" />
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 import HomeFlag from '@/components/HomeFlag.vue'
 import OutFlag from '@/components/OutFlag.vue'
+
 export default {
   name: 'ScoreView',
   components: {
@@ -84,58 +87,16 @@ export default {
     OutFlag,
   },
   setup() {
-    return {
-      primaryColorThuis: ref('#C0D1EF'),
-      secundaryColorThuis: ref('#2C73EC'),
-      primaryColorGasten: ref('#F5E834'),
-      secundaryColorGasten: ref('#F5AE34'),
-    }
+    return {}
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.q-kleuren {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.q-btn {
-  width: 100%;
-  font-size: 1em;
-  height: 3.5em;
-  margin-bottom: 1em;
-}
-.q-subtitel {
-  color: white;
-  font-size: 1.2em;
-  font-weight: 500;
-  margin-bottom: 7.5px;
-}
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
-.q-timer {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
-  min-width: max-content;
-  padding: 0 1.5rem;
-}
-.q-titel {
-  color: white;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-.q-start {
-  margin: 0 auto;
-  max-width: 450px;
-  padding: 0 40px;
-}
-
-.q-body {
-  margin-top: 50px;
-}
+// CSS Variables
 $vlag-kleur-uitdeel1: #ff1e00;
 $vlag-kleur-uitdeel2: #323232;
 $vlag-kleur-thuisdeel1: #ffe600;
@@ -148,6 +109,64 @@ $primary-color-darker: #8bd1b654;
 $primary-text-color: black;
 $updater-icon-size: 30%;
 $update-icon-min-size: 32px;
+
+// Universal
+
+p {
+  margin: 0;
+}
+
+.q-kleuren {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.q-btn {
+  height: 3rem;
+  margin: 1rem auto;
+  width: 70%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.q-subtitel {
+  color: #f9f9f9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 7.5px;
+}
+
+.q-timer {
+  color: #f9f9f9;
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-width: max-content;
+  padding: 0 1.5rem;
+}
+.q-titel {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.q-start {
+  margin: 0 auto;
+  max-width: 450px;
+  padding: 0 40px;
+}
+
+.q-body {
+  margin-top: 50px;
+}
 
 .con-scorepagina {
   margin: 0 auto;
@@ -169,11 +188,6 @@ $update-icon-min-size: 32px;
   flex-direction: column;
 }
 
-.con-vlag-delen {
-  height: 70px;
-  width: 120px;
-}
-
 .con-team__title {
   line-height: 1;
   margin: 0;
@@ -187,98 +201,28 @@ $update-icon-min-size: 32px;
   align-self: flex-end;
 }
 
-.con-vlag-delen__thuisdeel1 {
-  height: 50%;
-  width: 100%;
-  background: $vlag-kleur-thuisdeel1;
-  border-top-left-radius: $border-raduis-vlaggen;
-  border-top-right-radius: $border-raduis-vlaggen;
-}
-
-.con-vlag-delen__thuisdeel2 {
-  height: 50%;
-  width: 100%;
-  background: $vlag-kleur-thuisdeel2;
-  border-bottom-left-radius: $border-raduis-vlaggen;
-  border-bottom-right-radius: $border-raduis-vlaggen;
-}
-
-.con-vlag-delen__uitdeel1 {
-  height: 50%;
-  width: 100%;
-  background: $vlag-kleur-uitdeel1;
-  border-top-left-radius: $border-raduis-vlaggen;
-  border-top-right-radius: $border-raduis-vlaggen;
-}
-
-.con-vlag-delen__uitdeel2 {
-  height: 50%;
-  width: 100%;
-  background: $vlag-kleur-uitdeel2;
-  border-bottom-left-radius: $border-raduis-vlaggen;
-  border-bottom-right-radius: $border-raduis-vlaggen;
-}
-
 .con-scores {
-  height: 160px;
-  background-color: rgb(57, 57, 57);
-  border-radius: 10px;
+  height: 145px;
+  background-color: #222222;
   display: flex;
-  padding: 30px;
+  padding: 1.5rem;
   justify-content: space-between;
   margin-bottom: 3em;
 }
 
-.con-btns {
-  display: flex;
-  gap: 20px;
-}
-
-.con-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  font-weight: 600;
-  flex-basis: 200px;
-  height: 60px;
-  border-radius: 5px;
-  background-color: $primary-color;
-  flex-wrap: wrap;
-}
-
-.con-btn-lg {
-  flex-basis: 370px;
-  height: 60px;
-}
-
 .con-score-updaters {
   display: flex;
-  align-items: space-between;
+  align-items: center;
   justify-content: space-between;
   flex-direction: column;
   overflow: auto;
   width: 30%;
 }
 
-.con-plus-icon {
-  fill: white;
-  width: $updater-icon-size;
-  min-width: $update-icon-min-size;
-}
-
-.con-minus-icon {
-  fill: white;
-  width: $updater-icon-size;
-  min-width: $update-icon-min-size;
-}
-
-.con-plus-icon--team2 {
-  align-self: flex-end;
-}
-
-.con-minus-icon--team2 {
-  align-self: flex-end;
+.con-score-icon {
+  height: 32px;
+  width: 32px;
+  fill: #f9f9f9;
 }
 
 .con-team-scores {
@@ -289,7 +233,7 @@ $update-icon-min-size: 32px;
 }
 
 .con-team-scores__timer {
-  color: white;
+  color: #f9f9f9;
   font-size: 20px;
   font-weight: 600;
 }
@@ -300,30 +244,15 @@ $update-icon-min-size: 32px;
   align-items: center;
   width: 100%;
   overflow: hidden;
-  color: white;
-}
-
-.con-current-score__team {
-  font-size: 70px;
+  color: #f9f9f9;
+  font-weight: 500;
+  font-size: 4.2rem;
   margin: 0;
 }
 
-.con-current-score__sperator {
-  font-size: 70px;
-  margin: 0;
-}
-
-.q-btn {
-  margin-top: 1em;
-  width: 100%;
-}
-
-@media screen and (max-width: 400px) {
-  .con-btns {
-    flex-direction: column;
-  }
-  .con-btn {
-    flex-basis: 60px;
+@media screen and (min-width: 360px) {
+  .q-timer {
+    font-size: 2rem;
   }
 }
 
@@ -343,7 +272,7 @@ $update-icon-min-size: 32px;
 
   .con-score-updaters {
     flex-direction: row;
-    width: 100%;
+    width: 75%;
   }
   .con-plus-icon {
     align-self: center;
