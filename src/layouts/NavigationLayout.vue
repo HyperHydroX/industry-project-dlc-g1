@@ -154,6 +154,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.q-page-container {
+  padding-top: 3.6rem;
+}
+
 .q-background {
   background: rgb(0, 0, 0);
   background: linear-gradient(
