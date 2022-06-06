@@ -97,7 +97,6 @@ export default {
 <style lang="scss" scoped>
 .q-kleuren {
   display: flex;
-  margin-bottom: 3em;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -117,8 +116,7 @@ export default {
 
 .q-timer {
   color: white;
-  text-align: center;
-  font-size: 2.5em;
+  font-size: 1.5rem;
   font-weight: 700;
   min-width: max-content;
   padding: 0 1.5rem;
@@ -126,7 +124,7 @@ export default {
 .q-titel {
   color: white;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 .q-start {
