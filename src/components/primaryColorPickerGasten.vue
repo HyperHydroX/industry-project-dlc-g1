@@ -1,10 +1,6 @@
       
       <template>
-  <q-input
-    v-bind:style="{ backgroundColor: color }"
-    filled
-    class="my-input"
-  >
+  <q-input v-bind:style="{ backgroundColor: color }" filled class="my-input">
     <template v-slot:append>
       <q-icon color="white" name="colorize" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -36,26 +32,27 @@
 <style lang="scss" scoped>
 .my-picker {
   width: 370px;
+  border-radius: 0;
 }
 .my-input {
   width: 100%;
-  border-top-left-radius: 7.5px;
-  border-top-right-radius: 7.5px;
 }
 
 @media screen and (max-width: 768px) {
   .my-picker {
     width: 300px;
+    border-radius: 0;
   }
 }
 
 @media screen and (max-width: 425px) {
   .my-picker {
     width: 300px;
+    border-radius: 0;
   }
   .my-input {
-  width: 100%;
-}
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -63,8 +60,8 @@
     width: 300px;
   }
   .my-input {
-  width: 100%;
-}
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -72,8 +69,8 @@
     width: 300px;
   }
   .my-input {
-  width: 100%;
-}
+    width: 100%;
+  }
 }
 </style>
 

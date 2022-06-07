@@ -22,12 +22,11 @@
           v-model="model"
           :options="options"
           label="Type match"
+          label-color="white"
         />
         <q-btn
           class="q-btn"
           @click="start"
-          color="primary"
-          text-color="white"
           label="start match"
         />
       </div>
@@ -44,9 +43,15 @@
   margin-bottom: 0.46875em;
 }
 .q-btn {
-  width: 100%;
-  font-size: 1em;
-  height: 3.5em;
+  height: 3rem;
+  margin: 2rem auto;
+  width: 70%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 .q-start {
   margin: 0 auto;
@@ -72,11 +77,16 @@
 }
 
 .q-select {
-  width: 100%;
-  font-size: 1em;
-  background-color: white;
-  margin-bottom: 3em;
-  border-radius: 5px;
+  margin: auto;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  width: 70%;
+  display: flex;
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: -1em;
 }
 </style>
 

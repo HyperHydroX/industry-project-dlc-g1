@@ -36,22 +36,23 @@
 <style lang="scss" scoped>
 .my-picker {
   width: 370px;
+    border-radius: 0;
 }
 .my-input {
   width: 100%;
-  border-top-left-radius: 7.5px;
-  border-top-right-radius: 7.5px;
 }
 
 @media screen and (max-width: 768px) {
   .my-picker {
     width: 300px;
+      border-radius: 0;
   }
 }
 
 @media screen and (max-width: 425px) {
   .my-picker {
     width: 300px;
+      border-radius: 0;
   }
   .my-input {
   width: 100%;

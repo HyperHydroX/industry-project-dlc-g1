@@ -36,6 +36,7 @@
 <style lang="scss" scoped>
 .my-picker {
   width: 370px;
+    border-radius: 0;
 }
 .my-input {
   width: 60%;
@@ -44,12 +45,14 @@
 @media screen and (max-width: 768px) {
   .my-picker {
     width: 300px;
+      border-radius: 0;
   }
 }
 
 @media screen and (max-width: 425px) {
   .my-picker {
     width: 300px;
+      border-radius: 0;
   }
   .my-input {
     width: 80%;

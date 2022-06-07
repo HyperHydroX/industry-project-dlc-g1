@@ -12,7 +12,7 @@
           <OutFlag />
         </div>
       </div>
-      <h1 class="q-titel">score</h1>
+      <h1 class="q-titel">SCORE</h1>
       <div class="con-scores">
         <div class="con-score-updaters">
           <svg
@@ -133,7 +133,6 @@ p {
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
-  font-weight: bold;
 }
 
 .q-titel {

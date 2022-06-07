@@ -22,16 +22,12 @@
         <q-btn
           class="User"
           :to="`/start`"
-          color="primary"
-          text-color="white"
           label="Login User"
           :disable="!completed"
         />
         <q-btn
           class="Admin"
           :to="`/settings`"
-          color="primary"
-          text-color="white"
           label="Login Admin"
           :disable="!completed"
         />
@@ -62,12 +58,26 @@
   font-size: 2.5em;
 }
 .Admin {
-  margin-top: 1em;
-  width: 13%;
+  height: 3rem;
+  margin: 0.5rem auto;
+  width: 10%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 .User {
-  margin-top: 2em;
-  width: 13%;
+  height: 3rem;
+  margin: 0.5rem auto;
+  width: 10%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 .q-text_input {
   margin-top: 1.5em;
@@ -83,14 +93,6 @@
     max-height: 12.5em;
     margin-top: 7.5em;
   }
-  .Admin {
-    margin-top: 1em;
-    width: 32%;
-  }
-  .User {
-    margin-top: 1.5em;
-    width: 32%;
-  }
   .q-text_input {
     margin-top: 2em;
     color: #f9f9f9;
@@ -101,6 +103,28 @@
   .q-titel {
     font-size: 2.5em;
   }
+  .Admin {
+  height: 3rem;
+  margin: 0.5rem auto;
+  width: 30%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.User {
+  height: 3rem;
+  margin: 0.5rem auto;
+  width: 30%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
 }
 
 @media screen and (max-width: 425px) {
@@ -109,14 +133,7 @@
     max-height: 9.375em;
     margin-top: 40%;
   }
-  .Admin {
-    margin-top: 5%;
-    width: 50%;
-  }
-  .User {
-    margin-top: 5%;
-    width: 50%;
-  }
+
   .q-text_input {
     margin-top: 5%;
     color: #f9f9f9;
@@ -127,6 +144,28 @@
   .q-titel {
     font-size: 2.2em;
   }
+  .Admin {
+  height: 3rem;
+  margin: 0.5rem auto;
+  width: 50%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.User {
+  height: 3rem;
+  margin: 0.5rem auto;
+  width: 50%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
 }
 </style>
 

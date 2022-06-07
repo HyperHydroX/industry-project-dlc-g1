@@ -210,7 +210,6 @@ onBeforeUpdate(() => {
   border: solid 1px #164039;
   font-family: "Lato";
   font-size: 20px;
-  border-radius: 10px;
   text-align: center;
   transition: 0.2s all ease-in-out;
   color: white;

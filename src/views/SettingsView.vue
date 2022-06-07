@@ -16,8 +16,6 @@
       <q-btn
         @click="pincodeUser"
         class="q-btn"
-        color="primary"
-        text-color="white"
         label="bevestig"
         :disable="!completedUser"
       />
@@ -35,42 +33,33 @@
       <q-btn
         @click="pincodeAdmin"
         class="q-btn"
-        color="primary"
-        text-color="white"
         label="bevestig"
         :disable="!completedAdmin"
       />
       <h1 class="q-titelLogout">LOG OUT</h1>
-      <q-btn
-        @click="logout"
-        class="q-btn"
-        color="primary"
-        text-color="white"
-        label="Log out"
-      />
+      <q-btn @click="logout" class="q-btn" label="Log out" />
     </div>
   </div>
 </template>
 
-
-<script setup>
-import CodeInputSettings from '../components/CodeInputSettings.vue'
-const completedUser = ref(false)
-const completedAdmin = ref(false)
-</script>
-
 <script>
 import { ref } from 'vue'
+import CodeInputSettings from '../components/CodeInputSettings.vue'
 import { useQuasar } from 'quasar'
 import router from '../router/index.js'
 export default {
   name: 'SettingsView',
+  components: {
+    CodeInputSettings,
+  },
   setup() {
     const $q = useQuasar()
     return {
       text: ref(''),
       model: ref(null),
       options: ['Scherm 1', 'Scherm 2'],
+      completedUser: ref(false),
+      completedAdmin: ref(false),
       pincodeAdmin() {
         $q.notify({
           message:
@@ -159,10 +148,15 @@ export default {
 }
 
 .q-btn {
-  width: 100%;
-  font-size: 1em;
-  margin-top: 2em;
-  height: 3.5em;
+  height: 3rem;
+  margin: 1.5rem auto;
+  width: 80%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 
 .q-titelTekst {

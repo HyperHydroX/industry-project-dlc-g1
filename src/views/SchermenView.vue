@@ -11,14 +11,10 @@
           label="Deze tekst is komt terecht op het scorebord"
         />
       </div>
-      <q-btn
-        class="q-btn"
-        color="primary"
-        text-color="white"
-        label="Verzenden"
-      />
+      <q-btn class="q-btn" label="Verzenden" />
       <h1 class="q-titelScherm">SCHERM WEERGAVE</h1>
       <q-select
+        label-color="white"
         class="q-select"
         filled
         v-model="model"
@@ -33,7 +29,6 @@
         class="q-file"
         color="white"
         label-color="white"
-        bg-color="primary"
         standout
         v-model="model"
         label="Upload sponsers"
@@ -62,10 +57,15 @@ export default {
 
 <style lang="scss" scoped>
 .q-btn {
-  width: 100%;
-  font-size: 1em;
-  margin-top: 2em;
-  height: 3.5em;
+  height: 3rem;
+  margin: 1.5rem auto;
+  width: 70%;
+  display: flex;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 
 .q-titelTekst {
@@ -82,7 +82,7 @@ export default {
   text-align: center;
   font-size: 1.5em;
   font-weight: 600;
-  margin-bottom: -3.5em;
+  margin-bottom: -4.5em;
 }
 
 .q-titelSponser {
@@ -90,7 +90,8 @@ export default {
   text-align: center;
   font-size: 1.5em;
   font-weight: 600;
-  margin-bottom: -4em;
+  margin-bottom: -4.5em;
+  margin-top: -3em;
 }
 
 .q-input {
@@ -98,22 +99,28 @@ export default {
   background-color: white;
   color: white;
   width: 100%;
-  border-radius: 5px;
+  
 }
 
 .q-file {
-  font-size: 1em;
-  color: white;
-  width: 100%;
-  margin-top: 5em;
-  border-bottom-left-radius: 5px;
+  margin: 5rem auto;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  width: 70%;
+  display: flex;
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 .q-select {
-  width: 100%;
-  font-size: 1em;
-  background-color: white;
-  margin-top: 4em;
-  border-radius: 5px;
+  margin: 5rem auto;
+  border-radius: 0;
+  background: rgba(20, 126, 109, 0.6);
+  width: 70%;
+  display: flex;
+  color: #f9f9f9;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 
 .q-start {
