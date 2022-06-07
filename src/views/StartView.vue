@@ -9,7 +9,7 @@
         <HomeFlag Large="true" />
       </div>
       <div class="q-pb-xl">
-        <p class="q-subtitel">Gasten</p>
+        <p class="q-subtitel">Uit</p>
         <OutFlag Large="true" />
       </div>
       <div>
@@ -80,6 +80,10 @@
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+}
+
+.q-field__native {
+  color: #f9f9f9;
 }
 </style>
 

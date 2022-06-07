@@ -32,6 +32,7 @@
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               class="flag-icon"
+              :class="{ changeIconColor: this.primaryColor == '#ffffff' }"
             >
               <path d="M0 0h24v24H0z" fill="none" />
               <path
@@ -50,6 +51,7 @@
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               class="flag-icon"
+              :class="{ changeIconColor: this.secondaryColor == '#ffffff' }"
             >
               <path d="M0 0h24v24H0z" fill="none" />
               <path
@@ -189,5 +191,9 @@ export default defineComponent({
 
 .flag-icon__container {
   padding: 0.5rem;
+}
+
+.changeIconColor {
+  fill: #333333;
 }
 </style>
