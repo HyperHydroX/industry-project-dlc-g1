@@ -1,7 +1,7 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-      <h1 class="q-titelTekst">SCHERM TEKSTWEERGAVE</h1>
+      <h1 class="q-titel">Scherm tekstweergave</h1>
       <div>
         <q-input
           class="q-input"
@@ -12,31 +12,32 @@
         />
       </div>
       <q-btn class="q-btn" label="Verzenden" />
-      <h1 class="q-titelScherm">SCHERM WEERGAVE</h1>
-      <q-select
-        label-color="white"
-        class="q-select"
-        filled
-        v-model="model"
-        :options="options"
-        label="Scherm weergave"
-      />
-    </div>
-    <div>
-      <h1 class="q-titelSponser">UPLOAD SPONSERS</h1>
-
-      <q-file
-        class="q-file"
-        color="white"
-        label-color="white"
-        standout
-        v-model="model"
-        label="Upload sponsers"
-      >
-        <template v-slot:append>
-          <q-icon name="cloud_upload" color="white" />
-        </template>
-      </q-file>
+      <div class="q-container">
+        <h1 class="q-titel">Scherm weergave</h1>
+        <q-select
+          label-color="white"
+          class="q-select"
+          filled
+          v-model="model"
+          :options="options"
+          label="Scherm weergave"
+        />
+      </div>
+      <div class="q-container">
+        <h1 class="q-titel">Upload sponsors</h1>
+        <q-file
+          class="q-file"
+          color="white"
+          label-color="white"
+          standout
+          v-model="model"
+          label="Upload sponsers"
+        >
+          <template v-slot:append>
+            <q-icon name="cloud_upload" color="white" />
+          </template>
+        </q-file>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +57,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+// CSS Variables
+$margin-between-childeren: 40px;
+$primary-color: #8bd1b6;
+$primary-color-dark: #8bd1b6;
+$primary-color-darker: #8bd1b654;
+$primary-text-color: black;
+$updater-icon-size: 30%;
+$update-icon-min-size: 32px;
+
+// Universal
+h1 {
+  line-height: 2;
+}
+
+// Classes
 .q-btn {
   height: 3rem;
   margin: 1.5rem auto;
@@ -66,32 +85,16 @@ export default {
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
 
-.q-titelTekst {
+.q-titel {
   color: white;
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -0.5em;
-  margin-top: -2.5em;
-}
-
-.q-titelScherm {
-  color: white;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -4.5em;
-}
-
-.q-titelSponser {
-  color: white;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -4.5em;
-  margin-top: -3em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1;
 }
 
 .q-input {
@@ -99,11 +102,11 @@ export default {
   background-color: white;
   color: white;
   width: 100%;
-  
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .q-file {
-  margin: 5rem auto;
+  margin: 1rem auto;
   border-radius: 0;
   background: rgba(20, 126, 109, 0.6);
   width: 70%;
@@ -111,9 +114,10 @@ export default {
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
 .q-select {
-  margin: 5rem auto;
+  margin: 1rem auto;
   border-radius: 0;
   background: rgba(20, 126, 109, 0.6);
   width: 70%;
@@ -121,6 +125,7 @@ export default {
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
 
 .q-start {
@@ -130,6 +135,10 @@ export default {
 }
 
 .q-body {
-  margin-top: 3.125em;
+  margin-top: 3.125rem;
+}
+
+.q-container {
+  margin-top: 2rem;
 }
 </style>

@@ -1,18 +1,18 @@
 <template>
   <div class="q-start column no-wrap">
     <div class="q-body">
-      <div>
+      <div class="q-ploegen">
         <h1 class="q-titel">Kleuren ploegen</h1>
+        <div class="q-flag-container">
+          <p class="q-titel q-subtitel">Thuis</p>
+          <HomeFlag Large="true" />
+        </div>
+        <div class="q-flag-container">
+          <p class="q-titel q-subtitel">Uit</p>
+          <OutFlag Large="true" />
+        </div>
       </div>
-      <div class="q-pb-xl">
-        <p class="q-subtitel">Thuis</p>
-        <HomeFlag Large="true" />
-      </div>
-      <div class="q-pb-xl">
-        <p class="q-subtitel">Uit</p>
-        <OutFlag Large="true" />
-      </div>
-      <div>
+      <div class="q-container">
         <h1 class="q-titel">Type Match</h1>
         <q-select
           class="q-select"
@@ -29,16 +29,25 @@
 </template>
 
 <style lang="scss" scoped>
-.q-subtitel {
-  color: white;
-  text-align: center;
-  font-size: 1.2em;
-  font-weight: 500;
-  margin-bottom: 0.46875em;
-}
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+// CSS Variables
+$margin-between-childeren: 40px;
+$primary-color: #8bd1b6;
+$primary-color-dark: #8bd1b6;
+$primary-color-darker: #8bd1b654;
+$primary-text-color: black;
+$updater-icon-size: 30%;
+$update-icon-min-size: 32px;
+
+// Universal
+
+// Classes
+
 .q-btn {
   height: 3rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
   width: 70%;
   display: flex;
   border-radius: 0;
@@ -46,7 +55,9 @@
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
+
 .q-start {
   margin: 0 auto;
   max-width: 28.125em;
@@ -54,16 +65,20 @@
 }
 
 .q-body {
-  margin-top: 3.125em;
+  margin-top: 3.125rem;
 }
 
 .q-titel {
   color: white;
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -0.5em;
-  margin-top: -2.5em;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.q-subtitel {
+  font-size: 1.2rem;
 }
 
 .q-tekst {
@@ -80,10 +95,18 @@
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 .q-field__native {
   color: #f9f9f9;
+}
+.q-flag-container {
+  margin-top: 2rem;
+}
+
+.q-container {
+  margin-top: 3rem;
 }
 </style>
 

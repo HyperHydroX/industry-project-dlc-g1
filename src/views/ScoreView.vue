@@ -12,7 +12,7 @@
           <OutFlag />
         </div>
       </div>
-      <h1 class="q-titel">SCORE</h1>
+      <h1 class="q-titel">Score</h1>
       <div class="con-scores">
         <div class="con-score-updaters">
           <svg
@@ -97,11 +97,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 // CSS Variables
-$vlag-kleur-uitdeel1: #ff1e00;
-$vlag-kleur-uitdeel2: #323232;
-$vlag-kleur-thuisdeel1: #ffe600;
-$vlag-kleur-thuisdeel2: #2500c7;
-$border-raduis-vlaggen: 3px;
 $margin-between-childeren: 40px;
 $primary-color: #8bd1b6;
 $primary-color-dark: #8bd1b6;
@@ -111,11 +106,11 @@ $updater-icon-size: 30%;
 $update-icon-min-size: 32px;
 
 // Universal
-
 p {
   margin: 0;
 }
 
+// Classes
 .q-kleuren {
   display: flex;
   align-items: center;
@@ -133,6 +128,7 @@ p {
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
 
 .q-titel {
@@ -151,6 +147,7 @@ p {
   font-weight: 700;
   min-width: max-content;
   padding: 0 1.5rem;
+  font-family: 'Opens Sans', sans-serif;
 }
 
 .q-start {
@@ -160,7 +157,7 @@ p {
 }
 
 .q-body {
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 
 .con-scorepagina {
@@ -216,6 +213,7 @@ p {
   font-weight: 500;
   font-size: 4.2rem;
   margin: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 @media screen and (min-width: 360px) {

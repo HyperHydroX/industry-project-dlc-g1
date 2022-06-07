@@ -1,9 +1,9 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-      <h1 class="q-titelTekst">WIJZIG PINCODE</h1>
-      <div>
-        <p class="q-subtitel">USER</p>
+      <h1 class="q-titel">Wijzig pincode</h1>
+      <div class="q-container">
+        <p class="q-titel q-subtitel">User</p>
         <CodeInputSettings
           class=""
           @complete="completedUser = true"
@@ -20,8 +20,8 @@
         :disable="!completedUser"
       />
 
-      <div class="q-admin">
-        <p class="q-subtitel">ADMIN</p>
+      <div class="q-container">
+        <p class="q-titel q-subtitel">Admin</p>
         <CodeInputSettings
           @complete="completedAdmin = true"
           :fields="4"
@@ -29,15 +29,17 @@
           :fieldHeight="56"
           :required="true"
         />
+        <q-btn
+          @click="pincodeAdmin"
+          class="q-btn"
+          label="bevestig"
+          :disable="!completedAdmin"
+        />
       </div>
-      <q-btn
-        @click="pincodeAdmin"
-        class="q-btn"
-        label="bevestig"
-        :disable="!completedAdmin"
-      />
-      <h1 class="q-titelLogout">LOG OUT</h1>
-      <q-btn @click="logout" class="q-btn" label="Log out" />
+      <div class="q-container">
+        <h1 class="q-titel">Log out</h1>
+        <q-btn @click="logout" class="q-btn" label="Log out" />
+      </div>
     </div>
   </div>
 </template>
@@ -135,18 +137,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.q-subtitel {
-  color: white;
-  text-align: center;
-  font-size: 1.2em;
-  font-weight: 500;
-  margin-bottom: 0.46875em;
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+// CSS Variables
+$margin-between-childeren: 40px;
+$primary-color: #8bd1b6;
+$primary-color-dark: #8bd1b6;
+$primary-color-darker: #8bd1b654;
+$primary-text-color: black;
+$updater-icon-size: 30%;
+$update-icon-min-size: 32px;
+
+// Universal
+h1 {
+  line-height: 2;
+  letter-spacing: normal;
 }
 
-.q-admin {
-  margin-top: 3em;
-}
-
+// Classes
 .q-btn {
   height: 3rem;
   margin: 1.5rem auto;
@@ -157,23 +166,20 @@ export default {
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
 
-.q-titelTekst {
+.q-titel {
   color: white;
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -0.5em;
-  margin-top: -2.5em;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
 }
 
-.q-titelLogout {
-  color: white;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: -2em;
+.q-subtitel {
+  font-size: 1.2rem;
 }
 
 .q-start {
@@ -183,7 +189,7 @@ export default {
 }
 
 .q-body {
-  margin-top: 3.125em;
+  margin-top: 3.125rem;
 }
 
 .q-input {
@@ -192,5 +198,8 @@ export default {
   color: white;
   width: 100%;
   border-radius: 5px;
+}
+.q-container {
+  margin-top: 2rem;
 }
 </style>

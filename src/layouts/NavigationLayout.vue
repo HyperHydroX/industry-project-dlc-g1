@@ -1,15 +1,6 @@
 <template>
   <div class="q-background">
     <q-layout view="lHh Lpr lFf">
-      <!-- <q-toolbar class="q-toolbar">
-        <q-btn
-          @click="logout"
-          color="white"
-          class="q-btn"
-          flat
-          dense
-        />
-      </q-toolbar> -->
       <q-page-container>
         <router-view />
       </q-page-container>
@@ -152,7 +143,10 @@ export default {
 
 .q-toolbar {
   display: flex;
-  justify-content: flex-end;
+}
+
+.q-toolbar > .q-btn {
+  background: none;
 }
 
 .q-btn-group {
