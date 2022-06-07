@@ -4,11 +4,13 @@
       @click="togglePrimaryColor"
       v-bind:style="{ backgroundColor: this.primaryColor }"
       class="flag-part"
+      :class="{ flagPartLarge: Large === 'true' }"
     ></div>
     <div
       @click="toggleSecondaryColor"
       v-bind:style="{ backgroundColor: this.secondaryColor }"
       class="flag-part"
+      :class="{ flagPartLarge: Large === 'true' }"
     ></div>
   </div>
   <q-popup-proxy
@@ -81,49 +83,6 @@
   </q-popup-proxy>
 </template>
 
-<style lang="scss" scoped>
-.popup-overlay {
-  margin: 0 auto;
-}
-
-.flag-part {
-  width: 100px;
-  height: 2em;
-  cursor: pointer;
-}
-.colour-picker {
-  cursor: pointer;
-  border-radius: 0;
-}
-
-// .q-color-picker__cube {
-//   margin: 0.5rem !important;
-// }
-
-.colour-picker__flag {
-  margin-bottom: 2rem;
-}
-
-.colour-picker__flag-part {
-  width: 250px;
-  height: 4em;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  cursor: pointer;
-}
-
-.flag-icon {
-  width: 24px;
-  height: 24px;
-  fill: #f9f9f9;
-}
-
-.flag-icon__container {
-  padding: 0.5rem;
-}
-</style>
-
 <script>
 import { ref } from 'vue'
 import { defineComponent } from 'vue'
@@ -137,6 +96,7 @@ export default defineComponent({
       flagId: String,
     }
   },
+  props: ['Large'],
   methods: {
     togglePrimaryColor() {
       this.color = this.primaryColor
@@ -171,3 +131,52 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.popup-overlay {
+  margin: 0 auto;
+}
+
+.flag-part {
+  width: 100px;
+  height: 2em;
+  cursor: pointer;
+}
+
+.flagPartLarge {
+  width: 500px;
+  height: 3rem;
+}
+
+.colour-picker {
+  cursor: pointer;
+  border-radius: 0;
+}
+
+// .q-color-picker__cube {
+//   margin: 0.5rem !important;
+// }
+
+.colour-picker__flag {
+  margin-bottom: 2rem;
+}
+
+.colour-picker__flag-part {
+  width: 250px;
+  height: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.flag-icon {
+  width: 24px;
+  height: 24px;
+  fill: #f9f9f9;
+}
+
+.flag-icon__container {
+  padding: 0.5rem;
+}
+</style>

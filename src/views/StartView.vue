@@ -2,20 +2,18 @@
   <div class="q-start column no-wrap">
     <div class="q-body">
       <div>
-        <h1 class="q-titel">KLEUREN PLOEGEN</h1>
+        <h1 class="q-titel">Kleuren ploegen</h1>
       </div>
       <div class="q-pb-xl">
-        <p class="q-subtitel">THUIS</p>
-        <primaryColorPickerThuis />
-        <secundaryColorPickerThuis />
+        <p class="q-subtitel">Thuis</p>
+        <HomeFlag Large="true" />
       </div>
       <div class="q-pb-xl">
-        <p class="q-subtitel">GASTEN</p>
-        <primaryColorPickerGasten />
-        <secundaryColorPickerGasten />
+        <p class="q-subtitel">Gasten</p>
+        <OutFlag />
       </div>
       <div>
-        <h1 class="q-titel">TYPE MATCH</h1>
+        <h1 class="q-titel">Type Match</h1>
         <q-select
           class="q-select"
           filled
@@ -24,11 +22,7 @@
           label="Type match"
           label-color="white"
         />
-        <q-btn
-          class="q-btn"
-          @click="start"
-          label="start match"
-        />
+        <q-btn class="q-btn" @click="start" label="start match" />
       </div>
     </div>
   </div>
@@ -92,21 +86,14 @@
 
 <script>
 import { ref } from 'vue'
-import primaryColorPickerGasten from '../components/primaryColorPickerGasten.vue'
-import secundaryColorPickerGasten from '../components/secundaryColorPickerGasten.vue'
-import primaryColorPickerThuis from '../components/primaryColorPickerThuis.vue'
-import secundaryColorPickerThuis from '../components/secundaryColorPickerThuis.vue'
 import { useQuasar } from 'quasar'
 import router from '../router/index.js'
+import OutFlag from '@/components/OutFlag.vue'
+import HomeFlag from '@/components/HomeFlag.vue'
 
 export default {
   name: 'StartView',
-  components: {
-    primaryColorPickerGasten,
-    secundaryColorPickerGasten,
-    primaryColorPickerThuis,
-    secundaryColorPickerThuis,
-  },
+  components: { HomeFlag, OutFlag },
   setup() {
     const $q = useQuasar()
     return {
@@ -144,4 +131,3 @@ export default {
   },
 }
 </script>
-
