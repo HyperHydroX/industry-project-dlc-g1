@@ -136,16 +136,27 @@ export default defineComponent({
 .popup-overlay {
   margin: 0 auto;
 }
+.flag {
+}
 
 .flag-part {
   width: 100px;
   height: 2em;
   cursor: pointer;
+  // border-top: 1px solid #f9f9f9;
+  // border-left: 1px solid #f9f9f9;
+  // border-right: 1px solid #f9f9f9;
 }
 
+// .flag-part + .flag-part {
+//   border-top: none;
+//   border-bottom: 1px solid #f9f9f9;
+// }
+
 .flagPartLarge {
-  width: 500px;
-  height: 3rem;
+  width: 80%;
+  height: 2.8rem;
+  margin: auto;
 }
 
 .colour-picker {

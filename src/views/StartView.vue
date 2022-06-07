@@ -10,7 +10,7 @@
       </div>
       <div class="q-pb-xl">
         <p class="q-subtitel">Gasten</p>
-        <OutFlag />
+        <OutFlag Large="true" />
       </div>
       <div>
         <h1 class="q-titel">Type Match</h1>
@@ -75,12 +75,11 @@
   border-radius: 0;
   background: rgba(20, 126, 109, 0.6);
   width: 70%;
-  display: flex;
   color: #f9f9f9;
   text-transform: capitalize;
   font-size: 1rem;
   font-weight: bold;
-  margin-top: -1em;
+  text-align: center;
 }
 </style>
 

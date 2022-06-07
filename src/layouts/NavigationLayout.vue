@@ -15,7 +15,7 @@
       </q-page-container>
 
       <q-btn-group spread class="bottom-tab-nav__buttons">
-        <q-btn :to="`/score`" @click="ToggleHomePageActive">
+        <q-btn :to="`/score`">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             enable-background="new 0 0 24 24"
@@ -24,7 +24,7 @@
             width="24px"
             fill="#000000"
             class="bottom-tab-nav__button__icon"
-            :class="{ active: homePageActive }"
+            :class="{ active: this.currentUrl === '/score' }"
           >
             <g><rect fill="none" height="24" width="24" /></g>
             <g>
@@ -34,7 +34,7 @@
             </g>
           </svg>
         </q-btn>
-        <q-btn :to="`/schermen`" @click="ToggleScreenPageActive">
+        <q-btn :to="`/schermen`">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             enable-background="new 0 0 24 24"
@@ -43,7 +43,7 @@
             width="24px"
             fill="#000000"
             class="bottom-tab-nav__button__icon"
-            :class="{ active: screenPageActive }"
+            :class="{ active: this.currentUrl === '/schermen' }"
           >
             <rect fill="none" height="24" width="24" />
             <path
@@ -51,7 +51,7 @@
             />
           </svg>
         </q-btn>
-        <q-btn :to="`/settings`" @click="ToggleSettingsPageActive">
+        <q-btn :to="`/settings`">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             enable-background="new 0 0 24 24"
@@ -60,7 +60,7 @@
             width="24px"
             fill="#000000"
             class="bottom-tab-nav__button__icon"
-            :class="{ active: settingsPageActive }"
+            :class="{ active: this.currentUrl === '/settings' }"
           >
             <g><rect fill="none" height="24" width="24" /></g>
             <g>
@@ -90,36 +90,11 @@ export default {
       homePageActive: false,
       screenPageActive: false,
       settingsPageActive: false,
+      currentUrl: 'test',
     }
   },
   methods: {
-    ToggleHomePageActive() {
-      if (this.screenPageActive) {
-        this.screenPageActive = false
-      }
-      if (this.settingsPageActive) {
-        this.settingsPageActive = false
-      }
-      this.homePageActive = true
-    },
-    ToggleScreenPageActive() {
-      if (this.homePageActive) {
-        this.homePageActive = false
-      }
-      if (this.settingsPageActive) {
-        this.settingsPageActive = false
-      }
-      this.screenPageActive = true
-    },
-    ToggleSettingsPageActive() {
-      if (this.homePageActive) {
-        this.homePageActive = false
-      }
-      if (this.screenPageActive) {
-        this.screenPageActive = false
-      }
-      this.settingsPageActive = true
-    },
+    CheckUrl() {},
   },
   setup() {
     const $q = useQuasar()
@@ -149,6 +124,14 @@ export default {
         })
       },
     }
+  },
+  created: function () {
+    this.currentUrl = window.location.pathname
+    console.log(this.currentUrl)
+  },
+  updated: function () {
+    this.currentUrl = window.location.pathname
+    console.log(this.currentUrl)
   },
 }
 </script>
