@@ -11,7 +11,7 @@
             <div class="q-container">
               <h1 class="q-titel">Welkom</h1>
               <CodeInput
-                @complete="completed = true"
+                v-on:keyup.enter="onEnter"
                 :fields="4"
                 :fieldWidth="56"
                 :fieldHeight="56"
@@ -21,18 +21,6 @@
             <p class="q-text_input">
               Geef uw gekregen pin code in om verder te gaan
             </p>
-            <q-btn
-              class="q-btn"
-              :to="`/start`"
-              label="Login User"
-              :disable="!completed"
-            />
-            <q-btn
-              class="q-btn"
-              :to="`/settings`"
-              label="Login Admin"
-              :disable="!completed"
-            />
           </div>
           <q-page-container>
             <router-view />
@@ -210,8 +198,18 @@ $update-icon-min-size: 32px;
 }
 </style>
 
-<script setup>
+<script>
 import CodeInput from '../components/CodeInput.vue'
-import { ref } from 'vue'
-const completed = ref(false)
+import router from '../router/index.js'
+export default {
+  name: 'LoginLayout',
+  components: { CodeInput },
+  setup() {
+    return {
+      onEnter() {
+        router.push({ name: 'start' })
+      },
+    }
+  },
+}
 </script>
