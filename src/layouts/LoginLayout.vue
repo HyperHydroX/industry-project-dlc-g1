@@ -16,7 +16,6 @@
                 :fieldWidth="56"
                 :fieldHeight="56"
                 :required="true"
-                
               />
             </div>
             <p class="q-text_input">
@@ -104,6 +103,7 @@ $update-icon-min-size: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 4rem auto;
 }
 
 .q-container {
