@@ -154,7 +154,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   border-radius: 0;
-  position: fixed;
+  position: absolute;
   margin-bottom: 2rem;
   left: 0;
   bottom: 0;
