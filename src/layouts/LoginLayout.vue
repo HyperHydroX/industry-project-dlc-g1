@@ -11,11 +11,12 @@
             <div class="q-container">
               <h1 class="q-titel">Welkom</h1>
               <CodeInput
-                v-on:keyup.enter="onEnter"
+                v-on:complete="onEnter"
                 :fields="4"
                 :fieldWidth="56"
                 :fieldHeight="56"
                 :required="true"
+                
               />
             </div>
             <p class="q-text_input">
@@ -199,11 +200,13 @@ $update-icon-min-size: 32px;
 </style>
 
 <script>
+import { ref } from 'vue'
 import CodeInput from '../components/CodeInput.vue'
 import router from '../router/index.js'
 export default {
   name: 'LoginLayout',
   components: { CodeInput },
+  completed: ref(false),
   setup() {
     return {
       onEnter() {
