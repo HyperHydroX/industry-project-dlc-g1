@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background">
+  <div class="q-background">
     <q-layout view="lHh Lpr lFf">
       <div class="column no-wrap items-center">
         <div class="q-start column no-wrap">
@@ -61,11 +61,11 @@ $update-icon-min-size: 32px;
 // Universal
 
 // Classes
-.bg-background {
+.q-background {
   background: rgb(0, 0, 0);
   background: linear-gradient(
-    170deg,
-    rgba(0, 0, 0, 1) 0%,
+    135deg,
+    rgba(16, 16, 16, 1) 0%,
     rgba(32, 32, 32, 1) 100%
   );
 }

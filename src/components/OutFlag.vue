@@ -139,22 +139,21 @@ export default defineComponent({
   margin: 0 auto;
 }
 .flag {
-  width: 100%;
 }
 
 .flag-part {
   width: 100px;
   height: 2em;
   cursor: pointer;
-  border-top: 0.1px solid #f9f9f9;
-  border-left: 0.1px solid #f9f9f9;
-  border-right: 0.1px solid #f9f9f9;
+  // border-top: 1px solid #f9f9f9;
+  // border-left: 1px solid #f9f9f9;
+  // border-right: 1px solid #f9f9f9;
 }
 
-.flag-part + .flag-part {
-  border-top: none;
-  border-bottom: 0.1px solid #f9f9f9;
-}
+// .flag-part + .flag-part {
+//   border-top: none;
+//   border-bottom: 1px solid #f9f9f9;
+// }
 
 .flagPartLarge {
   width: 80%;
