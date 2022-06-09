@@ -10,13 +10,22 @@
             />
             <div class="q-container">
               <h1 class="q-titel">Welkom</h1>
-              <CodeInput
-                @complete="completed = true"
-                :fields="4"
-                :fieldWidth="56"
-                :fieldHeight="56"
-                :required="true"
-              />
+              <q-input v-model="email" filled type="email" hint="Email" />
+
+              <q-input
+                v-model="password"
+                filled
+                :type="isPwd ? 'password' : 'text'"
+                hint="Password with toggle"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
             </div>
             <p class="q-text_input">
               Geef uw gekregen pin code in om verder te gaan
@@ -25,12 +34,6 @@
               class="q-btn"
               :to="`/start`"
               label="Login User"
-              :disable="!completed"
-            />
-            <q-btn
-              class="q-btn"
-              :to="`/settings`"
-              label="Login Admin"
               :disable="!completed"
             />
           </div>
@@ -122,6 +125,11 @@ $update-icon-min-size: 32px;
   margin-top: 2rem;
 }
 
+.q-input {
+  background-color: #f9f9f9;
+  color: #8bd1b6;
+}
+
 @media screen and (max-width: 768px) {
   .q-img {
     max-width: 12.5em;
@@ -211,8 +219,18 @@ $update-icon-min-size: 32px;
 }
 </style>
 
-<script setup>
-import CodeInput from '../components/CodeInput.vue'
+<script>
 import { ref } from 'vue'
-const completed = ref(false)
+
+export default {
+  setup() {
+    return {
+      password: ref(''),
+      isPwd: ref(true),
+
+      email: ref(''),
+      completed: ref(false),
+    }
+  },
+}
 </script>
