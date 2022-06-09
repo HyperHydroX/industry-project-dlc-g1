@@ -158,7 +158,6 @@ p {
 
 .q-body {
   // margin-top: 3.125rem;
-  overflow: scroll;
 }
 
 .con-scorepagina {

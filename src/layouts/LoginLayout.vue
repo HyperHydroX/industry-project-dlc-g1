@@ -104,7 +104,6 @@ $update-icon-min-size: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
 }
 
 .q-container {
