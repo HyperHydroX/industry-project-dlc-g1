@@ -1,0 +1,13 @@
+@import '../settings/fonts.scss';
+
+html {
+  background: var(--global-background);
+}
+
+body {
+  color: var(--global-text-color);
+  font-size: 62.5%;
+  line-height: 1.5;
+  // TODO omzetten naar een sass variable
+  font-family: $alpha-font-stack;
+}
