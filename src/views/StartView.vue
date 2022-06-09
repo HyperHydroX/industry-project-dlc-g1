@@ -65,7 +65,8 @@ $update-icon-min-size: 32px;
 }
 
 .q-body {
-  margin-top: 3.125rem;
+  // margin-top: 3.125rem;
+  overflow: scroll;
 }
 
 .q-titel {

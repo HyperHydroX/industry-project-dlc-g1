@@ -135,7 +135,8 @@ h1 {
 }
 
 .q-body {
-  margin-top: 3.125rem;
+  // margin-top: 3.125rem;
+  overflow: scroll;
 }
 
 .q-container {
