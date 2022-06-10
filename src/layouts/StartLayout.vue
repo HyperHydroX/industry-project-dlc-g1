@@ -23,8 +23,8 @@
 .q-background {
   background: rgb(0, 0, 0);
   background: linear-gradient(
-    170deg,
-    rgba(0, 0, 0, 1) 0%,
+    135deg,
+    rgba(16, 16, 16, 1) 0%,
     rgba(32, 32, 32, 1) 100%
   );
 }
