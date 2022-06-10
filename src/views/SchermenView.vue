@@ -11,7 +11,7 @@
           label="Deze tekst is komt terecht op het scorebord"
         />
       </div>
-      <q-btn class="q-btn" label="Verzenden" />
+      <q-btn class="q-btn" label="Verzenden" @click="verzendenTekst(text)" />
       <div class="q-container">
         <h1 class="q-titel">Scherm weergave</h1>
         <q-select
@@ -46,6 +46,29 @@
 import { ref } from 'vue'
 export default {
   name: 'SchermenView',
+        methods: {
+        verzendenTekst() {
+          var myHeaders = new Headers()
+          myHeaders.append('apikey', 'MDcPUplgUhlPp23cHJmBLSHhklEAArya')
+
+          var raw = this.text
+
+          var requestOptions = {
+            method: 'POST',
+            redirect: 'follow',
+            headers: myHeaders,
+            body: raw,
+          }
+
+          fetch(
+            'https://api.apilayer.com/bad_words?censor_character={censor_character}',
+            requestOptions,
+          )
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log('error', error))
+        },
+      },
   setup() {
     return {
       text: ref(''),

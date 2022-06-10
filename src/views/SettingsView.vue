@@ -190,6 +190,7 @@ h1 {
 
 .q-body {
   // margin-top: 3.125rem;
+
 }
 
 .q-input {
