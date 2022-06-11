@@ -1,7 +1,7 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-      <h1 class="q-titel">Wijzig pincode</h1>
+      <!-- <h1 class="q-titel">Wijzig pincode</h1>
       <div class="q-container">
         <p class="q-titel q-subtitel">User</p>
         <CodeInputSettings
@@ -35,7 +35,7 @@
           label="bevestig"
           :disable="!completedAdmin"
         />
-      </div>
+      </div> -->
       <div class="q-container">
         <h1 class="q-titel">Log out</h1>
         <q-btn @click="logout" class="q-btn" label="Log out" />
@@ -46,14 +46,10 @@
 
 <script>
 import { ref } from 'vue'
-import CodeInputSettings from '../components/CodeInputSettings.vue'
 import { useQuasar } from 'quasar'
 import router from '../router/index.js'
 export default {
   name: 'SettingsView',
-  components: {
-    CodeInputSettings,
-  },
   setup() {
     const $q = useQuasar()
     return {
