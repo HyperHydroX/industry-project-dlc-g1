@@ -69,7 +69,7 @@ $update-icon-min-size: 32px;
 }
 
 .q-titel {
-  color: white;
+  color: #f9f9f9;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   font-size: 1.5rem;
@@ -82,7 +82,7 @@ $update-icon-min-size: 32px;
 }
 
 .q-tekst {
-  color: white;
+  color: #f9f9f9;
 }
 
 .q-select {
@@ -134,18 +134,18 @@ export default {
         $q.notify({
           message:
             'U staat op het punt om de match te starten, wilt u hiermee doorgaan?',
-          color: 'primary',
+          color: 'info',
           actions: [
             {
               label: 'Ja',
-              color: 'white',
+              color: 'secondary',
               handler: () => {
                 router.push({ name: 'score' })
               },
             },
             {
               label: 'Neen',
-              color: 'white',
+              color: 'secondary',
               handler: () => {
                 /* ... */
               },

@@ -70,14 +70,14 @@ export default {
           actions: [
             {
               label: 'Ja',
-              color: 'white',
+              color: '#f9f9f9',
               handler: () => {
                 /* ... */
               },
             },
             {
               label: 'Neen',
-              color: 'white',
+              color: '#f9f9f9',
               handler: () => {
                 /* ... */
               },
@@ -93,14 +93,14 @@ export default {
           actions: [
             {
               label: 'Ja',
-              color: 'white',
+              color: '#f9f9f9',
               handler: () => {
                 /* ... */
               },
             },
             {
               label: 'Neen',
-              color: 'white',
+              color: '#f9f9f9',
               handler: () => {
                 /* ... */
               },
@@ -112,18 +112,18 @@ export default {
         $q.notify({
           message:
             'U staat op het punt om uit te loggen, wilt u hiermee doorgaan?',
-          color: 'primary',
+          color: 'info',
           actions: [
             {
               label: 'Ja',
-              color: 'white',
+              color: 'secondary',
               handler: () => {
                 router.push({ name: 'loginLayout' })
               },
             },
             {
               label: 'Neen',
-              color: 'white',
+              color: 'secondary',
               handler: () => {
                 /* ... */
               },
@@ -170,7 +170,7 @@ h1 {
 }
 
 .q-titel {
-  color: white;
+  color: #f9f9f9;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   font-size: 1.5rem;
@@ -190,13 +190,12 @@ h1 {
 
 .q-body {
   // margin-top: 3.125rem;
-
 }
 
 .q-input {
   font-size: 1em;
-  background-color: white;
-  color: white;
+  background-color: #f9f9f9;
+  color: #f9f9f9;
   width: 100%;
   border-radius: 5px;
 }

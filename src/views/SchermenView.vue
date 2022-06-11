@@ -112,7 +112,7 @@ h1 {
 }
 
 .q-titel {
-  color: white;
+  color: #f9f9f9;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   font-size: 1.2rem;
@@ -122,8 +122,8 @@ h1 {
 
 .q-input {
   font-size: 1em;
-  background-color: white;
-  color: white;
+  background-color: #f9f9f9;
+  color: #f9f9f9;
   width: 100%;
   font-family: 'Rajdhani', sans-serif;
 }

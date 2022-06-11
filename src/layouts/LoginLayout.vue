@@ -43,7 +43,7 @@
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
             </p>
-            <q-btn @click="login" class="q-btn" label="Login" />
+            <q-btn @click="login" class="q-btn" label="Login" :to="`/start`" />
           </div>
           <q-page-container>
             <router-view />
@@ -61,13 +61,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 
 // CSS Variables
-$margin-between-childeren: 40px;
-$primary-color: #8bd1b6;
-$primary-color-dark: #8bd1b6;
-$primary-color-darker: #8bd1b654;
-$primary-text-color: black;
-$updater-icon-size: 30%;
-$update-icon-min-size: 32px;
 
 // Universal
 
@@ -81,16 +74,16 @@ $update-icon-min-size: 32px;
   );
 }
 .q-img {
-  max-width: 12.5em;
-  max-height: 12.5em;
-  margin-top: 11em;
+  max-width: 75%;
+  max-height: 75%;
+  margin-top: 8rem;
 }
 
 .q-titel {
-  color: white;
+  color: #f9f9f9;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   font-weight: normal;
   line-height: 1;
   margin: 1.5rem 0;
@@ -101,7 +94,7 @@ $update-icon-min-size: 32px;
   color: #f9f9f9;
   text-align: center;
   max-width: 13.75em;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: 'Rajdhani', sans-serif;
 }
 
@@ -142,30 +135,12 @@ $update-icon-min-size: 32px;
 }
 
 @media screen and (min-width: 768px) {
-  .q-img {
-    max-width: 12.5em;
-    max-height: 12.5em;
-    margin-top: 7.5em;
-  }
-
   .q-titel {
     font-size: 2.5em;
   }
 
   .q-text {
     font-size: 1.3rem;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .q-img {
-    max-width: 9.375em;
-    max-height: 9.375em;
-    margin-top: 40%;
-  }
-
-  .q-titel {
-    font-size: 2.2em;
   }
 }
 </style>
