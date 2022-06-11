@@ -99,14 +99,14 @@ export default {
           actions: [
             {
               label: 'Ja',
-              color: 'white',
+              color: 'secondary',
               handler: () => {
                 router.push({ name: 'loginLayout' })
               },
             },
             {
               label: 'Neen',
-              color: 'white',
+              color: 'secondary',
               handler: () => {
                 /* ... */
               },

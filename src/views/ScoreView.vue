@@ -132,7 +132,7 @@ p {
 }
 
 .q-titel {
-  color: white;
+  color: #f9f9f9;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   font-size: 1.5rem;

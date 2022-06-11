@@ -213,14 +213,14 @@ onBeforeUpdate(() => {
   font-size: 20px;
   text-align: center;
   transition: 0.2s all ease-in-out;
-  color: white;
+  color: #f9f9f9;
   box-sizing: border-box;
   -webkit-appearance: initial;
 }
 .CodeInput > input:focus {
   outline: none;
-  border: 1px solid white;
-  caret-color: white;
+  border: 1px solid #f9f9f9;
+  caret-color: #f9f9f9;
 }
 .title {
   margin: 0;

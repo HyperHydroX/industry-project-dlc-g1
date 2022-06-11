@@ -10,17 +10,40 @@
             />
             <div class="q-container">
               <h1 class="q-titel">Welkom</h1>
-              <CodeInput
-                v-on:complete="onEnter"
-                :fields="4"
-                :fieldWidth="56"
-                :fieldHeight="56"
-                :required="true"
+              <q-input
+                standout
+                square
+                label="email"
+                v-model="email"
+                filled
+                type="email"
+                bgColor="primary"
+                labelColor="secondary"
               />
+              <q-input
+                standout
+                square
+                label="wachtwoord"
+                v-model="password"
+                filled
+                :type="isPwd ? 'password' : 'text'"
+                bgColor="primary"
+                labelColor="secondary"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                    color="secondary"
+                  />
+                </template>
+              </q-input>
             </div>
-            <p class="q-text_input">
-              Geef uw gekregen pin code in om verder te gaan
+            <p class="q-text">
+              Geef uw email & wachtwoord in om verder te gaan
             </p>
+            <q-btn @click="login" class="q-btn" label="Login" :to="`/start`" />
           </div>
           <q-page-container>
             <router-view />
@@ -38,13 +61,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 
 // CSS Variables
-$margin-between-childeren: 40px;
-$primary-color: #8bd1b6;
-$primary-color-dark: #8bd1b6;
-$primary-color-darker: #8bd1b654;
-$primary-text-color: black;
-$updater-icon-size: 30%;
-$update-icon-min-size: 32px;
 
 // Universal
 
@@ -58,27 +74,27 @@ $update-icon-min-size: 32px;
   );
 }
 .q-img {
-  max-width: 12.5em;
-  max-height: 12.5em;
-  margin-top: 11em;
+  max-width: 75%;
+  max-height: 75%;
+  margin-top: 8rem;
 }
 
 .q-titel {
-  color: white;
+  color: #f9f9f9;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.9rem;
   font-weight: normal;
   line-height: 1;
   margin: 1.5rem 0;
 }
 
-.q-text_input {
+.q-text {
   margin-top: 1.5em;
   color: #f9f9f9;
   text-align: center;
   max-width: 13.75em;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: 'Rajdhani', sans-serif;
 }
 
@@ -110,105 +126,44 @@ $update-icon-min-size: 32px;
   margin-top: 2rem;
 }
 
-@media screen and (max-width: 768px) {
-  .q-img {
-    max-width: 12.5em;
-    max-height: 12.5em;
-    margin-top: 7.5em;
-  }
+.q-field {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+}
 
-  .q-text_input {
-    margin-top: 2em;
-    color: #f9f9f9;
-    text-align: center;
-    max-width: 18.75em;
-    font-size: 1.3em;
-  }
+.q-input + .q-input {
+  margin-top: 1rem;
+}
 
+@media screen and (min-width: 425px) {
+  .q-input {
+    width: 16rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .q-titel {
     font-size: 2.5em;
   }
 
-  .Admin {
-    height: 3rem;
-    margin: 0.5rem auto;
-    width: 30%;
-    display: flex;
-    border-radius: 0;
-    background: rgba(20, 126, 109, 0.6);
-    color: #f9f9f9;
-    text-transform: capitalize;
-    font-size: 1rem;
-  }
-
-  .User {
-    height: 3rem;
-    margin: 0.5rem auto;
-    width: 30%;
-    display: flex;
-    border-radius: 0;
-    background: rgba(20, 126, 109, 0.6);
-    color: #f9f9f9;
-    text-transform: capitalize;
-    font-size: 1rem;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .q-img {
-    max-width: 9.375em;
-    max-height: 9.375em;
-    margin-top: 40%;
-  }
-
-  .q-text_input {
-    margin-top: 5%;
-    color: #f9f9f9;
-    text-align: center;
-    max-width: 12.5em;
-    font-size: 1em;
-  }
-
-  .q-titel {
-    font-size: 2.2em;
-  }
-
-  .Admin {
-    height: 3rem;
-    margin: 0.5rem auto;
-    width: 50%;
-    display: flex;
-    border-radius: 0;
-    background: rgba(20, 126, 109, 0.6);
-    color: #f9f9f9;
-    text-transform: capitalize;
-    font-size: 1rem;
-  }
-
-  .User {
-    height: 3rem;
-    margin: 0.5rem auto;
-    width: 50%;
-    display: flex;
-    border-radius: 0;
-    background: rgba(20, 126, 109, 0.6);
-    color: #f9f9f9;
-    text-transform: capitalize;
-    font-size: 1rem;
+  .q-text {
+    font-size: 1.3rem;
   }
 }
 </style>
 
 <script>
 import { ref } from 'vue'
-import CodeInput from '../components/CodeInput.vue'
 import router from '../router/index.js'
 export default {
   name: 'LoginLayout',
-  components: { CodeInput },
   completed: ref(false),
   setup() {
     return {
+      password: ref(''),
+      isPwd: ref(true),
+
+      email: ref(''),
       onEnter() {
         router.push({ name: 'start' })
       },
