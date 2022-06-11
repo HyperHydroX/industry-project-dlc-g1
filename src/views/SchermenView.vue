@@ -15,7 +15,7 @@
       <div class="q-container">
         <h1 class="q-titel">Scherm weergave</h1>
         <q-select
-          label-color="white"
+          label-color="secondary"
           class="q-select"
           filled
           v-model="model"
@@ -27,14 +27,14 @@
         <h1 class="q-titel">Upload sponsors</h1>
         <q-file
           class="q-file"
-          color="white"
-          label-color="white"
+          color="secondary"
+          label-color="secondary"
           standout
           v-model="model"
           label="Upload sponsers"
         >
           <template v-slot:append>
-            <q-icon name="cloud_upload" color="white" />
+            <q-icon name="cloud_upload" color="secondary" />
           </template>
         </q-file>
       </div>
@@ -46,29 +46,29 @@
 import { ref } from 'vue'
 export default {
   name: 'SchermenView',
-        methods: {
-        verzendenTekst() {
-          var myHeaders = new Headers()
-          myHeaders.append('apikey', 'MDcPUplgUhlPp23cHJmBLSHhklEAArya')
+  methods: {
+    verzendenTekst() {
+      var myHeaders = new Headers()
+      myHeaders.append('apikey', 'MDcPUplgUhlPp23cHJmBLSHhklEAArya')
 
-          var raw = this.text
+      var raw = this.text
 
-          var requestOptions = {
-            method: 'POST',
-            redirect: 'follow',
-            headers: myHeaders,
-            body: raw,
-          }
+      var requestOptions = {
+        method: 'POST',
+        redirect: 'follow',
+        headers: myHeaders,
+        body: raw,
+      }
 
-          fetch(
-            'https://api.apilayer.com/bad_words?censor_character={censor_character}',
-            requestOptions,
-          )
-            .then((response) => response.text())
-            .then((result) => console.log(result))
-            .catch((error) => console.log('error', error))
-        },
-      },
+      fetch(
+        'https://api.apilayer.com/bad_words?censor_character={censor_character}',
+        requestOptions,
+      )
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log('error', error))
+    },
+  },
   setup() {
     return {
       text: ref(''),

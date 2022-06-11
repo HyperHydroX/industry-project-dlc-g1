@@ -20,7 +20,7 @@
           v-model="model"
           :options="options"
           label="Type match"
-          label-color="white"
+          label-color="secondary"
         />
         <q-btn class="q-btn" @click="start" label="start match" />
       </div>

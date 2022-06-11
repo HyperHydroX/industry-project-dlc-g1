@@ -3,7 +3,7 @@
     <q-layout view="lHh Lpr lFf">
       <q-toolbar class="q-toolbar">
         <q-btn
-          color="white"
+          color="secondary"
           class="q-btn-back"
           :to="`/`"
           flat
