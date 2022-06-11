@@ -76,7 +76,7 @@
 .q-img {
   max-width: 60%;
   max-height: 60%;
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .q-titel {
