@@ -74,9 +74,9 @@
   );
 }
 .q-img {
-  max-width: 75%;
-  max-height: 75%;
-  margin-top: 8rem;
+  max-width: 60%;
+  max-height: 60%;
+  margin-top: 5rem;
 }
 
 .q-titel {
@@ -119,6 +119,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 4rem auto;
 }
 
 .q-container {
