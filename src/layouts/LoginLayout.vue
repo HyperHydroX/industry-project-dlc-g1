@@ -158,7 +158,7 @@ export default {
 .q-img {
   max-width: 60%;
   max-height: 60%;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .q-titel {
