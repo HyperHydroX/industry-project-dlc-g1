@@ -43,7 +43,8 @@
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
             </p>
-            <q-btn @click="singin" class="q-btn" label="Login" />
+            <q-btn @click="singin" class="q-btn" label="User login" />
+            <q-btn @click="singinAdmin" class="q-btn" label="Admin login" />
           </div>
           <q-page-container>
             <router-view />
@@ -95,6 +96,24 @@ export default {
           alert(error.message)
         })
     },
+
+    singinAdmin() {
+      const auth = getAuth()
+
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          console.log('Succesfully signed in')
+
+          console.log(auth.currentUser)
+
+          router.push({ name: 'settings' })
+        })
+        .catch((error) => {
+          console.log(error.code)
+          console.log(`test`, this.email, this.password)
+          alert(error.message)
+        })
+    },
   },
 }
 </script>
@@ -121,7 +140,7 @@ export default {
 .q-img {
   max-width: 60%;
   max-height: 60%;
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .q-titel {
