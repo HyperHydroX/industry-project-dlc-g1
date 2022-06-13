@@ -2,9 +2,9 @@
   <div class="q-start">
     <div class="q-body">
       <div v-if="admin">
-        <h1 class="q-titel">instellingen</h1>
-        <div class="q-container">
-          <p class="q-titel q-subtitel">Registreer user</p>
+        <!-- <h1 class="q-titel">instellingen</h1> -->
+        <!-- <div class="q-container">
+          <h2 class="q-titel q-subtitel">Registreer user</h2>
           <q-input
             standout
             square
@@ -24,11 +24,25 @@
             bgColor="primary"
             labelColor="secondary"
           />
+          <q-btn @click="register" class="q-btn" label="register" />
+        </div> -->
+        <div class="q-container">
+          <h2 class="q-titel q-subtitel">Reset password</h2>
+          <q-input
+            standout
+            square
+            label="email"
+            v-model="email"
+            filled
+            type="email"
+            bgColor="primary"
+            labelColor="secondary"
+          />
         </div>
-        <q-btn @click="register" class="q-btn" label="register" />
+        <q-btn @click="resetPassword" class="q-btn" label="reset" />
       </div>
       <div class="q-container">
-        <h1 class="q-titel">Log out</h1>
+        <h2 class="q-titel">Log out</h2>
         <q-btn @click="logout" class="q-btn" label="Log out" />
       </div>
     </div>
@@ -43,6 +57,7 @@ import {
   getAuth,
   signOut,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from '@firebase/auth'
 
 export default {
@@ -87,7 +102,7 @@ export default {
 
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then(() => {
-          console.log('Succesfully signed in')
+          console.log('Succesfully registered')
 
           console.log(auth.currentUser)
         })
@@ -95,6 +110,19 @@ export default {
           console.log(error.code)
           console.log(`test`, this.email, this.password)
           alert(error.message)
+        })
+    },
+    resetPassword() {
+      const auth = getAuth()
+      sendPasswordResetEmail(auth, this.email)
+        .then(() => {
+          console.log('Succesfully send email')
+
+          console.log(auth.currentUser)
+        })
+        .catch((error) => {
+          console.log(error.code)
+          console.log(error.message)
         })
     },
   },

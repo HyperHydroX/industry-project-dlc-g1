@@ -39,6 +39,9 @@
                   />
                 </template>
               </q-input>
+              <p v-if="errMsg" class="q-text q-text--error">
+                {{ this.errMsg }}
+              </p>
             </div>
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
@@ -72,10 +75,7 @@ export default {
       email: ref(),
       password: ref(),
       isPwd: ref(true),
-
-      onEnter() {
-        router.push({ name: 'start' })
-      },
+      errMsg: ref(''),
     }
   },
   methods: {
@@ -94,6 +94,21 @@ export default {
           console.log(error.code)
           console.log(`test`, this.email, this.password)
           alert(error.message)
+
+          switch (error.code) {
+            case 'auth/inavlid-email':
+              this.errMsg = 'Ongeldig email'
+              break
+            case 'auth/user-not-found':
+              this.errMsg = 'Geen user was gevonden met het email'
+              break
+            case 'auth/wrong-password':
+              this.errMsg = 'Ongeldig wachtwoord'
+              break
+            default:
+              this.errMsg = 'Email of wachtwoord was incorrect'
+              break
+          }
         })
     },
 
@@ -160,6 +175,10 @@ export default {
   max-width: 13.75em;
   font-size: 1rem;
   font-family: 'Rajdhani', sans-serif;
+}
+
+.q-text--error {
+  color: #cb2828;
 }
 
 .q-btn {
