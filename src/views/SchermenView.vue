@@ -25,18 +25,14 @@
       </div>
       <div class="q-container">
         <h1 class="q-titel">Upload sponsors</h1>
-        <q-file
-          class="q-file"
-          color="secondary"
-          label-color="secondary"
-          standout
-          v-model="model"
-          label="Upload sponsers"
-        >
-          <template v-slot:append>
-            <q-icon name="cloud_upload" color="secondary" />
-          </template>
-        </q-file>
+        <q-uploader
+          url="http://localhost:8082/score"
+          label="Upload (enkel png, jpg en svg)"
+          multiple
+          accept=".jpg, image/*"
+          @rejected="onRejected"
+          class="q-uploader"
+        />
       </div>
     </div>
   </div>
@@ -44,6 +40,7 @@
 
 <script>
 import { ref } from 'vue'
+import { useQuasar } from 'quasar'
 export default {
   name: 'SchermenView',
   methods: {
@@ -70,11 +67,19 @@ export default {
     },
   },
   setup() {
-    return {
-      text: ref(''),
-      model: ref(null),
-      options: ['Scherm 1', 'Scherm 2'],
-    }
+    const $q = useQuasar()
+
+    function onRejected(rejectedEntries) {
+      $q.notify({
+        type: 'negative',
+        message: `${rejectedEntries.length} file(s) mogen niet dezelfde zijn.`,
+      })}
+      return {
+        text: ref(''),
+        model: ref(null),
+        options: ['Scherm 1', 'Scherm 2'],
+        onRejected,
+      }
   },
 }
 </script>
@@ -128,16 +133,11 @@ h1 {
   font-family: 'Rajdhani', sans-serif;
 }
 
-.q-file {
-  margin: 1rem auto;
+.q-uploader {
   border-radius: 0;
+  width: 100%;
+  margin-top: 1rem;
   background: rgba(20, 126, 109, 0.6);
-  width: 70%;
-  display: flex;
-  color: #f9f9f9;
-  text-transform: capitalize;
-  font-size: 1rem;
-  font-family: 'Raleway', sans-serif;
 }
 .q-select {
   margin: 1rem auto;
