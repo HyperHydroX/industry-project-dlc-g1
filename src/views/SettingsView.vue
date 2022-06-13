@@ -48,6 +48,7 @@
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import router from '../router/index.js'
+import { getAuth, signOut } from '@firebase/auth'
 export default {
   name: 'SettingsView',
   setup() {
@@ -114,7 +115,10 @@ export default {
               label: 'Ja',
               color: 'secondary',
               handler: () => {
-                router.push({ name: 'loginLayout' })
+                const auth = getAuth()
+                signOut(auth).then(() => {
+                  router.push({ name: 'loginLayout' })
+                })
               },
             },
             {

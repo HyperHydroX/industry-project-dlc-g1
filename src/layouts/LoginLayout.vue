@@ -43,7 +43,7 @@
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
             </p>
-            <q-btn @click="login" class="q-btn" label="Login" :to="`/start`" />
+            <q-btn @click="singin" class="q-btn" label="Login" />
           </div>
           <q-page-container>
             <router-view />
@@ -53,6 +53,51 @@
     </q-layout>
   </div>
 </template>
+
+<script>
+import { ref } from 'vue'
+import router from '../router/index.js'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+
+// const email = ref('')
+// const password = ref('')
+// const errMsg = ref()
+
+export default {
+  name: 'LoginLayout',
+  completed: ref(false),
+  setup() {
+    return {
+      email: ref(),
+      password: ref(),
+      isPwd: ref(true),
+
+      onEnter() {
+        router.push({ name: 'start' })
+      },
+    }
+  },
+  methods: {
+    singin() {
+      const auth = getAuth()
+
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          console.log('Succesfully signed in')
+
+          console.log(auth.currentUser)
+
+          router.push({ name: 'start' })
+        })
+        .catch((error) => {
+          console.log(error.code)
+          console.log(`test`, this.email, this.password)
+          alert(error.message)
+        })
+    },
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 // Fonts
@@ -151,23 +196,3 @@
   }
 }
 </style>
-
-<script>
-import { ref } from 'vue'
-import router from '../router/index.js'
-export default {
-  name: 'LoginLayout',
-  completed: ref(false),
-  setup() {
-    return {
-      password: ref(''),
-      isPwd: ref(true),
-
-      email: ref(''),
-      onEnter() {
-        router.push({ name: 'start' })
-      },
-    }
-  },
-}
-</script>
