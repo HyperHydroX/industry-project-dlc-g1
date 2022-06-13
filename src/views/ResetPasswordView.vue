@@ -113,7 +113,7 @@ h1 {
 }
 
 .q-text {
-  margin-top: 1.5em;
+  margin: 1.5rem auto 0;
   color: #f9f9f9;
   text-align: center;
   font-size: 1rem;
