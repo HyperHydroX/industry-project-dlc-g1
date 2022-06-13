@@ -47,7 +47,7 @@
               Geef uw email & wachtwoord in om verder te gaan
             </p>
             <q-btn @click="singin" class="q-btn" label="login" />
-            <a @click="resetPasswordPage" class="q-link">Reset password</a>
+            <a @click="resetPasswordPage" class="q-link">Forgot password ?</a>
           </div>
           <q-page-container>
             <router-view />
@@ -188,7 +188,7 @@ export default {
   color: #f9f9f9;
   text-align: center;
   max-width: 13.75em;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: 'Rajdhani', sans-serif;
   cursor: pointer;
   transition: 0.1s ease-out;

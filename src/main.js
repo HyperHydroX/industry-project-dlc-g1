@@ -24,6 +24,8 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig)
 
+// Global variables
+
 library.add(fas)
 
 createApp(App)
