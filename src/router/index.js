@@ -6,6 +6,7 @@ import ScoreView from '../views/ScoreView.vue'
 import SchermenView from '../views/SchermenView.vue'
 import SettingsView from '../views/SettingsView.vue'
 import StartView from '../views/StartView.vue'
+import ResetPasswordView from '../views/ResetPasswordView.vue'
 
 const routes = [
   {
@@ -14,20 +15,25 @@ const routes = [
     component: LoginLayout,
   },
   {
-    path: "/",
+    path: '/',
     name: 'startLayout',
     component: StartLayout,
 
     children: [
       {
+        path: '/reset',
+        name: 'reset',
+        component: ResetPasswordView,
+      },
+      {
         path: '/start',
         name: 'start',
-        component: StartView
-      }
+        component: StartView,
+      },
     ],
   },
   {
-    path: "/",
+    path: '/',
     name: 'navigation',
     component: NavigationLayout,
 
@@ -35,27 +41,27 @@ const routes = [
       {
         path: '/score',
         name: 'score',
-        component: ScoreView
+        component: ScoreView,
       },
 
       {
         path: '/schermen',
         name: 'schermen',
-        component: SchermenView
+        component: SchermenView,
       },
 
       {
         path: '/settings',
         name: 'settings',
-        component: SettingsView
-      }
+        component: SettingsView,
+      },
     ],
-}
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
 })
 
 export default router

@@ -46,8 +46,8 @@
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
             </p>
-            <q-btn @click="singin" class="q-btn" label="User login" />
-            <q-btn @click="singinAdmin" class="q-btn" label="Admin login" />
+            <q-btn @click="singin" class="q-btn" label="login" />
+            <a @click="resetPasswordPage" class="q-link">Reset password</a>
           </div>
           <q-page-container>
             <router-view />
@@ -96,7 +96,7 @@ export default {
           alert(error.message)
 
           switch (error.code) {
-            case 'auth/inavlid-email':
+            case 'auth/invalid-email':
               this.errMsg = 'Ongeldig email'
               break
             case 'auth/user-not-found':
@@ -128,6 +128,9 @@ export default {
           console.log(`test`, this.email, this.password)
           alert(error.message)
         })
+    },
+    resetPasswordPage() {
+      router.push({ name: 'reset' })
     },
   },
 }
@@ -179,6 +182,20 @@ export default {
 
 .q-text--error {
   color: #cb2828;
+}
+
+.q-link {
+  color: #f9f9f9;
+  text-align: center;
+  max-width: 13.75em;
+  font-size: 1rem;
+  font-family: 'Rajdhani', sans-serif;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+}
+
+.q-link:hover {
+  color: rgba(20, 126, 109, 0.6);
 }
 
 .q-btn {

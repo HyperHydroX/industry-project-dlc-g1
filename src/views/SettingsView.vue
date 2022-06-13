@@ -1,9 +1,9 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-      <div v-if="admin">
-        <!-- <h1 class="q-titel">instellingen</h1> -->
-        <!-- <div class="q-container">
+      <!-- <div v-if="admin">
+        <h1 class="q-titel">instellingen</h1>
+        <div class="q-container">
           <h2 class="q-titel q-subtitel">Registreer user</h2>
           <q-input
             standout
@@ -25,22 +25,8 @@
             labelColor="secondary"
           />
           <q-btn @click="register" class="q-btn" label="register" />
-        </div> -->
-        <div class="q-container">
-          <h2 class="q-titel q-subtitel">Reset password</h2>
-          <q-input
-            standout
-            square
-            label="email"
-            v-model="email"
-            filled
-            type="email"
-            bgColor="primary"
-            labelColor="secondary"
-          />
         </div>
-        <q-btn @click="resetPassword" class="q-btn" label="reset" />
-      </div>
+      </div> -->
       <div class="q-container">
         <h2 class="q-titel">Log out</h2>
         <q-btn @click="logout" class="q-btn" label="Log out" />
@@ -57,7 +43,6 @@ import {
   getAuth,
   signOut,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
 } from '@firebase/auth'
 
 export default {
@@ -110,19 +95,6 @@ export default {
           console.log(error.code)
           console.log(`test`, this.email, this.password)
           alert(error.message)
-        })
-    },
-    resetPassword() {
-      const auth = getAuth()
-      sendPasswordResetEmail(auth, this.email)
-        .then(() => {
-          console.log('Succesfully send email')
-
-          console.log(auth.currentUser)
-        })
-        .catch((error) => {
-          console.log(error.code)
-          console.log(error.message)
         })
     },
   },
