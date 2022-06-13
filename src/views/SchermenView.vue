@@ -84,13 +84,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 // CSS Variables
-$margin-between-childeren: 40px;
-$primary-color: #8bd1b6;
-$primary-color-dark: #8bd1b6;
-$primary-color-darker: #8bd1b654;
-$primary-text-color: black;
-$updater-icon-size: 30%;
-$update-icon-min-size: 32px;
 
 // Universal
 h1 {

@@ -43,6 +43,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+.q-page-container {
+  margin: 0;
+}
 </style>
 
 <script>
