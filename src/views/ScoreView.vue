@@ -16,6 +16,8 @@
       <div class="con-scores">
         <div class="con-score-updaters">
           <svg
+            @click="updateScore"
+            data-team="thuis-plus"
             class="con-score-icon"
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -27,7 +29,7 @@
             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
           </svg>
           <svg
-            class="con-score-icon"
+            class="con-score-icon js-thuis-min"
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
             viewBox="0 0 24 24"
@@ -40,14 +42,14 @@
         </div>
         <div class="con-team-scores">
           <div class="con-current-scores">
-            <p>2</p>
+            <p class="js-thuis-score">{{ this.scoreThuis }}</p>
             <p>-</p>
-            <p>0</p>
+            <p class="js-uit-score">{{ this.scoreUit }}</p>
           </div>
         </div>
         <div class="con-score-updaters">
           <svg
-            class="con-score-icon"
+            class="con-score-icon js-uit-plus"
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
             viewBox="0 0 24 24"
@@ -58,7 +60,7 @@
             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
           </svg>
           <svg
-            class="con-score-icon"
+            class="con-score-icon js-uit-min"
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
             viewBox="0 0 24 24"
@@ -82,9 +84,50 @@ import HomeFlag from '@/components/HomeFlag.vue'
 import OutFlag from '@/components/OutFlag.vue'
 import router from '../router/index.js'
 import { useQuasar } from 'quasar'
+import { updateTeamScore } from '../firebase/firebase'
 
 export default {
   name: 'ScoreView',
+  methods: {
+    updateScore(e) {
+      let team = e.target.getAttribute('data-team')
+      if (team == 'thuis-plus') {
+        this.scoreThuis += 1
+        console.log('thuis-score: ' + this.scoreThuis)
+        console.log('uit-score: ' + this.scoreUit)
+        updateTeamScore('thuis', this.scoreThuis)
+          .then((e) => {
+            console.log(e)
+          })
+          .catch((err) => console.Log(err))
+      } else if (team == 'thuis-min') {
+        if (0 < this.scoreThuis) {
+          this.scoreThuis -= 1
+          updateTeamScore('thuis', this.scoreThuis)
+            .then((e) => {
+              console.log(e)
+            })
+            .catch((err) => console.Log(err))
+        }
+      } else if (team == 'uit-plus') {
+        this.scoreUit += 1
+        updateTeamScore('uit', this.scoreUit)
+          .then((e) => {
+            console.log(e)
+          })
+          .catch((err) => console.Log(err))
+      } else if (team == 'uit-min') {
+        if (0 < this.scoreUit) {
+          this.scoreUit -= 1
+          updateTeamScore('uit', this.scoreUit)
+            .then((e) => {
+              console.log(e)
+            })
+            .catch((err) => console.Log(err))
+        }
+      }
+    },
+  },
   components: {
     HomeFlag,
     OutFlag,
@@ -119,7 +162,10 @@ export default {
       },
     }
   },
-  data() {},
+  data() {
+    this.scoreThuis = 0
+    this.scoreUit = 0
+  },
   created() {
     console.log(this.startMatch)
     if (this.startMatch) {

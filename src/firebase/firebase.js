@@ -1,6 +1,12 @@
 import { initializeApp } from 'firebase/app'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { getAuth } from 'firebase/auth'
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,36 +22,100 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
 export const auth = getAuth()
 
+let user;
 export const sponsers = []
-import { user } from '../layouts/LoginLayout'
 
-// export const registerUser = (email, password) => {
-//     createUserWithEmailAndPassword(auth, email, password)
-//     .then((userCredential) => {
-//     // User credentials
-//     user = userCredential.user;
+export const loginUser = (email, password) => {
+  return new Promise((resolve, reject) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // User credentials
+        user = userCredential.user
+        resolve(user)
+      })
+      .catch((error) => {
+        console.log(error.code)
+        console.log(error.message)
+        reject(error)
+      })
+  })
+}
+
+// export const registerUser = (
+//   userId,
+//   playerToken,
+//   scoreThuis,
+//   uitScore,
+//   sporten,
+//   volwassenSponsers,
+//   jeugdSponsers,
+// ) => {
+//   return new Promise((resolve, reject) => {
+//     createUserWithEmailAndPassword(email, password)
+//       .then((userCredential) => {
+//         // userId
+//         // playerToken
+//         // scoreThuis
+//         // scoreUit
+//         // sporten
+//         // volwassenSponsers
+//         // jeugdSponsers
+//       })
+//       .catch((error) => {
+//         console.log(error.code)
+//         console.log(error.message)
+//         reject(error)
+//       })
 //   })
-//   .catch((error) => {
-//     console.log(error.code)
-//     console.log(error.message)
-//   });
 // }
-export const loginUser = new Promise((resolve, reject, email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // User credentials
-      user = userCredential.user
-      resolve(user)
-    })
-    .catch((error) => {
-      console.log(error.code)
-      console.log(error.message)
-      reject(error)
-    })
-})
+
+export const resetUserPassword = (email) => {
+  return new Promise((resolve, reject) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log('Een email is verstuurd naar uw email.')
+        resolve('Een email is verstuurd naar uw email.')
+        // router.push({ name: 'loginLayout' })
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
+}
+
+export const updateTeamScore = async (team, score) => {
+  // Add a new document in collection "cities"
+    return new Promise((resolve, reject) => { 
+        if (team == 'thuis') {
+            updateDoc(doc(db, 'players', user.uid), {
+                "ScoreThuis": score,
+            }).then(() => {
+                resolve("Score voor 'thuis' ploeg geupdate.")
+            }).catch((err) => {
+                console.log(err)
+                reject(err)
+            })
+          } else if (team == 'uit') {
+            updateDoc(doc(db, 'players', user.uid), {
+              "ScoreUit": score,
+            }).then(() => {
+                resolve("Score voor 'uit' ploeg geupdate.")
+            }).catch((err) => {
+                console.log(err)
+                reject(err)
+            })
+            
+        } else {
+            reject("De 'team' parameter kan slechts 'thuis' of 'uit' zijn.")
+          }
+     })
+
+}
+
 export const uploadFile = async (file) => {
   try {
     console.log(file)

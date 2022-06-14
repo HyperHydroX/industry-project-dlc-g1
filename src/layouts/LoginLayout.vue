@@ -48,7 +48,7 @@
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
             </p>
-            <q-btn @click="singin" class="q-btn" label="login" />
+            <q-btn @click="signin" class="q-btn" label="login" />
             <a @click="resetPasswordPage" class="q-link"
               >Wachtwoord vergeten ?</a
             >
@@ -65,11 +65,7 @@
 <script>
 import { ref } from 'vue'
 import router from '../router/index.js'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-export let user;
-// const email = ref('')
-// const password = ref('')
-// const errMsg = ref()
+import { loginUser } from "../firebase/firebase"
 
 export default {
   name: 'LoginLayout',
@@ -85,13 +81,11 @@ export default {
     }
   },
   methods: {
-    singin() {
-      const auth = getAuth()
-
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredentials) => {
+    signin() {
+      loginUser(this.email, this.password)
+        .then((user) => {
           console.log('Succesfully signed in')
-          user = userCredentials.user
+          console.log(user);
           this.isErrorClass = false
           router.push({ name: 'start' })
         })
@@ -125,15 +119,11 @@ export default {
         })
     },
 
-    singinAdmin() {
-      const auth = getAuth()
-
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then(() => {
+    signinAdmin() {
+      loginUser(this.email, this.password)
+        .then((user) => {
           console.log('Succesfully signed in')
-
-          console.log(auth.currentUser)
-
+          console.log(user)
           router.push({ name: 'settings' })
         })
         .catch((error) => {
