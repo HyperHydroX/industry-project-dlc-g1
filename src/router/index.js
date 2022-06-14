@@ -13,22 +13,26 @@ const routes = [
     path: '/',
     name: 'loginLayout',
     component: LoginLayout,
+    props: true,
   },
   {
     path: '/',
     name: 'startLayout',
     component: StartLayout,
+    props: true,
 
     children: [
       {
         path: '/reset',
         name: 'reset',
         component: ResetPasswordView,
+        props: true,
       },
       {
         path: '/start',
         name: 'start',
         component: StartView,
+        props: true,
       },
     ],
   },
@@ -36,24 +40,28 @@ const routes = [
     path: '/',
     name: 'navigation',
     component: NavigationLayout,
+    props: true,
 
     children: [
       {
         path: '/score',
         name: 'score',
         component: ScoreView,
+        props: true,
       },
 
       {
         path: '/schermen',
         name: 'schermen',
         component: SchermenView,
+        props: true,
       },
 
       {
         path: '/settings',
         name: 'settings',
         component: SettingsView,
+        props: true,
       },
     ],
   },

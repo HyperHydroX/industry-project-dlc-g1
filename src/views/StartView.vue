@@ -121,7 +121,7 @@ export default {
   },
   methods: {
     start() {
-      router.push({ name: 'score' })
+      router.push({ name: 'score', params: { startMatch: 'start' } })
     },
   },
 }

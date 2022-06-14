@@ -72,6 +72,7 @@
       </div>
       <q-btn class="q-btn" label="rust" />
       <q-btn class="q-btn" label="tijd resetten" />
+      <p>{{ startMatch }}</p>
     </div>
   </div>
 </template>
@@ -88,6 +89,7 @@ export default {
     HomeFlag,
     OutFlag,
   },
+  props: ['startMatch'],
   setup() {
     const $q = useQuasar()
     return {
@@ -119,8 +121,10 @@ export default {
   },
   data() {},
   created() {
-    if()
-    this.showNotif()
+    console.log(this.startMatch)
+    if (this.startMatch) {
+      this.showNotif()
+    }
   },
 }
 </script>
