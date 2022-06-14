@@ -73,13 +73,14 @@ export default {
       $q.notify({
         type: 'negative',
         message: `${rejectedEntries.length} file(s) mogen niet dezelfde zijn.`,
-      })}
-      return {
-        text: ref(''),
-        model: ref(null),
-        options: ['Scherm 1', 'Scherm 2'],
-        onRejected,
-      }
+      })
+    }
+    return {
+      text: ref(''),
+      model: ref(null),
+      options: ['Scherm 1', 'Scherm 2'],
+      onRejected,
+    }
   },
 }
 </script>

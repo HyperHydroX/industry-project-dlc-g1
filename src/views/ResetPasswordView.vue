@@ -12,13 +12,14 @@
           type="email"
           bgColor="primary"
           labelColor="secondary"
+          :class="{ errorClass: isErrorClass }"
         />
       </div>
       <q-btn @click="resetPassword" class="q-btn" label="reset" />
       <p
         v-if="msg"
         class="q-text q-text--succes"
-        :class="{ ErrorMsg: isErrorMsg }"
+        :class="{ errorMsg: isErrorMsg }"
       >
         {{ this.msg }}
       </p>
@@ -39,6 +40,7 @@ export default {
       password: ref(''),
       msg: ref(''),
       isErrorMsg: false,
+      isErrorClass: false,
       admin: true,
     }
   },
@@ -51,6 +53,7 @@ export default {
 
           console.log(auth.currentUser)
           this.isErrorMsg = false
+          this.isErrorClass = false
           this.msg = 'Mail succesvol verstuurd.'
           // router.push({ name: 'loginLayout' })
         })
@@ -60,7 +63,12 @@ export default {
 
           if (error.code == 'auth/invalid-email') {
             this.isErrorMsg = true
+            this.isErrorClass = true
             this.msg = 'Ongeldig email.'
+          } else if (this.email == '') {
+            this.isErrorMsg = true
+            this.isErrorClass = true
+            this.msg = 'Vul u email in.'
           }
         })
     },
@@ -124,8 +132,12 @@ h1 {
   color: rgba(20, 126, 109, 1);
 }
 
-.ErrorMsg {
+.errorMsg {
   color: #cb2828;
+}
+
+.errorClass {
+  border: 0.1px solid #cb2828;
 }
 
 .q-subtitel {
