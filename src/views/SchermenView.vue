@@ -11,7 +11,7 @@
           label="Deze tekst is komt terecht op het scorebord"
         />
       </div>
-      <q-btn class="q-btn" label="Verzenden" @click="verzendenTekst(text)" />
+      <q-btn class="q-btn" label="Verzenden" @click="updateTekst(text)" />
       <div class="q-container">
         <h1 class="q-titel">Scherm weergave</h1>
         <q-select
@@ -68,7 +68,47 @@ export default {
         .then((result) => console.log(result))
         .catch((error) => console.log('error', error))
     },
+    updateTekst(text) {
+      // var myHeaders = new Headers()
+      // var bearer = 'Bearer ' + '58e56ea3-7db9-4d8f-ba0a-d590945d85f7'
+      // myHeaders.append('Authorization', bearer)
+
+      // var data = this.text
+
+      var requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        withCredentials: true,
+        credentials: 'include',
+        // headers: myHeaders,
+        // body: JSON.stringify(data),
+        mode : 'no-cors'
+      }
+
+      fetch(`http://192.168.15.140:1234/update?tekstopscherm=${text}`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log('error', error))
+
+      // var url = 'http://192.168.15.140/webstorage'
+      // var bearer = 'Bearer ' + '58e56ea3-7db9-4d8f-ba0a-d590945d85f7'
+      // fetch(url, {
+      //   method: 'POST',
+      //   withCredentials: true,
+      //   credentials: 'include',
+      //   mode: 'no-cors',
+      //   headers: {
+      //     Authorization: bearer,
+      //     'X-FP-API-KEY': 'fd1774e3-8782-46e8-a8ff-6d77ff766ea3', //it can be iPhone or your any other attribute
+      //     'Content-Type': 'application/json',
+      //   },
+      // })
+      //   .then((response) => response.text())
+      //   .then((result) => console.log(result))
+      //   .catch((error) => console.log('error', error))
+    },
   },
+
   setup() {
     return {
       text: ref(''),
