@@ -47,7 +47,9 @@
               Geef uw email & wachtwoord in om verder te gaan
             </p>
             <q-btn @click="singin" class="q-btn" label="login" />
-            <a @click="resetPasswordPage" class="q-link">Forgot password ?</a>
+            <a @click="resetPasswordPage" class="q-link"
+              >Wachtwoord vergeten ?</a
+            >
           </div>
           <q-page-container>
             <router-view />
