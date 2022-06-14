@@ -1,44 +1,35 @@
 <template>
   <div class="q-start">
     <div class="q-body">
-      <!-- <h1 class="q-titel">Wijzig pincode</h1>
-      <div class="q-container">
-        <p class="q-titel q-subtitel">User</p>
-        <CodeInputSettings
-          class=""
-          @complete="completedUser = true"
-          :fields="4"
-          :fieldWidth="56"
-          :fieldHeight="56"
-          :required="true"
-        />
-      </div>
-      <q-btn
-        @click="pincodeUser"
-        class="q-btn"
-        label="bevestig"
-        :disable="!completedUser"
-      />
-
-      <div class="q-container">
-        <p class="q-titel q-subtitel">Admin</p>
-        <CodeInputSettings
-          @complete="completedAdmin = true"
-          :fields="4"
-          :fieldWidth="56"
-          :fieldHeight="56"
-          :required="true"
-        />
-        <q-btn
-          @click="pincodeAdmin"
-          class="q-btn"
-          label="bevestig"
-          :disable="!completedAdmin"
-        />
+      <!-- <div v-if="admin">
+        <h1 class="q-titel">instellingen</h1>
+        <div class="q-container">
+          <h2 class="q-titel q-subtitel">Registreer user</h2>
+          <q-input
+            standout
+            square
+            label="email"
+            v-model="email"
+            filled
+            type="email"
+            bgColor="primary"
+            labelColor="secondary"
+          />
+          <q-input
+            standout
+            square
+            label="wachtwoord"
+            v-model="password"
+            filled
+            bgColor="primary"
+            labelColor="secondary"
+          />
+          <q-btn @click="register" class="q-btn" label="register" />
+        </div>
       </div> -->
       <div class="q-container">
-        <h1 class="q-titel">Log out</h1>
-        <q-btn @click="logout" class="q-btn" label="Log out" />
+        <h2 class="q-titel">Uitloggen</h2>
+        <q-btn @click="logout" class="q-btn" label="Uitloggen" />
       </div>
     </div>
   </div>
@@ -48,63 +39,20 @@
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import router from '../router/index.js'
-import { getAuth, signOut } from '@firebase/auth'
+import {
+  getAuth,
+  signOut,
+  createUserWithEmailAndPassword,
+} from '@firebase/auth'
+
 export default {
   name: 'SettingsView',
   setup() {
     const $q = useQuasar()
     return {
-      text: ref(''),
-      model: ref(null),
-      options: ['Scherm 1', 'Scherm 2'],
-      completedUser: ref(false),
-      completedAdmin: ref(false),
-      pincodeAdmin() {
-        $q.notify({
-          message:
-            'U staat op het punt om de pincode van de admin aan te passen, wilt u hiermee doorgaan?',
-          color: 'primary',
-          actions: [
-            {
-              label: 'Ja',
-              color: '#f9f9f9',
-              handler: () => {
-                /* ... */
-              },
-            },
-            {
-              label: 'Neen',
-              color: '#f9f9f9',
-              handler: () => {
-                /* ... */
-              },
-            },
-          ],
-        })
-      },
-      pincodeUser() {
-        $q.notify({
-          message:
-            'U staat op het punt om de pincode van de user aan te passen, wilt u hiermee doorgaan?',
-          color: 'primary',
-          actions: [
-            {
-              label: 'Ja',
-              color: '#f9f9f9',
-              handler: () => {
-                /* ... */
-              },
-            },
-            {
-              label: 'Neen',
-              color: '#f9f9f9',
-              handler: () => {
-                /* ... */
-              },
-            },
-          ],
-        })
-      },
+      email: ref(''),
+      password: ref(''),
+      admin: true,
       logout() {
         $q.notify({
           message:
@@ -129,9 +77,27 @@ export default {
               },
             },
           ],
+          timeout: Math.random() * 5000 + 3000,
         })
       },
     }
+  },
+  methods: {
+    register() {
+      const auth = getAuth()
+
+      createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          console.log('Succesfully registered')
+
+          console.log(auth.currentUser)
+        })
+        .catch((error) => {
+          console.log(error.code)
+          console.log(`test`, this.email, this.password)
+          alert(error.message)
+        })
+    },
   },
 }
 </script>
@@ -139,6 +105,8 @@ export default {
 <style lang="scss" scoped>
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 
 // CSS Variables
 $margin-between-childeren: 40px;
@@ -188,17 +156,14 @@ h1 {
   padding: 0 2.5em;
 }
 
+.q-input + .q-input {
+  margin-top: 1rem;
+}
+
 .q-body {
   // margin-top: 3.125rem;
 }
 
-.q-input {
-  font-size: 1em;
-  background-color: #f9f9f9;
-  color: #f9f9f9;
-  width: 100%;
-  border-radius: 5px;
-}
 .q-container {
   margin-top: 2rem;
 }

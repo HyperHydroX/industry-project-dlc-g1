@@ -33,13 +33,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 // CSS Variables
-$margin-between-childeren: 40px;
-$primary-color: #8bd1b6;
-$primary-color-dark: #8bd1b6;
-$primary-color-darker: #8bd1b654;
-$primary-text-color: black;
-$updater-icon-size: 30%;
-$update-icon-min-size: 32px;
 
 // Universal
 
@@ -112,7 +105,6 @@ $update-icon-min-size: 32px;
 
 <script>
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 import router from '../router/index.js'
 import OutFlag from '@/components/OutFlag.vue'
 import HomeFlag from '@/components/HomeFlag.vue'
@@ -121,39 +113,16 @@ export default {
   name: 'StartView',
   components: { HomeFlag, OutFlag },
   setup() {
-    const $q = useQuasar()
     return {
-      primaryColorThuis: ref('#C0D1EF'),
-      secundaryColorThuis: ref('#2C73EC'),
-      primaryColorGasten: ref('#F5E834'),
-      secundaryColorGasten: ref('#F5AE34'),
       text: ref(''),
       model: ref(null),
       options: ['Volwassen ( 2 x 45min.)', 'Jeugd ( 4 x 20min.)'],
-      start() {
-        $q.notify({
-          message:
-            'U staat op het punt om de match te starten, wilt u hiermee doorgaan?',
-          color: 'info',
-          actions: [
-            {
-              label: 'Ja',
-              color: 'secondary',
-              handler: () => {
-                router.push({ name: 'score' })
-              },
-            },
-            {
-              label: 'Neen',
-              color: 'secondary',
-              handler: () => {
-                /* ... */
-              },
-            },
-          ],
-        })
-      },
     }
+  },
+  methods: {
+    start() {
+      router.push({ name: 'score', params: { startMatch: 'start' } })
+    },
   },
 }
 </script>

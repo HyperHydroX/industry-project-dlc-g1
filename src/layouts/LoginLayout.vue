@@ -19,6 +19,7 @@
                 type="email"
                 bgColor="primary"
                 labelColor="secondary"
+                :class="{ errorClass: isErrorClassEmail }"
               />
               <q-input
                 standout
@@ -29,6 +30,7 @@
                 :type="isPwd ? 'password' : 'text'"
                 bgColor="primary"
                 labelColor="secondary"
+                :class="{ errorClass: isErrorClassPassword }"
               >
                 <template v-slot:append>
                   <q-icon
@@ -39,11 +41,17 @@
                   />
                 </template>
               </q-input>
+              <p v-if="errMsg" class="q-text q-text--error">
+                {{ this.errMsg }}
+              </p>
             </div>
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
             </p>
-            <q-btn @click="singin" class="q-btn" label="Login" />
+            <q-btn @click="singin" class="q-btn" label="login" />
+            <a @click="resetPasswordPage" class="q-link"
+              >Wachtwoord vergeten ?</a
+            >
           </div>
           <q-page-container>
             <router-view />
@@ -71,10 +79,9 @@ export default {
       email: ref(),
       password: ref(),
       isPwd: ref(true),
-
-      onEnter() {
-        router.push({ name: 'start' })
-      },
+      isErrorClassEmail: false,
+      isErrorClassPassword: false,
+      errMsg: ref(''),
     }
   },
   methods: {
@@ -86,14 +93,58 @@ export default {
           console.log('Succesfully signed in')
 
           console.log(auth.currentUser)
-
+          this.isErrorClass = false
           router.push({ name: 'start' })
         })
         .catch((error) => {
           console.log(error.code)
           console.log(`test`, this.email, this.password)
           alert(error.message)
+
+          switch (error.code) {
+            case 'auth/invalid-email':
+              this.errMsg = 'Ongeldig email.'
+              this.isErrorClassEmail = true
+              this.isErrorClassPassword = false
+              break
+            case 'auth/user-not-found':
+              this.errMsg = 'Geen user was gevonden met het email.'
+              this.isErrorClassEmail = true
+              this.isErrorClassPassword = false
+              break
+            case 'auth/wrong-password':
+              this.errMsg = 'Ongeldig wachtwoord.'
+              this.isErrorClassEmail = false
+              this.isErrorClassPassword = true
+              break
+            default:
+              this.errMsg = 'Email of wachtwoord was incorrect.'
+              this.isErrorClassEmail = true
+              this.isErrorClassPassword = true
+              break
+          }
         })
+    },
+
+    singinAdmin() {
+      const auth = getAuth()
+
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          console.log('Succesfully signed in')
+
+          console.log(auth.currentUser)
+
+          router.push({ name: 'settings' })
+        })
+        .catch((error) => {
+          console.log(error.code)
+          console.log(`test`, this.email, this.password)
+          alert(error.message)
+        })
+    },
+    resetPasswordPage() {
+      router.push({ name: 'reset' })
     },
   },
 }
@@ -121,7 +172,7 @@ export default {
 .q-img {
   max-width: 60%;
   max-height: 60%;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .q-titel {
@@ -135,12 +186,34 @@ export default {
 }
 
 .q-text {
-  margin-top: 1.5em;
+  margin: 1.5rem auto 0;
   color: #f9f9f9;
   text-align: center;
   max-width: 13.75em;
   font-size: 1rem;
   font-family: 'Rajdhani', sans-serif;
+}
+
+.q-text--error {
+  color: #cb2828;
+}
+
+.errorClass {
+  border: 0.1px solid #cb2828;
+}
+
+.q-link {
+  color: #f9f9f9;
+  text-align: center;
+  max-width: 13.75em;
+  font-size: 0.9rem;
+  font-family: 'Rajdhani', sans-serif;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+}
+
+.q-link:hover {
+  color: rgba(20, 126, 109, 0.6);
 }
 
 .q-btn {
