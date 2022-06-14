@@ -99,16 +99,16 @@ export default {
 
           switch (error.code) {
             case 'auth/invalid-email':
-              this.errMsg = 'Ongeldig email'
+              this.errMsg = 'Ongeldig email.'
               break
             case 'auth/user-not-found':
-              this.errMsg = 'Geen user was gevonden met het email'
+              this.errMsg = 'Geen user was gevonden met het email.'
               break
             case 'auth/wrong-password':
-              this.errMsg = 'Ongeldig wachtwoord'
+              this.errMsg = 'Ongeldig wachtwoord.'
               break
             default:
-              this.errMsg = 'Email of wachtwoord was incorrect'
+              this.errMsg = 'Email of wachtwoord was incorrect.'
               break
           }
         })

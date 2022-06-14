@@ -2,7 +2,7 @@
   <div class="q-start">
     <div class="q-body">
       <div class="q-container">
-        <h2 class="q-titel q-subtitel">Reset password</h2>
+        <h2 class="q-titel q-subtitel">Wachtwoord resetten</h2>
         <q-input
           standout
           square
@@ -51,7 +51,7 @@ export default {
 
           console.log(auth.currentUser)
           this.isErrorMsg = false
-          this.msg = 'Succesfully send reset password email'
+          this.msg = 'Mail succesvol verstuurd.'
           // router.push({ name: 'loginLayout' })
         })
         .catch((error) => {
@@ -60,7 +60,7 @@ export default {
 
           if (error.code == 'auth/invalid-email') {
             this.isErrorMsg = true
-            this.msg = 'Ongeldig email'
+            this.msg = 'Ongeldig email.'
           }
         })
     },
