@@ -1,6 +1,17 @@
 <template>
   <div class="q-start column no-wrap">
     <div class="q-body">
+      <q-banner inline-actions v-show="showBanner">
+        De match is gestart!
+        <template v-slot:action>
+          <q-btn
+            class="q-btn--alert"
+            flat
+            label="Ongedaan maken"
+            :to="{ name: 'start' }"
+          />
+        </template>
+      </q-banner>
       <div class="q-kleuren">
         <div>
           <HomeFlag />
@@ -86,8 +97,16 @@ export default {
     HomeFlag,
     OutFlag,
   },
-  setup() {
-    return {}
+  data() {
+    return {
+      showBanner: true,
+    }
+  },
+  created() {
+    setTimeout(() => {
+      this.showBanner = false
+      console.log(`test timeout ${this.showBanner}`)
+    }, 10000)
   },
 }
 </script>
@@ -129,6 +148,29 @@ p {
   text-transform: capitalize;
   font-size: 1rem;
   font-family: 'Raleway', sans-serif;
+}
+
+.q-btn--alert {
+  height: fit-content;
+  margin: 0;
+  width: fit-content;
+  border-radius: 0;
+  background: none;
+  color: #f9f9f9;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+.q-btn--alert:focus {
+  color: rgba(20, 126, 109, 0.6);
+  background: #f9f9f9;
+}
+
+.q-banner {
+  color: #f9f9f9;
+  background: rgba(20, 126, 109, 0.6);
+  transition: opacity 0.5s ease-out;
 }
 
 .q-titel {
