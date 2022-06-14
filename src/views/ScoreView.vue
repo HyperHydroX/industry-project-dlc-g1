@@ -100,14 +100,14 @@ export default {
           position: 'top',
           actions: [
             {
-              label: 'Undo',
+              label: 'Terug',
               color: 'secondary',
               handler: () => {
                 router.push({ name: 'start' })
               },
             },
             {
-              label: 'Dismiss',
+              label: 'Ok',
               color: 'secondary',
               handler: () => {
                 /* console.log('wooow') */
