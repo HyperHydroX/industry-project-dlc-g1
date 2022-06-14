@@ -28,8 +28,8 @@
         </div>
       </div> -->
       <div class="q-container">
-        <h2 class="q-titel">Log out</h2>
-        <q-btn @click="logout" class="q-btn" label="Log out" />
+        <h2 class="q-titel">Uitloggen</h2>
+        <q-btn @click="logout" class="q-btn" label="Uitloggen" />
       </div>
     </div>
   </div>
@@ -77,6 +77,7 @@ export default {
               },
             },
           ],
+          timeout: Math.random() * 5000 + 3000,
         })
       },
     }

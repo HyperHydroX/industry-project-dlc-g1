@@ -26,13 +26,81 @@
       <div class="q-container">
         <h1 class="q-titel">Upload sponsors</h1>
         <q-uploader
-          url="http://localhost:8082/score"
-          label="Upload (enkel png, jpg en svg)"
+          url="http://localhost:4444/upload"
+          label="Custom header"
           multiple
-          accept=".jpg, image/*"
-          @rejected="onRejected"
           class="q-uploader"
-        />
+        >
+          <template v-slot:header="scope">
+            <div class="row no-wrap items-center q-pa-sm q-gutter-xs">
+              <q-btn
+                v-if="scope.queuedFiles.length > 0"
+                icon="clear_all"
+                @click="scope.removeQueuedFiles"
+                round
+                dense
+                flat
+                class="q-btn__uploader"
+              >
+                <q-tooltip>Clear All</q-tooltip>
+              </q-btn>
+              <q-btn
+                v-if="scope.uploadedFiles.length > 0"
+                icon="done_all"
+                @click="scope.removeUploadedFiles"
+                round
+                dense
+                flat
+                class="q-btn__uploader"
+              >
+                <q-tooltip>Remove Uploaded Files</q-tooltip>
+              </q-btn>
+              <q-spinner v-if="scope.isUploading" class="q-uploader__spinner" />
+              <div class="col">
+                <div class="q-uploader__title">Upload your files</div>
+                <div class="q-uploader__subtitle">
+                  {{ scope.uploadSizeLabel }} / {{ scope.uploadProgressLabel }}
+                </div>
+              </div>
+              <q-btn
+                v-if="scope.canAddFiles"
+                type="a"
+                icon="add_box"
+                @click="scope.pickFiles"
+                round
+                dense
+                flat
+                class="q-btn__uploader"
+              >
+                <q-uploader-add-trigger />
+                <q-tooltip>Pick Files</q-tooltip>
+              </q-btn>
+              <q-btn
+                v-if="scope.canUpload"
+                icon="cloud_upload"
+                @click="upload"
+                round
+                dense
+                flat
+                class="q-btn__uploader"
+              >
+                <q-tooltip>Upload Files</q-tooltip>
+              </q-btn>
+
+              <q-btn
+                v-if="scope.isUploading"
+                icon="clear"
+                @click="scope.abort"
+                round
+                dense
+                flat
+                class="q-btn__uploader"
+              >
+                <q-tooltip>Abort Upload</q-tooltip>
+              </q-btn>
+            </div>
+          </template>
+        </q-uploader>
       </div>
     </div>
   </div>
@@ -65,6 +133,9 @@ export default {
         .then((result) => console.log(result))
         .catch((error) => console.log('error', error))
     },
+    upload() {
+      console.log(`test upload`)
+    },
   },
   setup() {
     const $q = useQuasar()
@@ -73,13 +144,14 @@ export default {
       $q.notify({
         type: 'negative',
         message: `${rejectedEntries.length} file(s) mogen niet dezelfde zijn.`,
-      })}
-      return {
-        text: ref(''),
-        model: ref(null),
-        options: ['Scherm 1', 'Scherm 2'],
-        onRejected,
-      }
+      })
+    }
+    return {
+      text: ref(''),
+      model: ref(null),
+      options: ['Scherm 1', 'Scherm 2'],
+      onRejected,
+    }
   },
 }
 </script>
@@ -107,6 +179,15 @@ h1 {
   text-transform: capitalize;
   font-size: 1rem;
   font-family: 'Raleway', sans-serif;
+}
+
+.q-btn__uploader {
+  height: 0;
+  margin: auto;
+  width: fit-content;
+  border-radius: 0;
+  background: none;
+  color: #f9f9f9;
 }
 
 .q-titel {

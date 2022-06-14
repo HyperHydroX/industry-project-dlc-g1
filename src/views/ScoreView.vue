@@ -72,6 +72,7 @@
       </div>
       <q-btn class="q-btn" label="rust" />
       <q-btn class="q-btn" label="tijd resetten" />
+      <p>{{ startMatch }}</p>
     </div>
   </div>
 </template>
@@ -79,6 +80,8 @@
 <script>
 import HomeFlag from '@/components/HomeFlag.vue'
 import OutFlag from '@/components/OutFlag.vue'
+import router from '../router/index.js'
+import { useQuasar } from 'quasar'
 
 export default {
   name: 'ScoreView',
@@ -86,8 +89,42 @@ export default {
     HomeFlag,
     OutFlag,
   },
+  props: ['startMatch'],
   setup() {
-    return {}
+    const $q = useQuasar()
+    return {
+      showNotif() {
+        $q.notify({
+          message: 'De Voetbalmatch is begonnen ',
+          color: 'info',
+          position: 'top',
+          actions: [
+            {
+              label: 'Undo',
+              color: 'secondary',
+              handler: () => {
+                router.push({ name: 'start' })
+              },
+            },
+            {
+              label: 'Dismiss',
+              color: 'secondary',
+              handler: () => {
+                /* console.log('wooow') */
+              },
+            },
+          ],
+          timeout: Math.random() * 5000 + 3000,
+        })
+      },
+    }
+  },
+  data() {},
+  created() {
+    console.log(this.startMatch)
+    if (this.startMatch) {
+      this.showNotif()
+    }
   },
 }
 </script>
@@ -111,6 +148,10 @@ p {
 }
 
 // Classes
+
+.q-notify > .q-notifications > .q-notifications__list .q-notification {
+  width: 20rem;
+}
 .q-kleuren {
   display: flex;
   align-items: center;
@@ -129,6 +170,29 @@ p {
   text-transform: capitalize;
   font-size: 1rem;
   font-family: 'Raleway', sans-serif;
+}
+
+.q-btn--alert {
+  height: fit-content;
+  margin: 0;
+  width: fit-content;
+  border-radius: 0;
+  background: none;
+  color: #f9f9f9;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+.q-btn--alert:focus {
+  color: rgba(20, 126, 109, 0.6);
+  background: #f9f9f9;
+}
+
+.q-banner {
+  color: #f9f9f9;
+  background: rgba(20, 126, 109, 0.6);
+  transition: opacity 0.5s ease-out;
 }
 
 .q-titel {

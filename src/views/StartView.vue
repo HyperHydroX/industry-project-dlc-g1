@@ -105,7 +105,6 @@
 
 <script>
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 import router from '../router/index.js'
 import OutFlag from '@/components/OutFlag.vue'
 import HomeFlag from '@/components/HomeFlag.vue'
@@ -114,35 +113,16 @@ export default {
   name: 'StartView',
   components: { HomeFlag, OutFlag },
   setup() {
-    const $q = useQuasar()
     return {
       text: ref(''),
       model: ref(null),
       options: ['Volwassen ( 2 x 45min.)', 'Jeugd ( 4 x 20min.)'],
-      start() {
-        $q.notify({
-          message:
-            'U staat op het punt om de match te starten, wilt u hiermee doorgaan?',
-          color: 'info',
-          actions: [
-            {
-              label: 'Ja',
-              color: 'secondary',
-              handler: () => {
-                router.push({ name: 'score' })
-              },
-            },
-            {
-              label: 'Neen',
-              color: 'secondary',
-              handler: () => {
-                /* ... */
-              },
-            },
-          ],
-        })
-      },
     }
+  },
+  methods: {
+    start() {
+      router.push({ name: 'score', params: { startMatch: 'start' } })
+    },
   },
 }
 </script>

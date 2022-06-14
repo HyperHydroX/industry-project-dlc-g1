@@ -19,6 +19,7 @@
                 type="email"
                 bgColor="primary"
                 labelColor="secondary"
+                :class="{ errorClass: isErrorClassEmail }"
               />
               <q-input
                 standout
@@ -29,6 +30,7 @@
                 :type="isPwd ? 'password' : 'text'"
                 bgColor="primary"
                 labelColor="secondary"
+                :class="{ errorClass: isErrorClassPassword }"
               >
                 <template v-slot:append>
                   <q-icon
@@ -47,7 +49,9 @@
               Geef uw email & wachtwoord in om verder te gaan
             </p>
             <q-btn @click="singin" class="q-btn" label="login" />
-            <a @click="resetPasswordPage" class="q-link">Forgot password ?</a>
+            <a @click="resetPasswordPage" class="q-link"
+              >Wachtwoord vergeten ?</a
+            >
           </div>
           <q-page-container>
             <router-view />
@@ -75,6 +79,8 @@ export default {
       email: ref(),
       password: ref(),
       isPwd: ref(true),
+      isErrorClassEmail: false,
+      isErrorClassPassword: false,
       errMsg: ref(''),
     }
   },
@@ -87,7 +93,7 @@ export default {
           console.log('Succesfully signed in')
 
           console.log(auth.currentUser)
-
+          this.isErrorClass = false
           router.push({ name: 'start' })
         })
         .catch((error) => {
@@ -97,16 +103,24 @@ export default {
 
           switch (error.code) {
             case 'auth/invalid-email':
-              this.errMsg = 'Ongeldig email'
+              this.errMsg = 'Ongeldig email.'
+              this.isErrorClassEmail = true
+              this.isErrorClassPassword = false
               break
             case 'auth/user-not-found':
-              this.errMsg = 'Geen user was gevonden met het email'
+              this.errMsg = 'Geen user was gevonden met het email.'
+              this.isErrorClassEmail = true
+              this.isErrorClassPassword = false
               break
             case 'auth/wrong-password':
-              this.errMsg = 'Ongeldig wachtwoord'
+              this.errMsg = 'Ongeldig wachtwoord.'
+              this.isErrorClassEmail = false
+              this.isErrorClassPassword = true
               break
             default:
-              this.errMsg = 'Email of wachtwoord was incorrect'
+              this.errMsg = 'Email of wachtwoord was incorrect.'
+              this.isErrorClassEmail = true
+              this.isErrorClassPassword = true
               break
           }
         })
@@ -182,6 +196,10 @@ export default {
 
 .q-text--error {
   color: #cb2828;
+}
+
+.errorClass {
+  border: 0.1px solid #cb2828;
 }
 
 .q-link {
