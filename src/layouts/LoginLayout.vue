@@ -65,8 +65,8 @@
 <script>
 import { ref } from 'vue'
 import router from '../router/index.js'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+export let user;
 // const email = ref('')
 // const password = ref('')
 // const errMsg = ref()
@@ -89,10 +89,9 @@ export default {
       const auth = getAuth()
 
       signInWithEmailAndPassword(auth, this.email, this.password)
-        .then(() => {
+        .then((userCredentials) => {
           console.log('Succesfully signed in')
-
-          console.log(auth.currentUser)
+          user = userCredentials.user
           this.isErrorClass = false
           router.push({ name: 'start' })
         })
