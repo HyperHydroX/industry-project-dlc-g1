@@ -147,10 +147,13 @@ export default {
         credentials: 'include',
         // headers: myHeaders,
         // body: JSON.stringify(data),
-        mode : 'no-cors'
+        mode: 'no-cors',
       }
 
-      fetch(`http://192.168.15.140:1234/update?tekstopscherm=${text}`, requestOptions)
+      fetch(
+        `http://192.168.15.140:1234/update?tekstopscherm=${text}`,
+        requestOptions,
+      )
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log('error', error))
@@ -171,11 +174,11 @@ export default {
       //   .then((response) => response.text())
       //   .then((result) => console.log(result))
       //   .catch((error) => console.log('error', error))
+    },
     upload() {
       console.log(`test upload`)
     },
   },
-
   setup() {
     const $q = useQuasar()
 
@@ -192,7 +195,7 @@ export default {
       onRejected,
     }
   },
-}}
+}
 </script>
 
 <style lang="scss" scoped>
