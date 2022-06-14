@@ -23,14 +23,19 @@
           label="Scherm weergave"
         />
       </div>
-      <div class="q-container">
+        <div class="q-pa-md">
+    <div class="q-gutter-sm row items-start">
+      <q-uploader
+        :url="fileUploader"
+        label="Individual upload"
+        multiple
+        style="max-width: 300px"
+      />
+    </div>
+  </div>
+      <!-- <div class="q-container">
         <h1 class="q-titel">Upload sponsors</h1>
-        <q-uploader
-          url="http://localhost:4444/upload"
-          label="Custom header"
-          multiple
-          class="q-uploader"
-        >
+        <q-uploader label="Custom header" multiple class="q-uploader">
           <template v-slot:header="scope">
             <div class="row no-wrap items-center q-pa-sm q-gutter-xs">
               <q-btn
@@ -86,7 +91,6 @@
               >
                 <q-tooltip>Upload Files</q-tooltip>
               </q-btn>
-
               <q-btn
                 v-if="scope.isUploading"
                 icon="clear"
@@ -101,7 +105,7 @@
             </div>
           </template>
         </q-uploader>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -109,6 +113,10 @@
 <script>
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
+// import { getStorage, ref } from "firebase/storage";
+// const storage = getStorage();
+import { uploadFile } from '../firebase/firebase'
+
 export default {
   name: 'SchermenView',
   methods: {
@@ -175,9 +183,10 @@ export default {
       //   .then((result) => console.log(result))
       //   .catch((error) => console.log('error', error))
     },
-    upload() {
-      console.log(`test upload`)
-    },
+    async fileUploader(e) {
+      await uploadFile(e[0])
+      return;
+    }
   },
   setup() {
     const $q = useQuasar()
