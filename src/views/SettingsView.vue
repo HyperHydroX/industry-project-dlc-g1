@@ -77,6 +77,7 @@ export default {
               },
             },
           ],
+          timeout: Math.random() * 5000 + 3000,
         })
       },
     }

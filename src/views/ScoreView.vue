@@ -1,17 +1,6 @@
 <template>
   <div class="q-start column no-wrap">
     <div class="q-body">
-      <q-banner inline-actions v-show="showBanner">
-        De match is gestart!
-        <template v-slot:action>
-          <q-btn
-            class="q-btn--alert"
-            flat
-            label="Ongedaan maken"
-            :to="{ name: 'start' }"
-          />
-        </template>
-      </q-banner>
       <div class="q-kleuren">
         <div>
           <HomeFlag />
@@ -90,6 +79,8 @@
 <script>
 import HomeFlag from '@/components/HomeFlag.vue'
 import OutFlag from '@/components/OutFlag.vue'
+import router from '../router/index.js'
+import { useQuasar } from 'quasar'
 
 export default {
   name: 'ScoreView',
@@ -97,16 +88,39 @@ export default {
     HomeFlag,
     OutFlag,
   },
-  data() {
+  setup() {
+    const $q = useQuasar()
     return {
-      showBanner: true,
+      showNotif() {
+        $q.notify({
+          message: 'De Voetbalmatch is begonnen ',
+          color: 'info',
+          position: 'top',
+          actions: [
+            {
+              label: 'Undo',
+              color: 'secondary',
+              handler: () => {
+                router.push({ name: 'start' })
+              },
+            },
+            {
+              label: 'Dismiss',
+              color: 'secondary',
+              handler: () => {
+                /* console.log('wooow') */
+              },
+            },
+          ],
+          timeout: Math.random() * 5000 + 3000,
+        })
+      },
     }
   },
+  data() {},
   created() {
-    setTimeout(() => {
-      this.showBanner = false
-      console.log(`test timeout ${this.showBanner}`)
-    }, 10000)
+    if()
+    this.showNotif()
   },
 }
 </script>
@@ -130,6 +144,10 @@ p {
 }
 
 // Classes
+
+.q-notify > .q-notifications > .q-notifications__list .q-notification {
+  width: 20rem;
+}
 .q-kleuren {
   display: flex;
   align-items: center;
