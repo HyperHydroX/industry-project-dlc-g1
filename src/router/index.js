@@ -31,7 +31,7 @@ const routes = [
       },
       {
         path: '/chooseSport',
-        name: 'reset',
+        name: 'chooseSport',
         component: ChooseSportView,
         props: true,
       },
