@@ -253,12 +253,6 @@ export default {
   margin-top: 1rem;
 }
 
-@media screen and (min-width: 425px) {
-  .q-input {
-    width: 16rem;
-  }
-}
-
 @media screen and (min-width: 768px) {
   .q-titel {
     font-size: 2.5em;
