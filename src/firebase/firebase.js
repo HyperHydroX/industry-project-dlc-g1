@@ -87,17 +87,47 @@ export const resetUserPassword = (email) => {
   })
 }
 
-export const GetFlagColours = async () => {
-  const docRef = doc(db, 'players', 'woljHbCIlzQYErKHIXg33eH0J2u2', '')
+export const GetDocument = async () => {
+  const docRef = doc(db, 'players', user.uid)
   const docSnap = await getDoc(docRef)
 
   if (docSnap.exists()) {
-    console.log('Document data:', docSnap.data().FlagColours)
-    return docSnap.data().FlagColours
+    console.log('Document data:', docSnap.data())
+    return docSnap.data()
   } else {
     // doc.data() will be undefined in this case
     console.log('No such document!')
   }
+}
+
+export const updateFlagColours = async (team, colour01, colour02) => {
+  return new Promise((resolve, reject) => {
+    if (team == 'home') {
+      updateDoc(doc(db, 'players', user.uid), {
+        FlagHome: [colour01, colour02],
+      })
+        .then(() => {
+          resolve('Flag colour for home updated.')
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else if (team == 'out') {
+      updateDoc(doc(db, 'players', user.uid), {
+        FlagOut: [colour01, colour02],
+      })
+        .then(() => {
+          resolve('Flag colour for out updated.')
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else {
+      reject("De 'team' parameter kan slechts 'thuis' of 'uit' zijn.")
+    }
+  })
 }
 
 export const updateTeamScore = async (team, score) => {
