@@ -88,8 +88,14 @@
 <script>
 import { ref } from 'vue'
 import { defineComponent } from 'vue'
+import { GetFlagColours } from '@/firebase/firebase'
 export default defineComponent({
   name: 'ColorPickerSmall',
+  data() {
+    return {
+      colours: [],
+    }
+  },
   setup() {
     return {
       color: ref('#ffffff'),
@@ -99,6 +105,10 @@ export default defineComponent({
     }
   },
   props: ['Large'],
+  mounted() {
+    this.colours = GetFlagColours()
+    console.log(this.colours)
+  },
   methods: {
     togglePrimaryColor() {
       this.color = this.primaryColor

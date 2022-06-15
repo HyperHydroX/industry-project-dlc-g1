@@ -6,7 +6,7 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,7 +26,7 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 export const auth = getAuth()
 
-let user;
+let user
 export const sponsers = []
 
 export const loginUser = (email, password) => {
@@ -87,33 +87,48 @@ export const resetUserPassword = (email) => {
   })
 }
 
+export const GetFlagColours = async () => {
+  const docRef = doc(db, 'players', 'woljHbCIlzQYErKHIXg33eH0J2u2', '')
+  const docSnap = await getDoc(docRef)
+
+  if (docSnap.exists()) {
+    console.log('Document data:', docSnap.data().FlagColours)
+    return docSnap.data().FlagColours
+  } else {
+    // doc.data() will be undefined in this case
+    console.log('No such document!')
+  }
+}
+
 export const updateTeamScore = async (team, score) => {
   // Add a new document in collection "cities"
-    return new Promise((resolve, reject) => { 
-        if (team == 'thuis') {
-            updateDoc(doc(db, 'players', user.uid), {
-                "ScoreThuis": score,
-            }).then(() => {
-                resolve("Score voor 'thuis' ploeg geupdate.")
-            }).catch((err) => {
-                console.log(err)
-                reject(err)
-            })
-          } else if (team == 'uit') {
-            updateDoc(doc(db, 'players', user.uid), {
-              "ScoreUit": score,
-            }).then(() => {
-                resolve("Score voor 'uit' ploeg geupdate.")
-            }).catch((err) => {
-                console.log(err)
-                reject(err)
-            })
-            
-        } else {
-            reject("De 'team' parameter kan slechts 'thuis' of 'uit' zijn.")
-          }
-     })
-
+  return new Promise((resolve, reject) => {
+    if (team == 'thuis') {
+      updateDoc(doc(db, 'players', user.uid), {
+        ScoreThuis: score,
+      })
+        .then(() => {
+          resolve("Score voor 'thuis' ploeg geupdate.")
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else if (team == 'uit') {
+      updateDoc(doc(db, 'players', user.uid), {
+        ScoreUit: score,
+      })
+        .then(() => {
+          resolve("Score voor 'uit' ploeg geupdate.")
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else {
+      reject("De 'team' parameter kan slechts 'thuis' of 'uit' zijn.")
+    }
+  })
 }
 
 export const uploadFile = async (file) => {
