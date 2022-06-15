@@ -14,7 +14,7 @@ import {
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
-import { updateTeamScoreBord } from '../scoreboard/scoreboard'
+import { updateTeamScoreBord, updateTeamVlagBord } from '../scoreboard/scoreboard'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -114,6 +114,7 @@ export const updateFlagColours = async (team, colour01, colour02) => {
         FlagHome: [colour01, colour02],
       })
         .then(() => {
+          updateTeamVlagBord(team, colour01, colour02)
           resolve('Flag colour for home updated.')
         })
         .catch((err) => {
@@ -125,6 +126,7 @@ export const updateFlagColours = async (team, colour01, colour02) => {
         FlagOut: [colour01, colour02],
       })
         .then(() => {
+          updateTeamVlagBord(team, colour01, colour02)
           resolve('Flag colour for out updated.')
         })
         .catch((err) => {
@@ -145,7 +147,7 @@ export const updateTeamScore = async (team, score, isScoreOmhoog) => {
         ScoreThuis: score,
       })
         .then(() => {
-          updateTeamScoreBord(team, score)
+          updateTeamScoreBord(team, isScoreOmhoog)
           resolve("Score voor 'thuis' ploeg geupdate.")
         })
         .catch((err) => {
@@ -157,7 +159,7 @@ export const updateTeamScore = async (team, score, isScoreOmhoog) => {
         ScoreUit: score,
       })
         .then(() => {
-          updateTeamScoreBord(team, score)
+          updateTeamScoreBord(team, isScoreOmhoog)
           resolve("Score voor 'uit' ploeg geupdate.")
         })
         .catch((err) => {

@@ -155,9 +155,9 @@ export default {
           })
           .catch((err) => console.log(err))
       } else if (team == 'uit-min') {
-        if (0 < this.scoreUit, false) {
+        if (0 < this.scoreUit) {
           this.scoreUit -= 1
-          updateTeamScore('uit', this.scoreUit)
+          updateTeamScore('uit', this.scoreUit, false)
             .then((e) => {
               console.log(e)
               document.querySelector('.js-uit-score').innerHTML = this.scoreUit

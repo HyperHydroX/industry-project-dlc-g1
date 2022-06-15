@@ -34,23 +34,46 @@ export const updateScherm = (requestType) => {
 }
 
 export const updateTeamScoreBord = (team, score, isScoreOmhoog) => {
-  let verzendScoreNaar, score
+  let verzendScoreNaar, updateValue
   if (team == 'thuis') {
     verzendScoreNaar = 'G1'
-    score = isScoreOmhoog == true ? 'NEXT' : 'PREVIOUS'
+    updateValue = isScoreOmhoog == true ? 'NEXT' : 'PREVIOUS'
   } else if (team == 'uit') {
     verzendScoreNaar = 'G2'
-    score = isScoreOmhoog == true ? 'NEXT' : 'PREVIOUS'
+    updateValue = isScoreOmhoog == true ? 'NEXT' : 'PREVIOUS'
   }
 
   fetch(
-    `http://192.168.15.140:1234/update?${verzendScoreNaar}=${score}`,
+    `http://192.168.15.140:1234/update?${verzendScoreNaar}=${updateValue}`,
     requestOptions,
   )
     .then(() => {})
     .catch((error) => console.log('error', error))
 }
 
+export const updateTeamVlagBord = (team, colour01, colour02) => {
+  let vlagBovenHalf, vlagOnderHalf
+  if (team == 'home') {
+    vlagBovenHalf = "thuiskleurboven"
+    vlagOnderHalf = "thuiskleuronder"
+  } else if (team == 'out') {
+    vlagBovenHalf = "uitkleurboven"
+    vlagOnderHalf = "uitkleuronder"
+  }
+  fetch(
+    `http://192.168.15.140:1234/update?${vlagBovenHalf}=${colour01}`,
+    requestOptions,
+  )
+    .then(() => {})
+    .catch((error) => console.log('error', error))
+  fetch(
+    `http://192.168.15.140:1234/update?${vlagOnderHalf}=${colour02}`,
+    requestOptions,
+  )
+    .then(() => {})
+    .catch((error) => console.log('error', error))
+}
+// TODO
 export const updateTimerBord = (requestType, time) => {
   console.log(requestType)
   if (requestType == 'starttimer') {
