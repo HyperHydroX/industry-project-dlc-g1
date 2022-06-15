@@ -90,7 +90,6 @@
       </div>
       <q-btn class="q-btn" label="rust" />
       <q-btn class="q-btn" label="tijd resetten" />
-      <p>{{ startMatch }}</p>
     </div>
   </div>
 </template>
@@ -110,7 +109,6 @@ export default {
       let team = e.target.getAttribute('data-team')
       console.log(team)
       if (team == 'thuis-plus') {
-        
         this.scoreThuis += 1
         console.log('thuis-score: ' + this.scoreThuis)
         updateTeamScore('thuis', this.scoreThuis)
