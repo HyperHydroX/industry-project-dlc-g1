@@ -11,7 +11,7 @@
           label="Deze tekst is komt terecht op het scorebord"
         />
       </div>
-      <q-btn class="q-btn" label="Verzenden" @click="verzendenTekst(text)" />
+      <q-btn class="q-btn" label="Verzenden" @click="updateTekst(text)" />
       <div class="q-container">
         <h1 class="q-titel">Scherm weergave</h1>
         <q-select
@@ -23,14 +23,19 @@
           label="Scherm weergave"
         />
       </div>
-      <div class="q-container">
+        <div class="q-pa-md">
+    <div class="q-gutter-sm row items-start">
+      <q-uploader
+        :url="fileUploader"
+        label="Individual upload"
+        multiple
+        style="max-width: 300px"
+      />
+    </div>
+  </div>
+      <!-- <div class="q-container">
         <h1 class="q-titel">Upload sponsors</h1>
-        <q-uploader
-          url="http://localhost:4444/upload"
-          label="Custom header"
-          multiple
-          class="q-uploader"
-        >
+        <q-uploader label="Custom header" multiple class="q-uploader">
           <template v-slot:header="scope">
             <div class="row no-wrap items-center q-pa-sm q-gutter-xs">
               <q-btn
@@ -86,7 +91,6 @@
               >
                 <q-tooltip>Upload Files</q-tooltip>
               </q-btn>
-
               <q-btn
                 v-if="scope.isUploading"
                 icon="clear"
@@ -101,7 +105,7 @@
             </div>
           </template>
         </q-uploader>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -109,6 +113,10 @@
 <script>
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
+// import { getStorage, ref } from "firebase/storage";
+// const storage = getStorage();
+import { uploadFile } from '../firebase/firebase'
+
 export default {
   name: 'SchermenView',
   methods: {
@@ -133,9 +141,52 @@ export default {
         .then((result) => console.log(result))
         .catch((error) => console.log('error', error))
     },
-    upload() {
-      console.log(`test upload`)
+    updateTekst(text) {
+      // var myHeaders = new Headers()
+      // var bearer = 'Bearer ' + '58e56ea3-7db9-4d8f-ba0a-d590945d85f7'
+      // myHeaders.append('Authorization', bearer)
+
+      // var data = this.text
+
+      var requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        withCredentials: true,
+        credentials: 'include',
+        // headers: myHeaders,
+        // body: JSON.stringify(data),
+        mode: 'no-cors',
+      }
+
+      fetch(
+        `http://192.168.15.140:1234/update?tekstopscherm=${text}`,
+        requestOptions,
+      )
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log('error', error))
+
+      // var url = 'http://192.168.15.140/webstorage'
+      // var bearer = 'Bearer ' + '58e56ea3-7db9-4d8f-ba0a-d590945d85f7'
+      // fetch(url, {
+      //   method: 'POST',
+      //   withCredentials: true,
+      //   credentials: 'include',
+      //   mode: 'no-cors',
+      //   headers: {
+      //     Authorization: bearer,
+      //     'X-FP-API-KEY': 'fd1774e3-8782-46e8-a8ff-6d77ff766ea3', //it can be iPhone or your any other attribute
+      //     'Content-Type': 'application/json',
+      //   },
+      // })
+      //   .then((response) => response.text())
+      //   .then((result) => console.log(result))
+      //   .catch((error) => console.log('error', error))
     },
+    async fileUploader(e) {
+      await uploadFile(e[0])
+      return;
+    }
   },
   setup() {
     const $q = useQuasar()

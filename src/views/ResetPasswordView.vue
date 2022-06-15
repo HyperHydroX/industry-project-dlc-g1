@@ -29,8 +29,9 @@
 
 <script>
 import { ref } from 'vue'
+import { resetUserPassword } from "../firebase/firebase"
 // import router from '../router/index.js'
-import { getAuth, sendPasswordResetEmail } from '@firebase/auth'
+
 
 export default {
   name: 'SettingsView',
@@ -46,12 +47,9 @@ export default {
   },
   methods: {
     resetPassword() {
-      const auth = getAuth()
-      sendPasswordResetEmail(auth, this.email)
-        .then(() => {
-          console.log('Succesfully send email')
-
-          console.log(auth.currentUser)
+      resetUserPassword(this.email)
+        .then((respons) => {
+          console.log(respons)
           this.isErrorMsg = false
           this.isErrorClass = false
           this.msg = 'Mail succesvol verstuurd.'

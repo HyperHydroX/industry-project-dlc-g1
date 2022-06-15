@@ -86,19 +86,38 @@
 </template>
 
 <script>
+import { updateFlagColours } from '@/firebase/firebase'
 import { ref } from 'vue'
 import { defineComponent } from 'vue'
+import { GetDocument } from '@/firebase/firebase'
 export default defineComponent({
   name: 'ColorPickerSmall',
   setup() {
     return {
-      color: ref('#ffffff'),
-      primaryColor: ref('#333333'),
-      secondaryColor: ref('#000080'),
       flagId: String,
     }
   },
   props: ['Large'],
+  beforeCreate() {
+    this.documentValue = GetDocument()
+    GetDocument().then((e) => {
+      this.colours = e.FlagHome
+      console.log(this.colours, this.colours[0], this.colours[1])
+      this.primaryColor = this.colours[0]
+      this.secondaryColor = this.colours[1]
+    })
+
+    // this.primaryColor ? ref(this.colours[0]) : ref('#333333')
+    // this.secondaryColor ? ref(this.colours[1]) : ref('#333333')
+  },
+  data() {
+    return {
+      colours: [],
+      color: ref('#ffffff'),
+      primaryColor: ref('#333333'),
+      secondaryColor: ref('#333333'),
+    }
+  },
   methods: {
     togglePrimaryColor() {
       this.color = this.primaryColor
@@ -128,7 +147,9 @@ export default defineComponent({
         this.color != this.secondaryColor.toLowerCase()
       ) {
         this.secondaryColor = this.color
+        console.log(this.secondaryColor)
       }
+      updateFlagColours('home', this.primaryColor, this.secondaryColor)
     },
   },
 })

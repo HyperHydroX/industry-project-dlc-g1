@@ -7,6 +7,7 @@ import SchermenView from '../views/SchermenView.vue'
 import SettingsView from '../views/SettingsView.vue'
 import StartView from '../views/StartView.vue'
 import ResetPasswordView from '../views/ResetPasswordView.vue'
+import ChooseSportView from '../views/ChooseSportView.vue'
 
 const routes = [
   {
@@ -26,6 +27,12 @@ const routes = [
         path: '/reset',
         name: 'reset',
         component: ResetPasswordView,
+        props: true,
+      },
+      {
+        path: '/chooseSport',
+        name: 'chooseSport',
+        component: ChooseSportView,
         props: true,
       },
       {
@@ -64,7 +71,7 @@ const routes = [
         props: true,
       },
     ],
-  },
+  },  
 ]
 
 const router = createRouter({
