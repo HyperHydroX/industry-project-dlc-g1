@@ -5,8 +5,10 @@
         <div>
           <HomeFlag />
         </div>
-        <div>
-          <h2 class="q-timer">20 : 01</h2>
+        <div class="container-timer">
+          <span class="q-timer">20</span>
+          <span class="q-timer q-timer--seperator">:</span>
+          <span class="q-timer">1</span>
         </div>
         <div>
           <OutFlag />
@@ -48,9 +50,9 @@
         </div>
         <div class="con-team-scores">
           <div class="con-current-scores">
-            <p class="js-thuis-score">{{ this.scoreThuis }}</p>
+            <p class="js-thuis-score">0</p>
             <p>-</p>
-            <p class="js-uit-score">{{ this.scoreUit }}</p>
+            <p class="js-uit-score">0</p>
           </div>
         </div>
         <div class="con-score-updaters">
@@ -88,18 +90,37 @@
           </div>
         </div>
       </div>
-      <q-btn class="q-btn" label="rust" />
-      <q-btn class="q-btn" label="tijd resetten" />
+              <!-- @click="setTime('toggle')" -->
+      <q-btn
+
+        @click="updateTimerBord('toggle')"
+        data-timer="toggle"
+        class="q-btn timer-btn"
+        label="rust"
+      />
+      <q-btn
+      @click="setTime('reset')"
+        data-timer="reset"
+        class="q-btn timer-btn"
+        label="tijd resetten"
+      />
+      <div class="q-btn--small">
+        <svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"/></svg>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
 import HomeFlag from '@/components/HomeFlag.vue'
 import OutFlag from '@/components/OutFlag.vue'
 import router from '../router/index.js'
 import { useQuasar } from 'quasar'
 import { updateTeamScore } from '../firebase/firebase'
+// import { updateTimer } from '../firebase/firebase2'
+// import { updateTimerBord } from '../scoreboard/scoreboard'
+
+export let localMinites = document.querySelector(".js-thuis-score")
+export let localSeconds = document.querySelector(".js-thuis-score")
 
 export default {
   name: 'ScoreView',
@@ -111,19 +132,21 @@ export default {
       if (team == 'thuis-plus') {
         this.scoreThuis += 1
         console.log('thuis-score: ' + this.scoreThuis)
-        updateTeamScore('thuis', this.scoreThuis)
+        updateTeamScore('thuis', this.scoreThuis, true)
           .then((e) => {
             console.log(e)
-            document.querySelector(".js-thuis-score").innerHTML = this.scoreThuis
+            document.querySelector('.js-thuis-score').innerHTML =
+              this.scoreThuis
           })
           .catch((err) => console.log(err))
       } else if (team == 'thuis-min') {
         if (0 < this.scoreThuis) {
           this.scoreThuis -= 1
-          updateTeamScore('thuis', this.scoreThuis)
+          updateTeamScore('thuis', this.scoreThuis, false)
             .then((e) => {
               console.log(e)
-              document.querySelector(".js-thuis-score").innerHTML = this.scoreThuis
+              document.querySelector('.js-thuis-score').innerHTML =
+                this.scoreThuis
             })
             .catch((err) => console.log(err))
         }
@@ -131,25 +154,54 @@ export default {
       } else if (team == 'uit-plus') {
         this.scoreUit += 1
         console.log('uit-score: ' + this.scoreUit)
-        updateTeamScore('uit', this.scoreUit)
+        updateTeamScore('uit', this.scoreUit, true)
           .then((e) => {
             console.log(e)
-            document.querySelector(".js-uit-score").innerHTML = this.scoreUit
+            document.querySelector('.js-uit-score').innerHTML = this.scoreUit
           })
           .catch((err) => console.log(err))
       } else if (team == 'uit-min') {
         if (0 < this.scoreUit) {
           this.scoreUit -= 1
-          updateTeamScore('uit', this.scoreUit)
+          updateTeamScore('uit', this.scoreUit, false)
             .then((e) => {
               console.log(e)
-              document.querySelector(".js-uit-score").innerHTML = this.scoreUit
+              document.querySelector('.js-uit-score').innerHTML = this.scoreUit
             })
             .catch((err) => console.log(err))
         }
         console.log('uit-score: ' + this.scoreUit)
       }
     },
+    // setTime(inputType) {
+    //   console.log("clicked: " + inputType)
+    //   if (inputType == "toggle") {
+    //       updateTimer( this.isTimerStarted == true ? "pauze" : "start")
+    //       .then((res) => {
+    //         console.log(res)
+    //         this.isTimerStarted = !this.isTimerStarted
+    //       })
+    //       .catch((err) => {
+    //         console.log(err)
+    //       })
+
+    //   } else if (inputType == "reset") {
+    //       updateTimer("reset")
+    //       .then(() => {
+    //         this.isTimerStarted = !this.isTimerStarted
+
+    //       })
+    //       .catch((err) => {
+    //         console.log(err)
+    //       })
+    //   }
+    // },
+    // updateTimertest(requestType) {
+    //   if (requestType == "toggle") {
+    //     // let request = this.isTimerStarted == true ? "starttimer" : "stoptimer"
+    //     updateTimerBord("resettimer", '')
+    //   }
+    // }
   },
   components: {
     HomeFlag,
@@ -188,6 +240,7 @@ export default {
   data() {
     this.scoreThuis = 0
     this.scoreUit = 0
+    this.isTimerStarted = false
   },
   created() {
     console.log(this.startMatch)
@@ -197,8 +250,11 @@ export default {
   },
 }
 </script>
-
 <style lang="scss" scoped>
+
+.container-timer {
+  display: flex
+}
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
@@ -224,7 +280,7 @@ p {
 .q-kleuren {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   overflow: hidden;
 }
 
@@ -239,6 +295,17 @@ p {
   text-transform: capitalize;
   font-size: 1rem;
   font-family: 'Raleway', sans-serif;
+}
+
+.q-btn--small {
+  margin: 2rem auto;
+  width: 7%;
+}
+
+.q-btn--small:active {
+  margin: 2rem auto;
+  width: 8%;
+  opacity: 0.5;
 }
 
 .q-btn--alert {
@@ -279,8 +346,11 @@ p {
   font-size: 1.5rem;
   font-weight: 700;
   min-width: max-content;
-  padding: 0 1.5rem;
   font-family: 'Opens Sans', sans-serif;
+}
+
+.q-timer--seperator {
+  padding-inline: 0.3em;
 }
 
 .q-start {

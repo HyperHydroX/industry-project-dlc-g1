@@ -14,7 +14,7 @@ import {
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
-
+import { updateTeamScoreBord, updateTeamVlagBord } from '../scoreboard/scoreboard'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,22 +33,7 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 export const auth = getAuth()
 
-// setPersistence(auth, browserSessionPersistence)
-//   .then(() => {
-//     // Existing and future Auth states are now persisted in the current
-//     // session only. Closing the window would clear any existing state even
-//     // if a user forgets to sign out.
-//     // ...
-//     // New sign-in will be persisted with session persistence.
-
-//   })
-//   .catch((error) => {
-//     // Handle Errors here.
-//     console.log(error.code)
-//     console.log(error.message)
-//   })
-
-let user
+export let user
 export const sponsers = []
 
 export const loginUser = (email, password) => {
@@ -129,6 +114,7 @@ export const updateFlagColours = async (team, colour01, colour02) => {
         FlagHome: [colour01, colour02],
       })
         .then(() => {
+          updateTeamVlagBord(team, colour01, colour02)
           resolve('Flag colour for home updated.')
         })
         .catch((err) => {
@@ -140,6 +126,7 @@ export const updateFlagColours = async (team, colour01, colour02) => {
         FlagOut: [colour01, colour02],
       })
         .then(() => {
+          updateTeamVlagBord(team, colour01, colour02)
           resolve('Flag colour for out updated.')
         })
         .catch((err) => {
@@ -152,7 +139,7 @@ export const updateFlagColours = async (team, colour01, colour02) => {
   })
 }
 
-export const updateTeamScore = async (team, score) => {
+export const updateTeamScore = async (team, score, isScoreOmhoog) => {
   // Add a new document in collection "cities"
   return new Promise((resolve, reject) => {
     if (team == 'thuis') {
@@ -160,6 +147,7 @@ export const updateTeamScore = async (team, score) => {
         ScoreThuis: score,
       })
         .then(() => {
+          updateTeamScoreBord(team, isScoreOmhoog)
           resolve("Score voor 'thuis' ploeg geupdate.")
         })
         .catch((err) => {
@@ -171,6 +159,7 @@ export const updateTeamScore = async (team, score) => {
         ScoreUit: score,
       })
         .then(() => {
+          updateTeamScoreBord(team, isScoreOmhoog)
           resolve("Score voor 'uit' ploeg geupdate.")
         })
         .catch((err) => {
