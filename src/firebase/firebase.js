@@ -1,5 +1,12 @@
 import { initializeApp } from 'firebase/app'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  // setPersistence,
+  // browserSessionPersistence,
+} from 'firebase/storage'
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -25,6 +32,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 export const auth = getAuth()
+
+// setPersistence(auth, browserSessionPersistence)
+//   .then(() => {
+//     // Existing and future Auth states are now persisted in the current
+//     // session only. Closing the window would clear any existing state even
+//     // if a user forgets to sign out.
+//     // ...
+//     // New sign-in will be persisted with session persistence.
+
+//   })
+//   .catch((error) => {
+//     // Handle Errors here.
+//     console.log(error.code)
+//     console.log(error.message)
+//   })
 
 let user
 export const sponsers = []
@@ -171,6 +193,9 @@ export const uploadFile = async (file) => {
       .then((snapshot) => {
         getDownloadURL(ref(storage, snapshot.metadata.fullPath)).then((url) => {
           sponsers.push(url)
+          updateDoc(doc(db, 'players', user.uid), {
+            Sponsors: sponsers,
+          })
         })
       })
       .catch((err) => {
