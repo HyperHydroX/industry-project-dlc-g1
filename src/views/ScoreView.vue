@@ -126,7 +126,7 @@ export default {
       if (team == 'thuis-plus') {
         this.scoreThuis += 1
         console.log('thuis-score: ' + this.scoreThuis)
-        updateTeamScore('thuis', this.scoreThuis)
+        updateTeamScore('thuis', this.scoreThuis, true)
           .then((e) => {
             console.log(e)
             document.querySelector('.js-thuis-score').innerHTML =
@@ -136,7 +136,7 @@ export default {
       } else if (team == 'thuis-min') {
         if (0 < this.scoreThuis) {
           this.scoreThuis -= 1
-          updateTeamScore('thuis', this.scoreThuis)
+          updateTeamScore('thuis', this.scoreThuis, false)
             .then((e) => {
               console.log(e)
               document.querySelector('.js-thuis-score').innerHTML =
@@ -148,14 +148,14 @@ export default {
       } else if (team == 'uit-plus') {
         this.scoreUit += 1
         console.log('uit-score: ' + this.scoreUit)
-        updateTeamScore('uit', this.scoreUit)
+        updateTeamScore('uit', this.scoreUit, true)
           .then((e) => {
             console.log(e)
             document.querySelector('.js-uit-score').innerHTML = this.scoreUit
           })
           .catch((err) => console.log(err))
       } else if (team == 'uit-min') {
-        if (0 < this.scoreUit) {
+        if (0 < this.scoreUit, false) {
           this.scoreUit -= 1
           updateTeamScore('uit', this.scoreUit)
             .then((e) => {

@@ -14,7 +14,7 @@ import {
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
-
+import { updateTeamScoreBord } from '../scoreboard/scoreboard'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -137,7 +137,7 @@ export const updateFlagColours = async (team, colour01, colour02) => {
   })
 }
 
-export const updateTeamScore = async (team, score) => {
+export const updateTeamScore = async (team, score, isScoreOmhoog) => {
   // Add a new document in collection "cities"
   return new Promise((resolve, reject) => {
     if (team == 'thuis') {
@@ -145,6 +145,7 @@ export const updateTeamScore = async (team, score) => {
         ScoreThuis: score,
       })
         .then(() => {
+          updateTeamScoreBord(team, score)
           resolve("Score voor 'thuis' ploeg geupdate.")
         })
         .catch((err) => {
@@ -156,6 +157,7 @@ export const updateTeamScore = async (team, score) => {
         ScoreUit: score,
       })
         .then(() => {
+          updateTeamScoreBord(team, score)
           resolve("Score voor 'uit' ploeg geupdate.")
         })
         .catch((err) => {

@@ -1,12 +1,12 @@
-export const updateTekst = (text) => {
-  var requestOptions = {
-    method: 'GET',
-    redirect: 'follow',
-    withCredentials: true,
-    credentials: 'include',
-    mode: 'no-cors',
-  }
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow',
+  withCredentials: true,
+  credentials: 'include',
+  mode: 'no-cors',
+}
 
+export const updateTekst = (text) => {
   fetch(
     `http://192.168.15.140:1234/update?tekstopscherm=${text}`,
     requestOptions,
@@ -24,16 +24,27 @@ export const updateScherm = (requestType) => {
   } else if (requestType == 'zwart scherm') {
     requestType = 'P3'
   }
-  var requestOptions = {
-    method: 'GET',
-    redirect: 'follow',
-    withCredentials: true,
-    credentials: 'include',
-    mode: 'no-cors',
-  }
 
   fetch(
     `http://192.168.15.140:1234/update?Keuze=${requestType}`,
+    requestOptions,
+  )
+    .then(() => {})
+    .catch((error) => console.log('error', error))
+}
+
+export const updateTeamScoreBord = (team, score, isScoreOmhoog) => {
+  let verzendScoreNaar, score
+  if (team == 'thuis') {
+    verzendScoreNaar = 'G1'
+    score = isScoreOmhoog == true ? 'NEXT' : 'PREVIOUS'
+  } else if (team == 'uit') {
+    verzendScoreNaar = 'G2'
+    score = isScoreOmhoog == true ? 'NEXT' : 'PREVIOUS'
+  }
+
+  fetch(
+    `http://192.168.15.140:1234/update?${verzendScoreNaar}=${score}`,
     requestOptions,
   )
     .then(() => {})
@@ -51,13 +62,6 @@ export const updateTimerBord = (requestType, time) => {
   } else if (requestType == 'stoptimer') {
     requestType = 'stoptimer'
   }
-  var requestOptions = {
-    method: 'GET',
-    redirect: 'follow',
-    withCredentials: true,
-    credentials: 'include',
-    mode: 'no-cors',
-  }
 
   fetch(
     `http://192.168.15.140:1234/update?${requestType}=${time}`,
@@ -66,7 +70,3 @@ export const updateTimerBord = (requestType, time) => {
     .then(() => {})
     .catch((error) => console.log('error', error))
 }
-
-
-
-
