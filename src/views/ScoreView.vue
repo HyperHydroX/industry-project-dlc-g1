@@ -88,30 +88,34 @@
           </div>
         </div>
       </div>
+              <!-- @click="setTime('toggle')" -->
       <q-btn
-        @click="setTime"
+
+        @click="updateTimerBord('toggle')"
         data-timer="toggle"
-        class="q-btn timer-btn-stop-start"
+        class="q-btn timer-btn"
         label="rust"
       />
       <q-btn
-      @click="setTime"
+      @click="setTime('reset')"
         data-timer="reset"
-        class="q-btn timer-btn-reset"
+        class="q-btn timer-btn"
         label="tijd resetten"
       />
+      <div class="q-btn--small">
+        <svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"/></svg>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
 import HomeFlag from '@/components/HomeFlag.vue'
 import OutFlag from '@/components/OutFlag.vue'
 import router from '../router/index.js'
 import { useQuasar } from 'quasar'
 import { updateTeamScore } from '../firebase/firebase'
-import { updateTimer } from '../firebase/firebase2'
-
+// import { updateTimer } from '../firebase/firebase2'
+// import { updateTimerBord } from '../scoreboard/scoreboard'
 export default {
   name: 'ScoreView',
   methods: {
@@ -163,28 +167,35 @@ export default {
         console.log('uit-score: ' + this.scoreUit)
       }
     },
-    setTime() {
-      let inputType = document.querySelector(".timer-btn-stop-start").getAttribute("data-timer")
-      console.log("clicked: " + inputType)
-      if (inputType == "toggle") {
-          updateTimer( this.isTimerStarted == true ? "pauze" : "start")
-          .then((res) => {
-            console.log(res)
-            this.isTimerStarted = !this.isTimerStarted
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+    // setTime(inputType) {
+    //   console.log("clicked: " + inputType)
+    //   if (inputType == "toggle") {
+    //       updateTimer( this.isTimerStarted == true ? "pauze" : "start")
+    //       .then((res) => {
+    //         console.log(res)
+    //         this.isTimerStarted = !this.isTimerStarted
+    //       })
+    //       .catch((err) => {
+    //         console.log(err)
+    //       })
 
-      } else if (inputType == "reset") {
-          updateTimer("reset")
-          .then(() => {
-            this.isTimerStarted = !this.isTimerStarted
-          })
-          .catch(() => {
-          })
-      }
-    },
+    //   } else if (inputType == "reset") {
+    //       updateTimer("reset")
+    //       .then(() => {
+    //         this.isTimerStarted = !this.isTimerStarted
+
+    //       })
+    //       .catch((err) => {
+    //         console.log(err)
+    //       })
+    //   }
+    // },
+    // updateTimertest(requestType) {
+    //   if (requestType == "toggle") {
+    //     // let request = this.isTimerStarted == true ? "starttimer" : "stoptimer"
+    //     updateTimerBord("resettimer", '')
+    //   }
+    // }
   },
   components: {
     HomeFlag,
@@ -233,7 +244,6 @@ export default {
   },
 }
 </script>
-
 <style lang="scss" scoped>
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
@@ -275,6 +285,17 @@ p {
   text-transform: capitalize;
   font-size: 1rem;
   font-family: 'Raleway', sans-serif;
+}
+
+.q-btn--small {
+  margin: 2rem auto;
+  width: 7%;
+}
+
+.q-btn--small:active {
+  margin: 2rem auto;
+  width: 8%;
+  opacity: 0.5;
 }
 
 .q-btn--alert {

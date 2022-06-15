@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { doc, updateDoc } from 'firebase/firestore'
 import { user } from './firebase'
+import { updateTekst } from '../scoreboard/scoreboard'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,11 +21,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-export let startTime, pauzeTime, reset
+export let startTime, pauzeTime, resetTime, stopTime
 
 export const updateTimer = (requestType) => {
   return new Promise((resolve, reject) => {
-    if (requestType == 'start') {
+    if (requestType == 'starttimer') {
       startTime = new Date().getTime()
       updateDoc(doc(db, 'players', user.uid), {
         StartTime: startTime,
@@ -38,35 +39,65 @@ export const updateTimer = (requestType) => {
           startTime = 0
           reject(err)
         })
-    } else if (requestType == 'pauze') {
+    } else if (requestType == 'stoptimer') {
       pauzeTime = new Date().getTime()
-        updateDoc(doc(db, 'players', user.uid), {
-          PauzeTime: pauzeTime,
-        })
-          .then((res) => {
-            console.log(res)
-            pauzeTime = 0
-            resolve('Timer gepauzeerd')
-          })
-          .catch((err) => {
-            console.log(err)
-            reject(err)
-          })
-    } else if (requestType == 'reset') {
-      reset = new Date().getTime()
       updateDoc(doc(db, 'players', user.uid), {
-        StartTime: reset,
-        PauzeTime: reset,
+        PauzeTime: pauzeTime,
+      })
+        .then((res) => {
+          console.log(res)
+          pauzeTime = 0
+          resolve('Timer gepauzeerd')
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else if (requestType == 'resettimer') {
+      resetTime = new Date().getTime()
+      updateDoc(doc(db, 'players', user.uid), {
+        StartTime: resetTime,
+        PauzeTime: resetTime,
       })
         .then((res) => {
           console.log(res)
           resolve('Timer reset')
         })
         .catch((err) => {
-            console.log(err);
-            reset = 0;
+          console.log(err)
+          resetTime = 0
           reject(err)
         })
+    } else if (requestType == 'settimer') {
+      stopTime = new Date().getTime()
+      updateDoc(doc(db, 'players', user.uid), {
+        StopTime: stopTime,
+      }).then((res) => {
+        console.log(res)
+        return res
+      }).catch((err) => {
+        console.log(err)
+        return err
+      })
     }
+  })
+}
+
+export const updateTekstFirebase = (tekst) => {
+  return new Promise((resolve, reject) => {
+    startTime = new Date().getTime()
+    updateDoc(doc(db, 'players', user.uid), {
+      TekstOpScherm: tekst,
+    })
+      .then((res) => {
+        console.log(res)
+        updateTekst(tekst)
+        resolve('Timer gestart')
+      })
+      .catch((err) => {
+        console.log(err)
+        startTime = 0
+        reject(err)
+      })
   })
 }
