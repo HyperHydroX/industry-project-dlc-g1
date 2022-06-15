@@ -116,6 +116,7 @@ export default {
         updateTeamScore('thuis', this.scoreThuis)
           .then((e) => {
             console.log(e)
+            document.querySelector(".js-thuis-score").innerHTML = this.scoreThuis
           })
           .catch((err) => console.log(err))
       } else if (team == 'thuis-min') {
@@ -124,6 +125,7 @@ export default {
           updateTeamScore('thuis', this.scoreThuis)
             .then((e) => {
               console.log(e)
+              document.querySelector(".js-thuis-score").innerHTML = this.scoreThuis
             })
             .catch((err) => console.log(err))
         }
@@ -134,6 +136,7 @@ export default {
         updateTeamScore('uit', this.scoreUit)
           .then((e) => {
             console.log(e)
+            document.querySelector(".js-uit-score").innerHTML = this.scoreUit
           })
           .catch((err) => console.log(err))
       } else if (team == 'uit-min') {
@@ -142,6 +145,7 @@ export default {
           updateTeamScore('uit', this.scoreUit)
             .then((e) => {
               console.log(e)
+              document.querySelector(".js-uit-score").innerHTML = this.scoreUit
             })
             .catch((err) => console.log(err))
         }
