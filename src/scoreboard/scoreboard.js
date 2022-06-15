@@ -33,7 +33,7 @@ export const updateScherm = (requestType) => {
     .catch((error) => console.log('error', error))
 }
 
-export const updateTeamScoreBord = (team, score, isScoreOmhoog) => {
+export const updateTeamScoreBord = (team, isScoreOmhoog) => {
   let verzendScoreNaar, updateValue
   if (team == 'thuis') {
     verzendScoreNaar = 'G1'
