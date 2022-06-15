@@ -88,8 +88,18 @@
           </div>
         </div>
       </div>
-      <q-btn class="q-btn" label="rust" />
-      <q-btn class="q-btn" label="tijd resetten" />
+      <q-btn
+        @click="setTime"
+        data-timer="toggle"
+        class="q-btn timer-btn-stop-start"
+        label="rust"
+      />
+      <q-btn
+      @click="setTime"
+        data-timer="reset"
+        class="q-btn timer-btn-reset"
+        label="tijd resetten"
+      />
     </div>
   </div>
 </template>
@@ -100,6 +110,7 @@ import OutFlag from '@/components/OutFlag.vue'
 import router from '../router/index.js'
 import { useQuasar } from 'quasar'
 import { updateTeamScore } from '../firebase/firebase'
+import { updateTimer } from '../firebase/firebase2'
 
 export default {
   name: 'ScoreView',
@@ -114,7 +125,8 @@ export default {
         updateTeamScore('thuis', this.scoreThuis)
           .then((e) => {
             console.log(e)
-            document.querySelector(".js-thuis-score").innerHTML = this.scoreThuis
+            document.querySelector('.js-thuis-score').innerHTML =
+              this.scoreThuis
           })
           .catch((err) => console.log(err))
       } else if (team == 'thuis-min') {
@@ -123,7 +135,8 @@ export default {
           updateTeamScore('thuis', this.scoreThuis)
             .then((e) => {
               console.log(e)
-              document.querySelector(".js-thuis-score").innerHTML = this.scoreThuis
+              document.querySelector('.js-thuis-score').innerHTML =
+                this.scoreThuis
             })
             .catch((err) => console.log(err))
         }
@@ -134,7 +147,7 @@ export default {
         updateTeamScore('uit', this.scoreUit)
           .then((e) => {
             console.log(e)
-            document.querySelector(".js-uit-score").innerHTML = this.scoreUit
+            document.querySelector('.js-uit-score').innerHTML = this.scoreUit
           })
           .catch((err) => console.log(err))
       } else if (team == 'uit-min') {
@@ -143,11 +156,33 @@ export default {
           updateTeamScore('uit', this.scoreUit)
             .then((e) => {
               console.log(e)
-              document.querySelector(".js-uit-score").innerHTML = this.scoreUit
+              document.querySelector('.js-uit-score').innerHTML = this.scoreUit
             })
             .catch((err) => console.log(err))
         }
         console.log('uit-score: ' + this.scoreUit)
+      }
+    },
+    setTime() {
+      let inputType = document.querySelector(".timer-btn-stop-start").getAttribute("data-timer")
+      console.log("clicked: " + inputType)
+      if (inputType == "toggle") {
+          updateTimer( this.isTimerStarted == true ? "pauze" : "start")
+          .then((res) => {
+            console.log(res)
+            this.isTimerStarted = !this.isTimerStarted
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+      } else if (inputType == "reset") {
+          updateTimer("reset")
+          .then(() => {
+            this.isTimerStarted = !this.isTimerStarted
+          })
+          .catch(() => {
+          })
       }
     },
   },
@@ -188,6 +223,7 @@ export default {
   data() {
     this.scoreThuis = 0
     this.scoreUit = 0
+    this.isTimerStarted = false
   },
   created() {
     console.log(this.startMatch)
