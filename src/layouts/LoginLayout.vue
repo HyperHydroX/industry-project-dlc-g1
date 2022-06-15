@@ -41,10 +41,10 @@
                   />
                 </template>
               </q-input>
-              <p v-if="errMsg" class="q-text q-text--error">
-                {{ this.errMsg }}
-              </p>
             </div>
+            <p v-if="errMsg" class="q-text q-text--error">
+              {{ this.errMsg }}
+            </p>
             <p class="q-text">
               Geef uw email & wachtwoord in om verder te gaan
             </p>
