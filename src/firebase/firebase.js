@@ -26,7 +26,7 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 export const auth = getAuth()
 
-let user;
+export let user
 export const sponsers = []
 
 export const loginUser = (email, password) => {
@@ -89,31 +89,33 @@ export const resetUserPassword = (email) => {
 
 export const updateTeamScore = async (team, score) => {
   // Add a new document in collection "cities"
-    return new Promise((resolve, reject) => { 
-        if (team == 'thuis') {
-            updateDoc(doc(db, 'players', user.uid), {
-                "ScoreThuis": score,
-            }).then(() => {
-                resolve("Score voor 'thuis' ploeg geupdate.")
-            }).catch((err) => {
-                console.log(err)
-                reject(err)
-            })
-          } else if (team == 'uit') {
-            updateDoc(doc(db, 'players', user.uid), {
-              "ScoreUit": score,
-            }).then(() => {
-                resolve("Score voor 'uit' ploeg geupdate.")
-            }).catch((err) => {
-                console.log(err)
-                reject(err)
-            })
-            
-        } else {
-            reject("De 'team' parameter kan slechts 'thuis' of 'uit' zijn.")
-          }
-     })
-
+  return new Promise((resolve, reject) => {
+    if (team == 'thuis') {
+      updateDoc(doc(db, 'players', user.uid), {
+        ScoreThuis: score,
+      })
+        .then(() => {
+          resolve("Score voor 'thuis' ploeg geupdate.")
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else if (team == 'uit') {
+      updateDoc(doc(db, 'players', user.uid), {
+        ScoreUit: score,
+      })
+        .then(() => {
+          resolve("Score voor 'uit' ploeg geupdate.")
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else {
+      reject("De 'team' parameter kan slechts 'thuis' of 'uit' zijn.")
+    }
+  })
 }
 
 export const uploadFile = async (file) => {

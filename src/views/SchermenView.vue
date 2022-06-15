@@ -4,35 +4,57 @@
       <h1 class="q-titel">Scherm tekstweergave</h1>
       <div>
         <q-input
-          class="q-input"
+          class="q-input js-scherm-tekst"
           v-model="text"
           filled
           type="textarea"
           label="Deze tekst is komt terecht op het scorebord"
         />
       </div>
-      <q-btn class="q-btn" label="Verzenden" @click="updateTekst(text)" />
+      <q-btn class="q-btn" label="Verzenden" @click="setTekst(text)" />
       <div class="q-container">
         <h1 class="q-titel">Scherm weergave</h1>
-        <q-select
+          <q-btn-dropdown class="q-select" color="primary" label="Dropdown Button">
+            <q-list>
+              <q-item clickable v-close-popup @click="setScherm('scoreboard')" class="js-scherm" >
+                <q-item-section>
+                  <q-item-label>Scoreboard</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup @click="setScherm('sponsers')" class="js-scherm" scherm="sponsers" data-team="sponsers">
+                <q-item-section>
+                  <q-item-label>Sponsers</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup @click="setScherm('zwart scherm')" class="js-scherm" data-team="zwart scherm">
+                <q-item-section>
+                  <q-item-label>Zwart scherm</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        <!-- <q-select
           label-color="secondary"
-          class="q-select"
+          class="q-select js-scherm"
           filled
           v-model="model"
           :options="options"
           label="Scherm weergave"
-        />
+        /> -->
       </div>
-        <div class="q-pa-md">
-    <div class="q-gutter-sm row items-start">
-      <q-uploader
-        :url="fileUploader"
-        label="Individual upload"
-        multiple
-        style="max-width: 300px"
-      />
-    </div>
-  </div>
+
+      <div class="q-pa-md">
+        <div class="q-gutter-sm row items-start">
+          <q-uploader
+            :url="fileUploader"
+            label="Individual upload"
+            multiple
+            style="max-width: 300px"
+          />
+        </div>
+      </div>
       <!-- <div class="q-container">
         <h1 class="q-titel">Upload sponsors</h1>
         <q-uploader label="Custom header" multiple class="q-uploader">
@@ -111,11 +133,14 @@
 </template>
 
 <script>
+//updateScherm
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 // import { getStorage, ref } from "firebase/storage";
 // const storage = getStorage();
 import { uploadFile } from '../firebase/firebase'
+import { updateTekstFirebase } from "../firebase/firebase2"
+import { updateScherm } from '../scoreboard/scoreboard'
 
 export default {
   name: 'SchermenView',
@@ -141,51 +166,15 @@ export default {
         .then((result) => console.log(result))
         .catch((error) => console.log('error', error))
     },
-    updateTekst(text) {
-      // var myHeaders = new Headers()
-      // var bearer = 'Bearer ' + '58e56ea3-7db9-4d8f-ba0a-d590945d85f7'
-      // myHeaders.append('Authorization', bearer)
-
-      // var data = this.text
-
-      var requestOptions = {
-        method: 'GET',
-        redirect: 'follow',
-        withCredentials: true,
-        credentials: 'include',
-        // headers: myHeaders,
-        // body: JSON.stringify(data),
-        mode: 'no-cors',
-      }
-
-      fetch(
-        `http://192.168.15.140:1234/update?tekstopscherm=${text}`,
-        requestOptions,
-      )
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log('error', error))
-
-      // var url = 'http://192.168.15.140/webstorage'
-      // var bearer = 'Bearer ' + '58e56ea3-7db9-4d8f-ba0a-d590945d85f7'
-      // fetch(url, {
-      //   method: 'POST',
-      //   withCredentials: true,
-      //   credentials: 'include',
-      //   mode: 'no-cors',
-      //   headers: {
-      //     Authorization: bearer,
-      //     'X-FP-API-KEY': 'fd1774e3-8782-46e8-a8ff-6d77ff766ea3', //it can be iPhone or your any other attribute
-      //     'Content-Type': 'application/json',
-      //   },
-      // })
-      //   .then((response) => response.text())
-      //   .then((result) => console.log(result))
-      //   .catch((error) => console.log('error', error))
-    },
     async fileUploader(e) {
       await uploadFile(e[0])
-      return;
+      return
+    },
+    setScherm(scherm) {
+      updateScherm(scherm)
+    },
+    setTekst(text) {
+      updateTekstFirebase((" "+text))
     }
   },
   setup() {
@@ -200,7 +189,7 @@ export default {
     return {
       text: ref(''),
       model: ref(null),
-      options: ['Scherm 1', 'Scherm 2'],
+      options: ['Scoreboard', 'Sponsers', 'Zwart scherm'],
       onRejected,
     }
   },
