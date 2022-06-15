@@ -68,6 +68,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1;
+  margin-top: 2rem;
 }
 
 .q-subtitel {

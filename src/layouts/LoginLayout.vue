@@ -65,7 +65,7 @@
 <script>
 import { ref } from 'vue'
 import router from '../router/index.js'
-import { loginUser } from "../firebase/firebase"
+import { loginUser } from '../firebase/firebase'
 
 export default {
   name: 'LoginLayout',
@@ -85,9 +85,9 @@ export default {
       loginUser(this.email, this.password)
         .then((user) => {
           console.log('Succesfully signed in')
-          console.log(user);
+          console.log(user)
           this.isErrorClass = false
-          router.push({ name: 'start' })
+          router.push({ name: 'chooseSport' })
         })
         .catch((error) => {
           console.log(error.code)

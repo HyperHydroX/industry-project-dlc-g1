@@ -5,7 +5,7 @@
         <q-btn
           color="secondary"
           class="q-btn-back"
-          :to="`/`"
+          @click="goBack"
           flat
           round
           dense
@@ -50,7 +50,13 @@
 </style>
 
 <script>
+import router from '@/router'
 export default {
   name: 'StartLayout',
+  methods: {
+    goBack() {
+      router.go(-1)
+    },
+  },
 }
 </script>

@@ -1,12 +1,19 @@
 import { initializeApp } from 'firebase/app'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  // setPersistence,
+  // browserSessionPersistence,
+} from 'firebase/storage'
 import {
   getAuth,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -87,6 +94,49 @@ export const resetUserPassword = (email) => {
   })
 }
 
+export const GetDocument = async () => {
+  const docRef = doc(db, 'players', user.uid)
+  const docSnap = await getDoc(docRef)
+
+  if (docSnap.exists()) {
+    console.log('Document data:', docSnap.data())
+    return docSnap.data()
+  } else {
+    // doc.data() will be undefined in this case
+    console.log('No such document!')
+  }
+}
+
+export const updateFlagColours = async (team, colour01, colour02) => {
+  return new Promise((resolve, reject) => {
+    if (team == 'home') {
+      updateDoc(doc(db, 'players', user.uid), {
+        FlagHome: [colour01, colour02],
+      })
+        .then(() => {
+          resolve('Flag colour for home updated.')
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else if (team == 'out') {
+      updateDoc(doc(db, 'players', user.uid), {
+        FlagOut: [colour01, colour02],
+      })
+        .then(() => {
+          resolve('Flag colour for out updated.')
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    } else {
+      reject("De 'team' parameter kan slechts 'thuis' of 'uit' zijn.")
+    }
+  })
+}
+
 export const updateTeamScore = async (team, score) => {
   // Add a new document in collection "cities"
   return new Promise((resolve, reject) => {
@@ -128,6 +178,9 @@ export const uploadFile = async (file) => {
       .then((snapshot) => {
         getDownloadURL(ref(storage, snapshot.metadata.fullPath)).then((url) => {
           sponsers.push(url)
+          updateDoc(doc(db, 'players', user.uid), {
+            Sponsors: sponsers,
+          })
         })
       })
       .catch((err) => {
