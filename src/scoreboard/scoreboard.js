@@ -1,10 +1,85 @@
-var requestOptions = {
+let requestOptions = {
   method: 'GET',
   redirect: 'follow',
   withCredentials: true,
   credentials: 'include',
   mode: 'no-cors',
 }
+
+// let min = 0
+// let sec = 0
+// let stoptime = false
+// let timerloop
+
+// const startTimer = () => {
+//   if (stoptime == true) {
+//     fetch(
+//       `http://192.168.15.140:1234/update?starttimer=''`,
+//       requestOptions,
+//     )
+//       .then(() => {})
+//       .catch((error) => console.log('error', error))
+    
+//     stoptime = false
+//     timerCycle()
+//   }
+// }
+
+// const resetTimer = () => {
+//   fetch(
+//     `http://192.168.15.140:1234/update?reset=''`,
+//     requestOptions,
+//   )
+//     .then(() => {})
+//     .catch((error) => console.log('error', error))
+  
+//   clearTimeout(timerloop)
+//   stoptime = true
+//   min = 0
+//   sec = 0
+// }
+
+// const stopTimer = () => {
+//   fetch(
+//     `http://192.168.15.140:1234/update?stoptimer=''`,
+//     requestOptions,
+//   )
+//     .then(() => {})
+//     .catch((error) => console.log('error', error))
+  
+//   stoptime = true
+//   clearTimeout(timerloop)
+// }
+
+// const setTimer = (sv) => {
+//   fetch(
+//     `http://192.168.15.140:1234/update?starttimer=''`,
+//     requestOptions,
+//   )
+//     .then(() => {})
+//     .catch((error) => console.log('error', error))
+//   //hier onder nieuwe time van database toevoegen
+  
+//   startTimer()
+// }
+
+// const timerCycle = () => {
+//   if (stoptime == false) {
+//     sec = sec + 1
+
+//     if (sec == 60) {
+//       min = min + 1
+//       sec = 0
+//     }
+//     if (min == 99) {
+//       min = 0
+//     }
+
+
+
+//     timerloop = setTimeout(timerCycle, 1000)
+//   }
+// }
 
 export const updateTekst = (text) => {
   fetch(
@@ -54,11 +129,11 @@ export const updateTeamScoreBord = (team, isScoreOmhoog) => {
 export const updateTeamVlagBord = (team, colour01, colour02) => {
   let vlagBovenHalf, vlagOnderHalf
   if (team == 'home') {
-    vlagBovenHalf = "thuiskleurboven"
-    vlagOnderHalf = "thuiskleuronder"
+    vlagBovenHalf = 'thuiskleurboven'
+    vlagOnderHalf = 'thuiskleuronder'
   } else if (team == 'out') {
-    vlagBovenHalf = "uitkleurboven"
-    vlagOnderHalf = "uitkleuronder"
+    vlagBovenHalf = 'uitkleurboven'
+    vlagOnderHalf = 'uitkleuronder'
   }
   fetch(
     `http://192.168.15.140:1234/update?${vlagBovenHalf}=${colour01}`,

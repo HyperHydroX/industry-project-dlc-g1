@@ -5,8 +5,10 @@
         <div>
           <HomeFlag />
         </div>
-        <div>
-          <h2 class="q-timer">20 : 01</h2>
+        <div class="container-timer">
+          <span class="q-timer">20</span>
+          <span class="q-timer q-timer--seperator">:</span>
+          <span class="q-timer">1</span>
         </div>
         <div>
           <OutFlag />
@@ -48,9 +50,9 @@
         </div>
         <div class="con-team-scores">
           <div class="con-current-scores">
-            <p class="js-thuis-score">{{ this.scoreThuis }}</p>
+            <p class="js-thuis-score">0</p>
             <p>-</p>
-            <p class="js-uit-score">{{ this.scoreUit }}</p>
+            <p class="js-uit-score">0</p>
           </div>
         </div>
         <div class="con-score-updaters">
@@ -116,6 +118,10 @@ import { useQuasar } from 'quasar'
 import { updateTeamScore } from '../firebase/firebase'
 // import { updateTimer } from '../firebase/firebase2'
 // import { updateTimerBord } from '../scoreboard/scoreboard'
+
+export let localMinites = document.querySelector(".js-thuis-score")
+export let localSeconds = document.querySelector(".js-thuis-score")
+
 export default {
   name: 'ScoreView',
   methods: {
@@ -245,6 +251,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
+.container-timer {
+  display: flex
+}
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
@@ -270,7 +280,7 @@ p {
 .q-kleuren {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   overflow: hidden;
 }
 
@@ -336,8 +346,11 @@ p {
   font-size: 1.5rem;
   font-weight: 700;
   min-width: max-content;
-  padding: 0 1.5rem;
   font-family: 'Opens Sans', sans-serif;
+}
+
+.q-timer--seperator {
+  padding-inline: 0.3em;
 }
 
 .q-start {
