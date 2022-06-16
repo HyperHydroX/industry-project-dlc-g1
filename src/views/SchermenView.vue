@@ -2,9 +2,10 @@
   <div class="q-start">
     <div class="q-body">
       <h1 class="q-titel">Scherm tekstweergave</h1>
-      <div>
+      <div class="js-tekstveld-scherm">
         <q-input
           class="q-input js-scherm-tekst"
+          @click="recentTekst"
           v-model="text"
           filled
           type="textarea"
@@ -140,7 +141,7 @@ import { useQuasar } from 'quasar'
 // const storage = getStorage();
 import { uploadFile } from '../firebase/firebase'
 import { updateTekstFirebase } from "../firebase/firebase2"
-import { updateScherm } from '../scoreboard/scoreboard'
+import { updateScherm, updateTekst } from '../scoreboard/scoreboard'
 
 export default {
   name: 'SchermenView',
@@ -175,6 +176,15 @@ export default {
     },
     setTekst(text) {
       updateTekstFirebase((" "+text))
+    },
+    recentTekst(){
+      console.log(localStorage.getItem("recentbericht"))
+      let tekst = localStorage.getItem("recentbericht")
+      if (tekst != "") {
+        document.querySelector(".q-field__native").innerHTML = tekst
+        localStorage.setItem("recentbericht", "")
+        updateTekst(" "+tekst)
+      }
     }
   },
   setup() {

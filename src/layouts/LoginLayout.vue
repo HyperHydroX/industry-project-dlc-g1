@@ -11,8 +11,9 @@
             <div class="q-container">
               <h1 class="q-titel">Welkom</h1>
               <q-input
-                standout
+                standout="bg-teal text-white"
                 square
+                
                 label="email"
                 v-model="email"
                 filled
@@ -22,7 +23,7 @@
                 :class="{ errorClass: isErrorClassEmail }"
               />
               <q-input
-                standout
+                standout="bg-teal text-white"
                 square
                 label="wachtwoord"
                 v-model="password"

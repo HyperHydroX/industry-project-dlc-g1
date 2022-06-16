@@ -14,7 +14,10 @@ import {
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
-import { updateTeamScoreBord, updateTeamVlagBord } from '../scoreboard/scoreboard'
+import {
+  updateTeamScoreBord,
+  updateTeamVlagBord,
+} from '../scoreboard/scoreboard'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -97,7 +100,6 @@ export const resetUserPassword = (email) => {
 export const GetDocument = async () => {
   const docRef = doc(db, 'players', user.uid)
   const docSnap = await getDoc(docRef)
-
   if (docSnap.exists()) {
     console.log('Document data:', docSnap.data())
     return docSnap.data()
@@ -105,6 +107,21 @@ export const GetDocument = async () => {
     // doc.data() will be undefined in this case
     console.log('No such document!')
   }
+}
+
+export const getCurrentValues = async () => {
+  const docRef = doc(db, 'players', user.uid)
+  return new Promise((resolve, reject) => {
+    getDoc(docRef)
+      .then((jsonObject) => {
+        console.log(jsonObject)
+        resolve(jsonObject.data())
+      })
+      .catch((err) => {
+        console.log(err)
+        reject(err)
+      })
+  })
 }
 
 export const updateFlagColours = async (team, colour01, colour02) => {

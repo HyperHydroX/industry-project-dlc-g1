@@ -6,80 +6,122 @@ let requestOptions = {
   mode: 'no-cors',
 }
 
-// let min = 0
-// let sec = 0
-// let stoptime = false
-// let timerloop
+let minutes, seconds
+let mins = 0,
+  secs = 0
+let stoptime = false
+let timerloop
 
-// const startTimer = () => {
-//   if (stoptime == true) {
-//     fetch(
-//       `http://192.168.15.140:1234/update?starttimer=''`,
-//       requestOptions,
-//     )
-//       .then(() => {})
-//       .catch((error) => console.log('error', error))
-    
-//     stoptime = false
-//     timerCycle()
-//   }
-// }
+export const milliToMinsAndSecs = (millis) => {
+  let TimeArray = []
+  console.log(millis)
+  const d = new Date()
+  let timeSpan = d.getTime() - millis
+  let timeSpanInSecs = timeSpan / 1000
+  let secs = timeSpanInSecs % 60
+  let mins = (timeSpanInSecs - secs) / 60
+  TimeArray.push(mins)
+  TimeArray.push(Math.round(secs))
+  console.log(TimeArray)
+  return TimeArray
+}
 
-// const resetTimer = () => {
-//   fetch(
-//     `http://192.168.15.140:1234/update?reset=''`,
-//     requestOptions,
-//   )
-//     .then(() => {})
-//     .catch((error) => console.log('error', error))
-  
-//   clearTimeout(timerloop)
-//   stoptime = true
-//   min = 0
-//   sec = 0
-// }
+export const startLocalAndBordTimer = () => {
+  fetch(`http://192.168.15.140:1234/update?starttimer=''`, requestOptions)
+    .then()
+    .catch((error) => console.log('error', error))
 
-// const stopTimer = () => {
-//   fetch(
-//     `http://192.168.15.140:1234/update?stoptimer=''`,
-//     requestOptions,
-//   )
-//     .then(() => {})
-//     .catch((error) => console.log('error', error))
-  
-//   stoptime = true
-//   clearTimeout(timerloop)
-// }
+  minutes = document.querySelector('.js-timer-minutes')
+  seconds = document.querySelector('.js-timer-seconds')
+  console.log(minutes)
+  console.log(seconds)
+  timerLocalCycle()
+  if (stoptime == true) {
+    stoptime = false
+    timerLocalCycle()
+  }
+}
 
-// const setTimer = (sv) => {
-//   fetch(
-//     `http://192.168.15.140:1234/update?starttimer=''`,
-//     requestOptions,
-//   )
-//     .then(() => {})
-//     .catch((error) => console.log('error', error))
-//   //hier onder nieuwe time van database toevoegen
-  
-//   startTimer()
-// }
+export const resetLocalAndBordTimer = () => {
+  fetch(`http://192.168.15.140:1234/update?resettimer=''`, requestOptions)
+    .then()
+    .catch((error) => console.log('error', error))
 
-// const timerCycle = () => {
-//   if (stoptime == false) {
-//     sec = sec + 1
+  stoptime = true
+  mins = 0
+  secs = 0
+  minutes.innerHTML = '0' + mins.toString()
+  seconds.innerHTML = '0' + secs.toString()
+  clearTimeout(timerloop)
+}
 
-//     if (sec == 60) {
-//       min = min + 1
-//       sec = 0
-//     }
-//     if (min == 99) {
-//       min = 0
-//     }
+export const stopLocalAndBordTimer = () => {
+  fetch(`http://192.168.15.140:1234/update?stoptimer=''`, requestOptions)
+    .then()
+    .catch((error) => console.log('error', error))
 
+  stoptime = true
+  clearTimeout(timerloop)
+}
 
+export const setLocalAndBordTimer = (currentTimeArray) => {
+  minutes = document.querySelector('.js-timer-minutes')
+  seconds = document.querySelector('.js-timer-seconds')
+  fetch(
+    `http://192.168.15.140:1234/update?settimer=${currentTimeArray[0]},${currentTimeArray[1]}`,
+    requestOptions,
+  )
+    .then()
+    .catch((error) => console.log('error', error))
+  // resetLocalAndBordTimer();
 
-//     timerloop = setTimeout(timerCycle, 1000)
-//   }
-// }
+  console.log(currentTimeArray)
+  let tempSec = currentTimeArray[0]
+  let tempMin = currentTimeArray[1]
+
+  if (currentTimeArray[0] < 9) {
+    tempSec = "0" + currentTimeArray[0].toString()
+  }
+  if (currentTimeArray[1] < 9) {
+    tempMin = "0" + currentTimeArray[1].toString()
+  }
+
+  mins = currentTimeArray[0],
+  secs = currentTimeArray[1]
+
+  console.log(currentTimeArray)
+  minutes.innerHTML = tempMin
+  seconds.innerHTML = tempSec
+  startLocalAndBordTimer();
+}
+
+export const timerLocalCycle = () => {
+  if (stoptime == false) {
+    secs = secs + 1
+
+    if (secs == 60) {
+      mins = mins + 1
+      secs = 0
+    }
+    if (mins == 90) {
+      mins = 0
+    }
+
+    if (secs >= 10) {
+      seconds.innerHTML = secs
+    } else {
+      seconds.innerHTML = '0' + secs
+    }
+
+    if (mins >= 10) {
+      minutes.innerHTML = mins
+    } else {
+      minutes.innerHTML = '0' + mins
+    }
+
+    timerloop = setTimeout(timerLocalCycle, 1000)
+  }
+}
 
 export const updateTekst = (text) => {
   fetch(
@@ -149,22 +191,3 @@ export const updateTeamVlagBord = (team, colour01, colour02) => {
     .catch((error) => console.log('error', error))
 }
 // TODO
-export const updateTimerBord = (requestType, time) => {
-  console.log(requestType)
-  if (requestType == 'starttimer') {
-    requestType = 'starttimer'
-  } else if (requestType == 'resettimer') {
-    requestType = 'resettimer'
-  } else if (requestType == 'settimer') {
-    requestType = 'settimer'
-  } else if (requestType == 'stoptimer') {
-    requestType = 'stoptimer'
-  }
-
-  fetch(
-    `http://192.168.15.140:1234/update?${requestType}=${time}`,
-    requestOptions,
-  )
-    .then(() => {})
-    .catch((error) => console.log('error', error))
-}
