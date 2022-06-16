@@ -21,7 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-export let startTime, pauzeTime, resetTime, stopTime
+export let startTime, resetTime
 
 export const updateTimer = (requestType) => {
   return new Promise((resolve, reject) => {
@@ -39,28 +39,13 @@ export const updateTimer = (requestType) => {
           startTime = 0
           reject(err)
         })
-    } else if (requestType == 'stoptimer') {
-      pauzeTime = new Date().getTime()
-      updateDoc(doc(db, 'players', user.uid), {
-        PauzeTime: pauzeTime,
-      })
-        .then((res) => {
-          console.log(res)
-          pauzeTime = 0
-          resolve('Timer gepauzeerd')
-        })
-        .catch((err) => {
-          console.log(err)
-          reject(err)
-        })
     } else if (requestType == 'resettimer') {
       resetTime = new Date().getTime()
       updateDoc(doc(db, 'players', user.uid), {
         StartTime: resetTime,
-        PauzeTime: resetTime,
       })
-        .then((res) => {
-          console.log(res)
+        .then(() => {
+          console.log('Timer reset')
           resolve('Timer reset')
         })
         .catch((err) => {
@@ -69,16 +54,8 @@ export const updateTimer = (requestType) => {
           reject(err)
         })
     } else if (requestType == 'settimer') {
-      stopTime = new Date().getTime()
-      updateDoc(doc(db, 'players', user.uid), {
-        StopTime: stopTime,
-      }).then((res) => {
-        console.log(res)
-        return res
-      }).catch((err) => {
-        console.log(err)
-        return err
-      })
+      // TODO
+      console.log("TODO")
     }
   })
 }
