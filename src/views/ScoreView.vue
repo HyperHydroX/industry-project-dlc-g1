@@ -6,9 +6,9 @@
           <HomeFlag />
         </div>
         <div class="container-timer">
-          <span class="q-timer">20</span>
+          <span class="q-timer js-timer-minutes">00</span>
           <span class="q-timer q-timer--seperator">:</span>
-          <span class="q-timer">1</span>
+          <span class="q-timer js-timer-seconds">00</span>
         </div>
         <div>
           <OutFlag />
@@ -92,18 +92,19 @@
       </div>
       <!-- @click="setTime('toggle')" -->
       <q-btn
-        @click="updateTimerBord('toggle')"
+        @click="setTime('toggle')"
         data-timer="toggle"
-        class="q-btn timer-btn"
-        label="rust"
+        class="q-btn timer-btn js-timer-toggle-btn"
+        label="Start"
       />
       <q-btn
         @click="setTime('reset')"
         data-timer="reset"
         class="q-btn timer-btn"
-        label="tijd resetten"
+        label="Rest timer"
       />
-      <div class="q-btn--small">
+      <!-- syncDeviceAndPlayer -->
+      <div class="q-btn--small" @click="syncDeviceAndPlayer">
         <svg
           fill="white"
           xmlns="http://www.w3.org/2000/svg"
@@ -123,12 +124,16 @@ import HomeFlag from '@/components/HomeFlag.vue'
 import OutFlag from '@/components/OutFlag.vue'
 import router from '../router/index.js'
 import { useQuasar } from 'quasar'
-import { updateTeamScore } from '../firebase/firebase'
-// import { updateTimer } from '../firebase/firebase2'
-// import { updateTimerBord } from '../scoreboard/scoreboard'
+import { updateTeamScore, getCurrentValues } from '../firebase/firebase'
+import { updateTimer } from '../firebase/firebase2'
 
-export let localMinites = document.querySelector('.js-thuis-score')
-export let localSeconds = document.querySelector('.js-thuis-score')
+import {
+  startLocalAndBordTimer,
+  stopLocalAndBordTimer,
+  resetLocalAndBordTimer,
+  milliToMinsAndSecs,
+  setLocalAndBordTimer
+} from '../scoreboard/scoreboard'
 
 export default {
   name: 'ScoreView',
@@ -181,35 +186,86 @@ export default {
         console.log('uit-score: ' + this.scoreUit)
       }
     },
-    // setTime(inputType) {
-    //   console.log("clicked: " + inputType)
-    //   if (inputType == "toggle") {
-    //       updateTimer( this.isTimerStarted == true ? "pauze" : "start")
-    //       .then((res) => {
-    //         console.log(res)
-    //         this.isTimerStarted = !this.isTimerStarted
-    //       })
-    //       .catch((err) => {
-    //         console.log(err)
-    //       })
+    setTime(inputType) {
+      console.log('clicked: ' + inputType)
+      let label = document
+        .querySelector('.js-timer-toggle-btn')
+        .querySelector('.q-btn__content')
+        .querySelector('span')
 
-    //   } else if (inputType == "reset") {
-    //       updateTimer("reset")
-    //       .then(() => {
-    //         this.isTimerStarted = !this.isTimerStarted
+      let isTimerInit = localStorage.getItem('isTimerInit')
 
-    //       })
-    //       .catch((err) => {
-    //         console.log(err)
-    //       })
-    //   }
-    // },
-    // updateTimertest(requestType) {
-    //   if (requestType == "toggle") {
-    //     // let request = this.isTimerStarted == true ? "starttimer" : "stoptimer"
-    //     updateTimerBord("resettimer", '')
-    //   }
-    // }
+      if (!isTimerInit) {
+        localStorage.setItem('isTimerInit', 'true')
+      }
+
+      // logica timer naar firebase of local
+      if (isTimerInit == 'true') {
+        localStorage.setItem('isTimerInit', 'false')
+        label.innerHTML = 'stop'
+        startLocalAndBordTimer()
+        console.log('starttime setting in firebase store')
+        if (inputType == 'toggle') {
+          updateTimer('starttimer')
+            .then(() => {
+              label.innerHTML = 'stop'
+              // hier moet startLocalAndBordTimer() komen
+
+              this.isTimerStarted = !this.isTimerStarted
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      } else {
+        if (inputType == 'toggle') {
+          console.log('only local timer is being set')
+          this.isTimerStarted == true ? 'pauze' : 'start'
+          let test = label.innerHTML
+          label.innerHTML = test == 'stop' ? 'start' : 'stop'
+          if (test == 'stop') {
+            stopLocalAndBordTimer()
+          } else {
+            startLocalAndBordTimer()
+          }
+        } else if (inputType == 'reset') {
+          resetLocalAndBordTimer()
+          localStorage.setItem('isTimerInit', 'true')
+          updateTimer('resettimer')
+            .then(() => {
+              // stopLocalAndBordTimer moet hierkomen
+
+              this.isTimerStarted = !this.isTimerStarted
+              localStorage.setItem('isTimerInit', true)
+              label.innerHTML = 'start'
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      }
+    },
+    syncDeviceAndPlayer() {
+      getCurrentValues()
+        .then((jsonObject) => {
+          console.log(jsonObject.StartTime)
+          let currentTimeArray = milliToMinsAndSecs(jsonObject.StartTime)
+          document.querySelector('.js-thuis-score').innerHTML = jsonObject.ScoreThuis
+          document.querySelector('.js-uit-score').innerHTML = jsonObject.ScoreUit
+          localStorage.setItem("recentbericht", jsonObject.TekstOpScherm)
+          // jsonObject.TekstOpScherm
+          setLocalAndBordTimer(currentTimeArray)
+          localStorage.setItem('isTimerInit', 'false')
+          document
+        .querySelector('.js-timer-toggle-btn')
+        .querySelector('.q-btn__content')
+        .querySelector('span').innerHTML = 'stop'
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+
   },
   components: {
     HomeFlag,
@@ -218,6 +274,7 @@ export default {
   props: ['startMatch'],
   setup() {
     const $q = useQuasar()
+
     return {
       showNotif() {
         $q.notify({
@@ -295,9 +352,7 @@ p {
   .q-kleuren {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
+    gap: 1em;
   }
 }
 
@@ -319,10 +374,15 @@ p {
   width: 7%;
 }
 
+.q-btn--small:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
 .q-btn--small:active {
   margin: 2rem auto;
   width: 8%;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .q-btn--alert {
@@ -410,6 +470,14 @@ p {
   fill: #f9f9f9;
 }
 
+.con-score-icon:active {
+  opacity: 0.4;
+}
+.con-score-icon:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
 .con-team-scores {
   width: 100%;
   display: flex;
@@ -434,12 +502,6 @@ p {
   font-size: 4.2rem;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-}
-
-@media screen and (min-width: 360px) {
-  .q-timer {
-    font-size: 2rem;
-  }
 }
 
 @media screen and (max-width: 330px) {
